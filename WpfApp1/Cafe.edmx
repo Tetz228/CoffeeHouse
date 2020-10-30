@@ -1,0 +1,1259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CafeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number_contract" Type="int" Nullable="false" />
+          <Property Name="Fk_employee" Type="int" Nullable="false" />
+          <Property Name="Scan_contract" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Fk_type_dish" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drinks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Fk_drink_type" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="MName" Type="nvarchar" MaxLength="70" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Fk_status_employee" Type="int" Nullable="false" />
+          <Property Name="Phone_number" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ordering_dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_dish" Type="int" Nullable="false" />
+          <Property Name="Fk_status_dish" Type="int" Nullable="false" />
+          <Property Name="Count_dish" Type="int" Nullable="false" />
+          <Property Name="Fk_drink" Type="int" Nullable="false" />
+          <Property Name="Count_drink" Type="int" Nullable="false" />
+          <Property Name="Fk_order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_table" Type="int" Nullable="false" />
+          <Property Name="Fk_status_order" Type="int" Nullable="false" />
+          <Property Name="Count_person" Type="int" Nullable="false" />
+          <Property Name="Data_time" Type="datetime" Nullable="false" />
+          <Property Name="Order_price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Posts_employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_employee" Type="int" Nullable="false" />
+          <Property Name="Fk_post" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shift_dates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shift_list">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_employee" Type="int" Nullable="false" />
+          <Property Name="Fk_shift_date" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status_dish">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status_employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status_orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Table_number" Type="int" Nullable="false" />
+          <Property Name="Fk_employee" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types_dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Types_drinks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Fk_employee" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contracts_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dishes_Type_dish">
+          <End Role="Types_dishes" Type="Self.Types_dishes" Multiplicity="1" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_dishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dishes">
+              <PropertyRef Name="Fk_type_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drinks_Drinks_types">
+          <End Role="Types_drinks" Type="Self.Types_drinks" Multiplicity="1" />
+          <End Role="Drinks" Type="Self.Drinks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_drinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Drinks">
+              <PropertyRef Name="Fk_drink_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Status_employees">
+          <End Role="Status_employees" Type="Self.Status_employees" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Fk_status_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Dishes">
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Drinks">
+          <End Role="Drinks" Type="Self.Drinks" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_drink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Status_dish">
+          <End Role="Status_dish" Type="Self.Status_dish" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_dish">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_status_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status_orders">
+          <End Role="Status_orders" Type="Self.Status_orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Fk_status_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Tables">
+          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tables">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Fk_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_employee_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts_employees">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_employee_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts_employees">
+              <PropertyRef Name="Fk_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shift_list_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Shift_list" Type="Self.Shift_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shift_list">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shift_list_Shift_dates">
+          <End Role="Shift_dates" Type="Self.Shift_dates" Multiplicity="1" />
+          <End Role="Shift_list" Type="Self.Shift_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift_dates">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shift_list">
+              <PropertyRef Name="Fk_shift_date" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tables_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tables">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Select_contracts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_drinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_ordering_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_posts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_posts_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_shift_dates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_shift_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_status_dish" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_status_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_status_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_tables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_types_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_types_drinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Select_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище CafeModelContainer">
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dishes" EntityType="Self.Dishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drinks" EntityType="Self.Drinks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ordering_dishes" EntityType="Self.Ordering_dishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts_employees" EntityType="Self.Posts_employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shift_dates" EntityType="Self.Shift_dates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shift_list" EntityType="Self.Shift_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_dish" EntityType="Self.Status_dish" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_employees" EntityType="Self.Status_employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_orders" EntityType="Self.Status_orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types_dishes" EntityType="Self.Types_dishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types_drinks" EntityType="Self.Types_drinks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contracts_Employees" Association="Self.FK_Contracts_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dishes_Type_dish" Association="Self.FK_Dishes_Type_dish">
+            <End Role="Types_dishes" EntitySet="Types_dishes" />
+            <End Role="Dishes" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drinks_Drinks_types" Association="Self.FK_Drinks_Drinks_types">
+            <End Role="Types_drinks" EntitySet="Types_drinks" />
+            <End Role="Drinks" EntitySet="Drinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Status_employees" Association="Self.FK_Employees_Status_employees">
+            <End Role="Status_employees" EntitySet="Status_employees" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Dishes" Association="Self.FK_Ordering_dishes_Dishes">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Drinks" Association="Self.FK_Ordering_dishes_Drinks">
+            <End Role="Drinks" EntitySet="Drinks" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Orders" Association="Self.FK_Ordering_dishes_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Status_dish" Association="Self.FK_Ordering_dishes_Status_dish">
+            <End Role="Status_dish" EntitySet="Status_dish" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status_orders" Association="Self.FK_Orders_Status_orders">
+            <End Role="Status_orders" EntitySet="Status_orders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Tables" Association="Self.FK_Orders_Tables">
+            <End Role="Tables" EntitySet="Tables" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_employee_Employees" Association="Self.FK_Posts_employee_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Posts_employees" EntitySet="Posts_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_employee_Posts" Association="Self.FK_Posts_employee_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Posts_employees" EntitySet="Posts_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shift_list_Employees" Association="Self.FK_Shift_list_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Shift_list" EntitySet="Shift_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shift_list_Shift_dates" Association="Self.FK_Shift_list_Shift_dates">
+            <End Role="Shift_dates" EntitySet="Shift_dates" />
+            <End Role="Shift_list" EntitySet="Shift_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tables_Employees" Association="Self.FK_Tables_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Tables" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Employees" Association="Self.FK_Users_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number_contract" Type="Int32" Nullable="false" />
+          <Property Name="Fk_employee" Type="Int32" Nullable="false" />
+          <Property Name="Scan_contract" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Contracts_Employees" FromRole="Contracts" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fk_type_dish" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Types_dishes" Relationship="Self.FK_Dishes_Type_dish" FromRole="Dishes" ToRole="Types_dishes" />
+          <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Dishes" ToRole="Ordering_dishes" />
+        </EntityType>
+        <EntityType Name="Drinks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fk_drink_type" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Types_drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Drinks" ToRole="Types_drinks" />
+          <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Drinks" ToRole="Ordering_dishes" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fk_status_employee" Type="Int32" Nullable="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Employees" FromRole="Employees" ToRole="Contracts" />
+          <NavigationProperty Name="Status_employees" Relationship="Self.FK_Employees_Status_employees" FromRole="Employees" ToRole="Status_employees" />
+          <NavigationProperty Name="Posts_employees" Relationship="Self.FK_Posts_employee_Employees" FromRole="Employees" ToRole="Posts_employees" />
+          <NavigationProperty Name="Shift_list" Relationship="Self.FK_Shift_list_Employees" FromRole="Employees" ToRole="Shift_list" />
+          <NavigationProperty Name="Tables" Relationship="Self.FK_Tables_Employees" FromRole="Employees" ToRole="Tables" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Employees" FromRole="Employees" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Ordering_dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_dish" Type="Int32" Nullable="false" />
+          <Property Name="Fk_status_dish" Type="Int32" Nullable="false" />
+          <Property Name="Count_dish" Type="Int32" Nullable="false" />
+          <Property Name="Fk_drink" Type="Int32" Nullable="false" />
+          <Property Name="Count_drink" Type="Int32" Nullable="false" />
+          <Property Name="Fk_order" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Ordering_dishes" ToRole="Dishes" />
+          <NavigationProperty Name="Drinks" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Ordering_dishes" ToRole="Drinks" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Ordering_dishes" ToRole="Orders" />
+          <NavigationProperty Name="Status_dish" Relationship="Self.FK_Ordering_dishes_Status_dish" FromRole="Ordering_dishes" ToRole="Status_dish" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_table" Type="Int32" Nullable="false" />
+          <Property Name="Fk_status_order" Type="Int32" Nullable="false" />
+          <Property Name="Count_person" Type="Int32" Nullable="false" />
+          <Property Name="Data_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Orders" ToRole="Ordering_dishes" />
+          <NavigationProperty Name="Status_orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Orders" ToRole="Status_orders" />
+          <NavigationProperty Name="Tables" Relationship="Self.FK_Orders_Tables" FromRole="Orders" ToRole="Tables" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Posts_employees" Relationship="Self.FK_Posts_employee_Posts" FromRole="Posts" ToRole="Posts_employees" />
+        </EntityType>
+        <EntityType Name="Posts_employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_employee" Type="Int32" Nullable="false" />
+          <Property Name="Fk_post" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Posts_employee_Employees" FromRole="Posts_employees" ToRole="Employees" />
+          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_employee_Posts" FromRole="Posts_employees" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="Shift_dates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Shift_list" Relationship="Self.FK_Shift_list_Shift_dates" FromRole="Shift_dates" ToRole="Shift_list" />
+        </EntityType>
+        <EntityType Name="Shift_list">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_employee" Type="Int32" Nullable="false" />
+          <Property Name="Fk_shift_date" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Shift_list_Employees" FromRole="Shift_list" ToRole="Employees" />
+          <NavigationProperty Name="Shift_dates" Relationship="Self.FK_Shift_list_Shift_dates" FromRole="Shift_list" ToRole="Shift_dates" />
+        </EntityType>
+        <EntityType Name="Status_dish">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Status_dish" FromRole="Status_dish" ToRole="Ordering_dishes" />
+        </EntityType>
+        <EntityType Name="Status_employees">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Status_employees" FromRole="Status_employees" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Status_orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Status_orders" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Tables">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Table_number" Type="Int32" Nullable="false" />
+          <Property Name="Fk_employee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Tables_Employees" FromRole="Tables" ToRole="Employees" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Tables" FromRole="Tables" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Types_dishes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dishes" Relationship="Self.FK_Dishes_Type_dish" FromRole="Types_dishes" ToRole="Dishes" />
+        </EntityType>
+        <EntityType Name="Types_drinks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Types_drinks" ToRole="Drinks" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fk_employee" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Users_Employees" FromRole="Users" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Contracts_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dishes_Type_dish">
+          <End Role="Types_dishes" Type="Self.Types_dishes" Multiplicity="1" />
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_dishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Dishes">
+              <PropertyRef Name="Fk_type_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Dishes">
+          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dishes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drinks_Drinks_types">
+          <End Role="Types_drinks" Type="Self.Types_drinks" Multiplicity="1" />
+          <End Role="Drinks" Type="Self.Drinks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Types_drinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Drinks">
+              <PropertyRef Name="Fk_drink_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Drinks">
+          <End Role="Drinks" Type="Self.Drinks" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drinks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_drink" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Status_employees">
+          <End Role="Status_employees" Type="Self.Status_employees" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="Fk_status_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_employee_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts_employees">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shift_list_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Shift_list" Type="Self.Shift_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shift_list">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tables_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Tables" Type="Self.Tables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tables">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Fk_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ordering_dishes_Status_dish">
+          <End Role="Status_dish" Type="Self.Status_dish" Multiplicity="1" />
+          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_dish">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ordering_dishes">
+              <PropertyRef Name="Fk_status_dish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Status_orders">
+          <End Role="Status_orders" Type="Self.Status_orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Fk_status_order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Tables">
+          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tables">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Fk_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_employee_Posts">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Posts_employees">
+              <PropertyRef Name="Fk_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shift_list_Shift_dates">
+          <End Role="Shift_dates" Type="Self.Shift_dates" Multiplicity="1" />
+          <End Role="Shift_list" Type="Self.Shift_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shift_dates">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Shift_list">
+              <PropertyRef Name="Fk_shift_date" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CafeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="Dishes" EntityType="Self.Dishes" />
+          <EntitySet Name="Drinks" EntityType="Self.Drinks" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Ordering_dishes" EntityType="Self.Ordering_dishes" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" />
+          <EntitySet Name="Posts_employees" EntityType="Self.Posts_employees" />
+          <EntitySet Name="Shift_dates" EntityType="Self.Shift_dates" />
+          <EntitySet Name="Shift_list" EntityType="Self.Shift_list" />
+          <EntitySet Name="Status_dish" EntityType="Self.Status_dish" />
+          <EntitySet Name="Status_employees" EntityType="Self.Status_employees" />
+          <EntitySet Name="Status_orders" EntityType="Self.Status_orders" />
+          <EntitySet Name="Tables" EntityType="Self.Tables" />
+          <EntitySet Name="Types_dishes" EntityType="Self.Types_dishes" />
+          <EntitySet Name="Types_drinks" EntityType="Self.Types_drinks" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Contracts_Employees" Association="Self.FK_Contracts_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dishes_Type_dish" Association="Self.FK_Dishes_Type_dish">
+            <End Role="Types_dishes" EntitySet="Types_dishes" />
+            <End Role="Dishes" EntitySet="Dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Dishes" Association="Self.FK_Ordering_dishes_Dishes">
+            <End Role="Dishes" EntitySet="Dishes" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drinks_Drinks_types" Association="Self.FK_Drinks_Drinks_types">
+            <End Role="Types_drinks" EntitySet="Types_drinks" />
+            <End Role="Drinks" EntitySet="Drinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Drinks" Association="Self.FK_Ordering_dishes_Drinks">
+            <End Role="Drinks" EntitySet="Drinks" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Status_employees" Association="Self.FK_Employees_Status_employees">
+            <End Role="Status_employees" EntitySet="Status_employees" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_employee_Employees" Association="Self.FK_Posts_employee_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Posts_employees" EntitySet="Posts_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shift_list_Employees" Association="Self.FK_Shift_list_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Shift_list" EntitySet="Shift_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tables_Employees" Association="Self.FK_Tables_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Tables" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Employees" Association="Self.FK_Users_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Orders" Association="Self.FK_Ordering_dishes_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ordering_dishes_Status_dish" Association="Self.FK_Ordering_dishes_Status_dish">
+            <End Role="Status_dish" EntitySet="Status_dish" />
+            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Status_orders" Association="Self.FK_Orders_Status_orders">
+            <End Role="Status_orders" EntitySet="Status_orders" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Tables" Association="Self.FK_Orders_Tables">
+            <End Role="Tables" EntitySet="Tables" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_employee_Posts" Association="Self.FK_Posts_employee_Posts">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Posts_employees" EntitySet="Posts_employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shift_list_Shift_dates" Association="Self.FK_Shift_list_Shift_dates">
+            <End Role="Shift_dates" EntitySet="Shift_dates" />
+            <End Role="Shift_list" EntitySet="Shift_list" />
+          </AssociationSet>
+          <FunctionImport Name="Select_contracts" ReturnType="Collection(CafeModel.Select_contracts_Result)" />
+          <FunctionImport Name="Select_dishes" />
+          <FunctionImport Name="Select_drinks" ReturnType="Collection(CafeModel.Select_drinks_Result)" />
+          <FunctionImport Name="Select_employees" ReturnType="Collection(CafeModel.Select_employees_Result)" />
+          <FunctionImport Name="Select_ordering_dishes" ReturnType="Collection(CafeModel.Select_ordering_dishes_Result)" />
+          <FunctionImport Name="Select_orders" ReturnType="Collection(CafeModel.Select_orders_Result)" />
+          <FunctionImport Name="Select_posts" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_posts_employees" ReturnType="Collection(CafeModel.Select_posts_employees_Result)" />
+          <FunctionImport Name="Select_shift_dates" ReturnType="Collection(DateTime)" />
+          <FunctionImport Name="Select_shift_list" ReturnType="Collection(CafeModel.Select_shift_list_Result)" />
+          <FunctionImport Name="Select_status_dish" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_status_employees" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_status_orders" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_tables" ReturnType="Collection(CafeModel.Select_tables_Result)" />
+          <FunctionImport Name="Select_types_dishes" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_types_drinks" ReturnType="Collection(String)" />
+          <FunctionImport Name="Select_users" ReturnType="Collection(CafeModel.Select_users_Result)" />
+        </EntityContainer>
+        <ComplexType Name="Select_contracts_Result">
+          <Property Type="Int32" Name="Номер_трудового_договора" Nullable="false" />
+          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
+          <Property Type="String" Name="Скан_договора" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="Select_drinks_Result">
+          <Property Type="String" Name="Название_напитка" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Тип_напитка" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Цена_напитка" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="Select_employees_Result">
+          <Property Type="String" Name="ФИО" Nullable="false" MaxLength="212" />
+          <Property Type="String" Name="Должность" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Фотография" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Статус" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Номер_телефона" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Select_ordering_dishes_Result">
+          <Property Type="Int32" Name="Номер_столика" Nullable="true" />
+          <Property Type="String" Name="Название_блюда" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Тип_блюда" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="Цена_блюда" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="Количество_порций" Nullable="false" />
+          <Property Type="String" Name="Статус_блюда" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Название_напитка" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Тип_напитка" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Цена_напитка" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="Количество_напитка" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Select_orders_Result">
+          <Property Type="Int32" Name="Номер_столика" Nullable="true" />
+          <Property Type="Int32" Name="Количество_человек" Nullable="false" />
+          <Property Type="String" Name="Принял_заказ" Nullable="false" MaxLength="212" />
+          <Property Type="String" Name="Статус_заказа" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="Дата_и_время_заказа" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="Сумма_заказ" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="Select_posts_employees_Result">
+          <Property Type="String" Name="Должность" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
+        </ComplexType>
+        <ComplexType Name="Select_shift_list_Result">
+          <Property Type="String" Name="Сотрудик" Nullable="false" MaxLength="212" />
+          <Property Type="DateTime" Name="Дата_смены" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Select_tables_Result">
+          <Property Type="Int32" Name="Номер_столика" Nullable="false" />
+          <Property Type="String" Name="Сотрудник__назначенный_на_столик" Nullable="false" MaxLength="212" />
+        </ComplexType>
+        <ComplexType Name="Select_users_Result">
+          <Property Type="String" Name="Логин" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Пароль" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CafeModelContainer" CdmEntityContainer="CafeEntities">
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="CafeModel.Contracts">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Number_contract" ColumnName="Number_contract" />
+                <ScalarProperty Name="Fk_employee" ColumnName="Fk_employee" />
+                <ScalarProperty Name="Scan_contract" ColumnName="Scan_contract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dishes">
+            <EntityTypeMapping TypeName="CafeModel.Dishes">
+              <MappingFragment StoreEntitySet="Dishes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fk_type_dish" ColumnName="Fk_type_dish" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drinks">
+            <EntityTypeMapping TypeName="CafeModel.Drinks">
+              <MappingFragment StoreEntitySet="Drinks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fk_drink_type" ColumnName="Fk_drink_type" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="CafeModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Fk_status_employee" ColumnName="Fk_status_employee" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ordering_dishes">
+            <EntityTypeMapping TypeName="CafeModel.Ordering_dishes">
+              <MappingFragment StoreEntitySet="Ordering_dishes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fk_dish" ColumnName="Fk_dish" />
+                <ScalarProperty Name="Fk_status_dish" ColumnName="Fk_status_dish" />
+                <ScalarProperty Name="Count_dish" ColumnName="Count_dish" />
+                <ScalarProperty Name="Fk_drink" ColumnName="Fk_drink" />
+                <ScalarProperty Name="Count_drink" ColumnName="Count_drink" />
+                <ScalarProperty Name="Fk_order" ColumnName="Fk_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="CafeModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fk_table" ColumnName="Fk_table" />
+                <ScalarProperty Name="Fk_status_order" ColumnName="Fk_status_order" />
+                <ScalarProperty Name="Count_person" ColumnName="Count_person" />
+                <ScalarProperty Name="Data_time" ColumnName="Data_time" />
+                <ScalarProperty Name="Order_price" ColumnName="Order_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="CafeModel.Posts">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posts_employees">
+            <EntityTypeMapping TypeName="CafeModel.Posts_employees">
+              <MappingFragment StoreEntitySet="Posts_employees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fk_employee" ColumnName="Fk_employee" />
+                <ScalarProperty Name="Fk_post" ColumnName="Fk_post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shift_dates">
+            <EntityTypeMapping TypeName="CafeModel.Shift_dates">
+              <MappingFragment StoreEntitySet="Shift_dates">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shift_list">
+            <EntityTypeMapping TypeName="CafeModel.Shift_list">
+              <MappingFragment StoreEntitySet="Shift_list">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fk_employee" ColumnName="Fk_employee" />
+                <ScalarProperty Name="Fk_shift_date" ColumnName="Fk_shift_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_dish">
+            <EntityTypeMapping TypeName="CafeModel.Status_dish">
+              <MappingFragment StoreEntitySet="Status_dish">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_employees">
+            <EntityTypeMapping TypeName="CafeModel.Status_employees">
+              <MappingFragment StoreEntitySet="Status_employees">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_orders">
+            <EntityTypeMapping TypeName="CafeModel.Status_orders">
+              <MappingFragment StoreEntitySet="Status_orders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="CafeModel.Tables">
+              <MappingFragment StoreEntitySet="Tables">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Table_number" ColumnName="Table_number" />
+                <ScalarProperty Name="Fk_employee" ColumnName="Fk_employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types_dishes">
+            <EntityTypeMapping TypeName="CafeModel.Types_dishes">
+              <MappingFragment StoreEntitySet="Types_dishes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types_drinks">
+            <EntityTypeMapping TypeName="CafeModel.Types_drinks">
+              <MappingFragment StoreEntitySet="Types_drinks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CafeModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Fk_employee" ColumnName="Fk_employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Select_contracts" FunctionName="Хранилище CafeModel.Select_contracts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_contracts_Result">
+                <ScalarProperty Name="Номер_трудового_договора" ColumnName="Номер трудового договора" />
+                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+                <ScalarProperty Name="Скан_договора" ColumnName="Скан договора" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_dishes" FunctionName="Хранилище CafeModel.Select_dishes" />
+          <FunctionImportMapping FunctionImportName="Select_drinks" FunctionName="Хранилище CafeModel.Select_drinks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_drinks_Result">
+                <ScalarProperty Name="Название_напитка" ColumnName="Название напитка" />
+                <ScalarProperty Name="Тип_напитка" ColumnName="Тип напитка" />
+                <ScalarProperty Name="Цена_напитка" ColumnName="Цена напитка" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_employees" FunctionName="Хранилище CafeModel.Select_employees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_employees_Result">
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Фотография" ColumnName="Фотография" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_ordering_dishes" FunctionName="Хранилище CafeModel.Select_ordering_dishes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_ordering_dishes_Result">
+                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
+                <ScalarProperty Name="Название_блюда" ColumnName="Название блюда" />
+                <ScalarProperty Name="Тип_блюда" ColumnName="Тип блюда" />
+                <ScalarProperty Name="Цена_блюда" ColumnName="Цена блюда" />
+                <ScalarProperty Name="Количество_порций" ColumnName="Количество порций" />
+                <ScalarProperty Name="Статус_блюда" ColumnName="Статус блюда" />
+                <ScalarProperty Name="Название_напитка" ColumnName="Название напитка" />
+                <ScalarProperty Name="Тип_напитка" ColumnName="Тип напитка" />
+                <ScalarProperty Name="Цена_напитка" ColumnName="Цена напитка" />
+                <ScalarProperty Name="Количество_напитка" ColumnName="Количество напитка" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_orders" FunctionName="Хранилище CafeModel.Select_orders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_orders_Result">
+                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
+                <ScalarProperty Name="Количество_человек" ColumnName="Количество человек" />
+                <ScalarProperty Name="Принял_заказ" ColumnName="Принял заказ" />
+                <ScalarProperty Name="Статус_заказа" ColumnName="Статус заказа" />
+                <ScalarProperty Name="Дата_и_время_заказа" ColumnName="Дата и время заказа" />
+                <ScalarProperty Name="Сумма_заказ" ColumnName="Сумма заказ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_posts" FunctionName="Хранилище CafeModel.Select_posts" />
+          <FunctionImportMapping FunctionImportName="Select_posts_employees" FunctionName="Хранилище CafeModel.Select_posts_employees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_posts_employees_Result">
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_shift_dates" FunctionName="Хранилище CafeModel.Select_shift_dates" />
+          <FunctionImportMapping FunctionImportName="Select_shift_list" FunctionName="Хранилище CafeModel.Select_shift_list">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_shift_list_Result">
+                <ScalarProperty Name="Сотрудик" ColumnName="Сотрудик" />
+                <ScalarProperty Name="Дата_смены" ColumnName="Дата смены" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_status_dish" FunctionName="Хранилище CafeModel.Select_status_dish" />
+          <FunctionImportMapping FunctionImportName="Select_status_employees" FunctionName="Хранилище CafeModel.Select_status_employees" />
+          <FunctionImportMapping FunctionImportName="Select_status_orders" FunctionName="Хранилище CafeModel.Select_status_orders" />
+          <FunctionImportMapping FunctionImportName="Select_tables" FunctionName="Хранилище CafeModel.Select_tables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_tables_Result">
+                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
+                <ScalarProperty Name="Сотрудник__назначенный_на_столик" ColumnName="Сотрудник, назначенный на столик" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_types_dishes" FunctionName="Хранилище CafeModel.Select_types_dishes" />
+          <FunctionImportMapping FunctionImportName="Select_types_drinks" FunctionName="Хранилище CafeModel.Select_types_drinks" />
+          <FunctionImportMapping FunctionImportName="Select_users" FunctionName="Хранилище CafeModel.Select_users">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CafeModel.Select_users_Result">
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
