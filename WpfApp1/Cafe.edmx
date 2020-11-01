@@ -446,7 +446,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CafeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Contracts">
+        <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -454,9 +454,9 @@
           <Property Name="Number_contract" Type="Int32" Nullable="false" />
           <Property Name="Fk_employee" Type="Int32" Nullable="false" />
           <Property Name="Scan_contract" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Contracts_Employees" FromRole="Contracts" ToRole="Employees" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Contracts_Employees" FromRole="Contracts" ToRole="Employees" />
         </EntityType>
-        <EntityType Name="Dishes">
+        <EntityType Name="Dish">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -467,7 +467,7 @@
           <NavigationProperty Name="Types_dishes" Relationship="Self.FK_Dishes_Type_dish" FromRole="Dishes" ToRole="Types_dishes" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Dishes" ToRole="Ordering_dishes" />
         </EntityType>
-        <EntityType Name="Drinks">
+        <EntityType Name="Drink">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -478,7 +478,7 @@
           <NavigationProperty Name="Types_drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Drinks" ToRole="Types_drinks" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Drinks" ToRole="Ordering_dishes" />
         </EntityType>
-        <EntityType Name="Employees">
+        <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -507,12 +507,12 @@
           <Property Name="Fk_drink" Type="Int32" Nullable="false" />
           <Property Name="Count_drink" Type="Int32" Nullable="false" />
           <Property Name="Fk_order" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Dishes" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Ordering_dishes" ToRole="Dishes" />
-          <NavigationProperty Name="Drinks" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Ordering_dishes" ToRole="Drinks" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Ordering_dishes" ToRole="Orders" />
+          <NavigationProperty Name="Dish" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Ordering_dishes" ToRole="Dishes" />
+          <NavigationProperty Name="Drink" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Ordering_dishes" ToRole="Drinks" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Ordering_dishes" ToRole="Orders" />
           <NavigationProperty Name="Status_dish" Relationship="Self.FK_Ordering_dishes_Status_dish" FromRole="Ordering_dishes" ToRole="Status_dish" />
         </EntityType>
-        <EntityType Name="Orders">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -524,9 +524,9 @@
           <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Orders" ToRole="Ordering_dishes" />
           <NavigationProperty Name="Status_orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Orders" ToRole="Status_orders" />
-          <NavigationProperty Name="Tables" Relationship="Self.FK_Orders_Tables" FromRole="Orders" ToRole="Tables" />
+          <NavigationProperty Name="Table" Relationship="Self.FK_Orders_Tables" FromRole="Orders" ToRole="Tables" />
         </EntityType>
-        <EntityType Name="Posts">
+        <EntityType Name="Post">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -541,8 +541,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fk_employee" Type="Int32" Nullable="false" />
           <Property Name="Fk_post" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Posts_employee_Employees" FromRole="Posts_employees" ToRole="Employees" />
-          <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_employee_Posts" FromRole="Posts_employees" ToRole="Posts" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Posts_employee_Employees" FromRole="Posts_employees" ToRole="Employees" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Posts_employee_Posts" FromRole="Posts_employees" ToRole="Posts" />
         </EntityType>
         <EntityType Name="Shift_dates">
           <Key>
@@ -559,7 +559,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Fk_employee" Type="Int32" Nullable="false" />
           <Property Name="Fk_shift_date" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Shift_list_Employees" FromRole="Shift_list" ToRole="Employees" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Shift_list_Employees" FromRole="Shift_list" ToRole="Employees" />
           <NavigationProperty Name="Shift_dates" Relationship="Self.FK_Shift_list_Shift_dates" FromRole="Shift_list" ToRole="Shift_dates" />
         </EntityType>
         <EntityType Name="Status_dish">
@@ -586,14 +586,14 @@
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Status_orders" ToRole="Orders" />
         </EntityType>
-        <EntityType Name="Tables">
+        <EntityType Name="Table">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Table_number" Type="Int32" Nullable="false" />
           <Property Name="Fk_employee" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Tables_Employees" FromRole="Tables" ToRole="Employees" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Tables_Employees" FromRole="Tables" ToRole="Employees" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Tables" FromRole="Tables" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Types_dishes">
@@ -612,7 +612,7 @@
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Types_drinks" ToRole="Drinks" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -620,11 +620,11 @@
           <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Fk_employee" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_Users_Employees" FromRole="Users" ToRole="Employees" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Users_Employees" FromRole="Users" ToRole="Employees" />
         </EntityType>
         <Association Name="FK_Contracts_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
               <PropertyRef Name="ID" />
@@ -636,7 +636,7 @@
         </Association>
         <Association Name="FK_Dishes_Type_dish">
           <End Role="Types_dishes" Type="Self.Types_dishes" Multiplicity="1" />
-          <End Role="Dishes" Type="Self.Dishes" Multiplicity="*" />
+          <End Role="Dishes" Type="Self.Dish" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Types_dishes">
               <PropertyRef Name="ID" />
@@ -647,7 +647,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ordering_dishes_Dishes">
-          <End Role="Dishes" Type="Self.Dishes" Multiplicity="1" />
+          <End Role="Dishes" Type="Self.Dish" Multiplicity="1" />
           <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Dishes">
@@ -660,7 +660,7 @@
         </Association>
         <Association Name="FK_Drinks_Drinks_types">
           <End Role="Types_drinks" Type="Self.Types_drinks" Multiplicity="1" />
-          <End Role="Drinks" Type="Self.Drinks" Multiplicity="*" />
+          <End Role="Drinks" Type="Self.Drink" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Types_drinks">
               <PropertyRef Name="ID" />
@@ -671,7 +671,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ordering_dishes_Drinks">
-          <End Role="Drinks" Type="Self.Drinks" Multiplicity="1" />
+          <End Role="Drinks" Type="Self.Drink" Multiplicity="1" />
           <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Drinks">
@@ -684,7 +684,7 @@
         </Association>
         <Association Name="FK_Employees_Status_employees">
           <End Role="Status_employees" Type="Self.Status_employees" Multiplicity="1" />
-          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status_employees">
               <PropertyRef Name="ID" />
@@ -695,7 +695,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Posts_employee_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
           <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -707,7 +707,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Shift_list_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
           <End Role="Shift_list" Type="Self.Shift_list" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
@@ -719,8 +719,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tables_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Tables" Type="Self.Tables" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Tables" Type="Self.Table" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
               <PropertyRef Name="ID" />
@@ -731,8 +731,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Users_Employees">
-          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employees">
               <PropertyRef Name="ID" />
@@ -743,7 +743,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ordering_dishes_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
           <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
@@ -768,7 +768,7 @@
         </Association>
         <Association Name="FK_Orders_Status_orders">
           <End Role="Status_orders" Type="Self.Status_orders" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status_orders">
               <PropertyRef Name="ID" />
@@ -779,8 +779,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Tables">
-          <End Role="Tables" Type="Self.Tables" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <End Role="Tables" Type="Self.Table" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tables">
               <PropertyRef Name="ID" />
@@ -791,7 +791,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Posts_employee_Posts">
-          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Posts" Type="Self.Post" Multiplicity="1" />
           <End Role="Posts_employees" Type="Self.Posts_employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Posts">
@@ -815,23 +815,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CafeEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
-          <EntitySet Name="Dishes" EntityType="Self.Dishes" />
-          <EntitySet Name="Drinks" EntityType="Self.Drinks" />
-          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="Dishes" EntityType="Self.Dish" />
+          <EntitySet Name="Drinks" EntityType="Self.Drink" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Ordering_dishes" EntityType="Self.Ordering_dishes" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Posts" EntityType="Self.Posts" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Posts" EntityType="Self.Post" />
           <EntitySet Name="Posts_employees" EntityType="Self.Posts_employees" />
           <EntitySet Name="Shift_dates" EntityType="Self.Shift_dates" />
           <EntitySet Name="Shift_list" EntityType="Self.Shift_list" />
           <EntitySet Name="Status_dish" EntityType="Self.Status_dish" />
           <EntitySet Name="Status_employees" EntityType="Self.Status_employees" />
           <EntitySet Name="Status_orders" EntityType="Self.Status_orders" />
-          <EntitySet Name="Tables" EntityType="Self.Tables" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
           <EntitySet Name="Types_dishes" EntityType="Self.Types_dishes" />
           <EntitySet Name="Types_drinks" EntityType="Self.Types_drinks" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Contracts_Employees" Association="Self.FK_Contracts_Employees">
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Contracts" EntitySet="Contracts" />
@@ -975,7 +975,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище CafeModelContainer" CdmEntityContainer="CafeEntities">
           <EntitySetMapping Name="Contracts">
-            <EntityTypeMapping TypeName="CafeModel.Contracts">
+            <EntityTypeMapping TypeName="CafeModel.Contract">
               <MappingFragment StoreEntitySet="Contracts">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Number_contract" ColumnName="Number_contract" />
@@ -985,7 +985,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Dishes">
-            <EntityTypeMapping TypeName="CafeModel.Dishes">
+            <EntityTypeMapping TypeName="CafeModel.Dish">
               <MappingFragment StoreEntitySet="Dishes">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -995,7 +995,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Drinks">
-            <EntityTypeMapping TypeName="CafeModel.Drinks">
+            <EntityTypeMapping TypeName="CafeModel.Drink">
               <MappingFragment StoreEntitySet="Drinks">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1005,7 +1005,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="CafeModel.Employees">
+            <EntityTypeMapping TypeName="CafeModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
@@ -1031,7 +1031,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="CafeModel.Orders">
+            <EntityTypeMapping TypeName="CafeModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Fk_table" ColumnName="Fk_table" />
@@ -1043,7 +1043,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Posts">
-            <EntityTypeMapping TypeName="CafeModel.Posts">
+            <EntityTypeMapping TypeName="CafeModel.Post">
               <MappingFragment StoreEntitySet="Posts">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1101,7 +1101,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="CafeModel.Tables">
+            <EntityTypeMapping TypeName="CafeModel.Table">
               <MappingFragment StoreEntitySet="Tables">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Table_number" ColumnName="Table_number" />
@@ -1126,7 +1126,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CafeModel.Users">
+            <EntityTypeMapping TypeName="CafeModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -1247,7 +1247,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

@@ -70,25 +70,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Contracts.cs">
+    <Compile Include="Contract.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Dishes.cs">
+    <Compile Include="Dish.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Drinks.cs">
+    <Compile Include="Drink.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Employees.cs">
+    <Compile Include="Employee.cs">
+      <DependentUpon>Cafe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Ordering_dishes.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Orders.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Posts.cs">
+    <Compile Include="Post.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Posts_employees.cs">
@@ -136,7 +136,7 @@
     <Compile Include="Status_orders.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tables.cs">
+    <Compile Include="Table.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Types_dishes.cs">
@@ -145,7 +145,7 @@
     <Compile Include="Types_drinks.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
+    <Compile Include="User.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Page Include="AuthWindow.xaml">

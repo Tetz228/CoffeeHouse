@@ -20,6 +20,8 @@ namespace WpfApp1
 {
     public partial class AuthWindow : Window
     {
+        static public int UserId { get; set; }
+
         public AuthWindow()
         {
             InitializeComponent();
@@ -39,9 +41,11 @@ namespace WpfApp1
                                                   );
 
                 if (user == null)
-                    MessageBox.Show("Неверный логин или пароль");
+                    MessageBox.Show("Неверный логин или пароль","Ошибка при авторизации");
                 else
                 {
+                    UserId = user.ID;
+
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
 

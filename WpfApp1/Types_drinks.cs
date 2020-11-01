@@ -17,13 +17,13 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Types_drinks()
         {
-            this.Drinks = new HashSet<Drinks>();
+            this.Drinks = new HashSet<Drink>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Drinks> Drinks { get; set; }
+        public virtual ICollection<Drink> Drinks { get; set; }
     }
 }

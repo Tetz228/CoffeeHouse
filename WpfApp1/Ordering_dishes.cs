@@ -22,9 +22,9 @@ namespace WpfApp1
         public int Count_drink { get; set; }
         public int Fk_order { get; set; }
     
-        public virtual Dishes Dishes { get; set; }
-        public virtual Drinks Drinks { get; set; }
-        public virtual Orders Orders { get; set; }
+        public virtual Dish Dish { get; set; }
+        public virtual Drink Drink { get; set; }
+        public virtual Order Order { get; set; }
         public virtual Status_dish Status_dish { get; set; }
     }
 }

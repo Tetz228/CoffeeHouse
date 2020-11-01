@@ -12,10 +12,10 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Drinks
+    public partial class Drink
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Drinks()
+        public Drink()
         {
             this.Ordering_dishes = new HashSet<Ordering_dishes>();
         }

@@ -17,13 +17,13 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Types_dishes()
         {
-            this.Dishes = new HashSet<Dishes>();
+            this.Dishes = new HashSet<Dish>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dishes> Dishes { get; set; }
+        public virtual ICollection<Dish> Dishes { get; set; }
     }
 }

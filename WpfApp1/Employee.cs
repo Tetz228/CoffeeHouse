@@ -12,16 +12,16 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Employees
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employees()
+        public Employee()
         {
-            this.Contracts = new HashSet<Contracts>();
+            this.Contracts = new HashSet<Contract>();
             this.Posts_employees = new HashSet<Posts_employees>();
             this.Shift_list = new HashSet<Shift_list>();
-            this.Tables = new HashSet<Tables>();
-            this.Users = new HashSet<Users>();
+            this.Tables = new HashSet<Table>();
+            this.Users = new HashSet<User>();
         }
     
         public int ID { get; set; }
@@ -33,15 +33,15 @@ namespace WpfApp1
         public string Phone_number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contracts> Contracts { get; set; }
+        public virtual ICollection<Contract> Contracts { get; set; }
         public virtual Status_employees Status_employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Posts_employees> Posts_employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shift_list> Shift_list { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tables> Tables { get; set; }
+        public virtual ICollection<Table> Tables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

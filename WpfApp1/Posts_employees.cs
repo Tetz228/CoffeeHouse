@@ -18,7 +18,7 @@ namespace WpfApp1
         public int Fk_employee { get; set; }
         public int Fk_post { get; set; }
     
-        public virtual Employees Employees { get; set; }
-        public virtual Posts Posts { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

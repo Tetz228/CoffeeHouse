@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="00bb2d10a6cd4e4f8c72701d4dba1cbe" Name="Diagram1">
-        <EntityTypeShape EntityType="CafeModel.Contracts" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Dishes" Width="1.5" PointX="7.5" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Drinks" Width="1.5" PointX="7.5" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Employees" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="17b29ab1d50d40cba834d7a7e38076e3" Name="Diagram1">
+        <EntityTypeShape EntityType="CafeModel.Contract" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Dish" Width="1.5" PointX="7.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Drink" Width="1.5" PointX="7.5" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Employee" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Ordering_dishes" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Orders" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Posts" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Order" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Post" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Posts_employees" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Shift_dates" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Shift_list" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Status_dish" Width="1.5" PointX="7.5" PointY="16.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Status_employees" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Status_orders" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Tables" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Table" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Types_dishes" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Types_drinks" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Users" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.User" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
         <AssociationConnector Association="CafeModel.FK_Contracts_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="CafeModel.FK_Dishes_Type_dish" ManuallyRouted="false" />
         <AssociationConnector Association="CafeModel.FK_Ordering_dishes_Dishes" ManuallyRouted="false" />

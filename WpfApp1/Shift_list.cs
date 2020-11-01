@@ -18,7 +18,7 @@ namespace WpfApp1
         public int Fk_employee { get; set; }
         public int Fk_shift_date { get; set; }
     
-        public virtual Employees Employees { get; set; }
+        public virtual Employee Employee { get; set; }
         public virtual Shift_dates Shift_dates { get; set; }
     }
 }
