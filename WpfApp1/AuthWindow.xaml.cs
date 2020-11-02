@@ -67,6 +67,7 @@ namespace WpfApp1
                                     break;
                                 case "Официант":
                                     WaiterWindow waiter = new WaiterWindow();
+                                    waiter.Show();
                                     Close();
                                     break;
                                 case "Повар":
@@ -84,6 +85,7 @@ namespace WpfApp1
                                 break;
                             case "Официант":
                                 WaiterWindow waiter = new WaiterWindow();
+                                waiter.Show();
                                 Close();
                                 break;
                             case "Повар":
