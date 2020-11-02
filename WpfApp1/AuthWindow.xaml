@@ -16,6 +16,5 @@
             <Button Name="LoginButton" Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" FontSize="14" Click="LoginButton_Click"/>
             <Button Name="ExitButton" Content="Выйти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" Margin="87,0,0,0" FontSize="14" Click="ExitButton_Click"/>
         </StackPanel>
-
     </Grid>
 </Window>

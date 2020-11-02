@@ -1,26 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfApp1
 {
     public partial class ChoiceRoleWindow : Window
     {
+        public List<Posts_employees> PostsEmployee { get; set; }
+
+        public string GetRole { get; set; }
+
         public ChoiceRoleWindow()
         {
             InitializeComponent();
         }
 
-        public List<Posts_employees> infoEmployee { get; set; }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            FillingComboBox();
+        }
+
+        private void FillingComboBox()
+        {
+            ComboBoxChoiceRole.DataContext = PostsEmployee.ToList();
+        }
+
+        private void Сonfirm_Click(object sender, RoutedEventArgs e)
+        {
+            GetRole = ComboBoxChoiceRole.Text;
+
+            Close();
+        }
+
+        private void Сancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

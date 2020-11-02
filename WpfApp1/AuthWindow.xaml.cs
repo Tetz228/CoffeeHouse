@@ -42,25 +42,42 @@ namespace WpfApp1
                 var findUser = db.Users.FirstOrDefault((fUser) =>
                                                         fUser.Login == login && fUser.Password == password);
 
-                List<Posts_employees> postEmployee = db.Posts_employees.Where((emp) =>
-                                                                               emp.Fk_employee == findUser.Employee.ID).ToList();
-
                 if (findUser == null)
                     MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    if (postEmployee.Count > 1)
+                    List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
+                                                                                    emp.Fk_employee == findUser.Employee.ID).ToList();
+
+                    if (postsEmployee.Count > 1)
                     {
                         ChoiceRoleWindow choiceRole = new ChoiceRoleWindow() 
                         { 
-                            infoEmployee = postEmployee
+                            PostsEmployee = postsEmployee
                         };
 
                         choiceRole.ShowDialog();
+
+                        if (choiceRole.GetRole != null)
+                        {
+                            switch (choiceRole.GetRole)
+                            {
+                                case "Администратор":
+                                    /*Окно администратора*/
+                                    break;
+                                case "Официант":
+                                    WaiterWindow waiter = new WaiterWindow();
+                                    Close();
+                                    break;
+                                case "Повар":
+                                    /*Окно повара*/
+                                    break;
+                            }
+                        }
                     }
                     else
                     {
-                        switch (postEmployee[0].Post.Name)
+                        switch (postsEmployee[0].Post.Name)
                         {
                             case "Администратор":
                                 /*Окно администратора*/

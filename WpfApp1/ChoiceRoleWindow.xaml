@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Выбор роли" Height="181.192" Width="255.06" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Выбор роли" Height="181.192" Width="255.06" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="109" FontFamily="Verdana" Height="31" FontSize="14"/>
-        <Button Content="Отмена" HorizontalAlignment="Left" Margin="139,108,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontFamily="Verdana" Height="31"/>
-        <ComboBox x:Name="ComboBoxChoiceRole" HorizontalAlignment="Left" Margin="39,44,0,0" VerticalAlignment="Top" Width="167"/>
+        <Button x:Name="Сonfirm" Content="Подтвердить" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="109" FontFamily="Verdana" Height="31" FontSize="14" Click="Сonfirm_Click"/>
+        <Button x:Name="Сancel" Content="Отмена" HorizontalAlignment="Left" Margin="139,108,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontFamily="Verdana" Height="31" Click="Сancel_Click"/>
+        <ComboBox x:Name="ComboBoxChoiceRole" HorizontalAlignment="Left" Margin="37,48,0,0" VerticalAlignment="Top" Width="167"
+                  ItemsSource="{Binding}" SelectedValuePath="Post.ID" DisplayMemberPath="Post.Name" FontFamily="Verdana" FontSize="14"/>
     </Grid>
 </Window>
