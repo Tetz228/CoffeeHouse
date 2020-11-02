@@ -20,8 +20,6 @@ namespace WpfApp1
 {
     public partial class AuthWindow : Window
     {
-        static public int UserId { get; set; }
-
         public AuthWindow()
         {
             InitializeComponent();
@@ -32,24 +30,36 @@ namespace WpfApp1
             Login(TextBoxLogin.Text, PasswordBoxPassword.Password);
         }
 
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void Login(string login,string password)
         {
             using (CafeEntities db = new CafeEntities())
             {                
-                var user = db.Users.FirstOrDefault( (u) => 
-                                                     u.Login == login && u.Password == password
-                                                  );
+                var findUser = db.Users.FirstOrDefault( (user) => 
+                                                     user.Login == login && user.Password == password);
 
-                if (user == null)
-                    MessageBox.Show("Неверный логин или пароль","Ошибка при авторизации");
+                if (findUser == null)
+                    MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    UserId = user.ID;
+                    List<Posts_employees> postEmployee = db.Posts_employees.Where( (emp) => emp.Fk_employee == findUser.Employee.ID).ToList();
 
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
 
-                    Close();
+
+                    //switch(posts_Employees.Post.Name)
+                    //{
+                    //    case "Официант":
+                    //        WaiterWindow waiter = new WaiterWindow();
+
+                    //        Close();
+                    //        break;
+                    //}
+
+                    
                 }
             }
         }
