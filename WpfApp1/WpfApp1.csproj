@@ -70,6 +70,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ChoiceRoleWindow.xaml.cs">
+      <DependentUpon>ChoiceRoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Contract.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.edmx</DependentUpon>
     </Compile>
+    <Page Include="ChoiceRoleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WaiterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

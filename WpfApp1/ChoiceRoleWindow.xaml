@@ -1,0 +1,14 @@
+﻿<Window x:Class="WpfApp1.ChoiceRoleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Выбор роли" Height="181.192" Width="255.06" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Подтвердить" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="109" FontFamily="Verdana" Height="31" FontSize="14"/>
+        <Button Content="Отмена" HorizontalAlignment="Left" Margin="139,108,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontFamily="Verdana" Height="31"/>
+        <ComboBox x:Name="ComboBoxChoiceRole" HorizontalAlignment="Left" Margin="39,44,0,0" VerticalAlignment="Top" Width="167"/>
+    </Grid>
+</Window>
