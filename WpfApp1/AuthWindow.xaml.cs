@@ -33,53 +33,58 @@ namespace WpfApp1
                     MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
-                                                                                    emp.Fk_employee == findUser.Employee.ID).ToList();
+                    CountPosts(db, findUser);
+                }
+            }
+        }
 
-                    if (postsEmployee.Count > 1)
+        private void CountPosts(CafeEntities db, User findUser)
+        {
+            List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
+                                                                            emp.Fk_employee == findUser.Employee.ID).ToList();
+
+            WaiterWindow waiter = new WaiterWindow();
+
+            if (postsEmployee.Count > 1)
+            {
+                ChoiceRoleWindow choiceRole = new ChoiceRoleWindow()
+                {
+                    PostsEmployee = postsEmployee
+                };
+
+                choiceRole.ShowDialog();
+
+                if (choiceRole.GetRole != null)
+                {
+                    switch (choiceRole.GetRole)
                     {
-                        ChoiceRoleWindow choiceRole = new ChoiceRoleWindow()
-                        {
-                            PostsEmployee = postsEmployee
-                        };
-
-                        choiceRole.ShowDialog();
-
-                        if (choiceRole.GetRole != null)
-                        {
-                            switch (choiceRole.GetRole)
-                            {
-                                case "Администратор":
-                                    /*Окно администратора*/
-                                    break;
-                                case "Официант":
-                                    WaiterWindow waiter = new WaiterWindow();
-                                    waiter.Show();
-                                    Close();
-                                    break;
-                                case "Повар":
-                                    /*Окно повара*/
-                                    break;
-                            }
-                        }
+                        case "Администратор":
+                            /*Окно администратора*/
+                            break;
+                        case "Официант":
+                            waiter.Show();
+                            Close();
+                            break;
+                        case "Повар":
+                            /*Окно повара*/
+                            break;
                     }
-                    else
-                    {
-                        switch (postsEmployee[0].Post.Name)
-                        {
-                            case "Администратор":
-                                /*Окно администратора*/
-                                break;
-                            case "Официант":
-                                WaiterWindow waiter = new WaiterWindow();
-                                waiter.Show();
-                                Close();
-                                break;
-                            case "Повар":
-                                /*Окно повара*/
-                                break;
-                        }
-                    }
+                }
+            }
+            else
+            {
+                switch (postsEmployee[0].Post.Name)
+                {
+                    case "Администратор":
+                        /*Окно администратора*/
+                        break;
+                    case "Официант":
+                        waiter.Show();
+                        Close();
+                        break;
+                    case "Повар":
+                        /*Окно повара*/
+                        break;
                 }
             }
         }
