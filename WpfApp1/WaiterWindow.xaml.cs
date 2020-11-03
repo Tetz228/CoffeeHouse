@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +25,11 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridOrders.ItemsSource = Select_orders_Result;
+            CafeEntities db = new CafeEntities();
+
+            var sql = db.Database.SqlQuery<Order>("Select_orders");
+
+            DataGridOrders.ItemsSource = sql;
         }
     }
 }
