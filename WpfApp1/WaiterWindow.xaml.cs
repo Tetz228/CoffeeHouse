@@ -20,5 +20,10 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridOrders.ItemsSource = Select_orders_Result;
+        }
     }
 }

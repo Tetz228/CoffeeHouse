@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="WaiterWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="WaiterWindow" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        
+        <Menu Height="23" Width="804" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <MenuItem Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
+            <MenuItem Header="Отчёт официанта" Height="23" FontFamily="Verdana" FontSize="14"/>
+            <!--MenuItem Header="Приходно-кассовый ордер" Height="23" FontFamily="Verdana" FontSize="14"/-->
+            <MenuItem Header="Личный кабинет" Height="23" FontFamily="Verdana" FontSize="14" Margin="400,0,0,0"/>
+        </Menu>
+        <DataGrid x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_table}" Width="160*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_status_order}" Width="160*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Count_person}" Width="160*" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Data_time}" Width="160*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Order_price}" Width="160*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>

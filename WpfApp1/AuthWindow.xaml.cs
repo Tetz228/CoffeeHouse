@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -33,16 +34,15 @@ namespace WpfApp1
                     MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
                 else
                 {
-                    CountPosts(db, findUser);
+                    List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
+                                                                            emp.Fk_employee == findUser.Employee.ID).ToList();
+                    CountPosts(postsEmployee);
                 }
             }
         }
 
-        private void CountPosts(CafeEntities db, User findUser)
-        {
-            List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
-                                                                            emp.Fk_employee == findUser.Employee.ID).ToList();
-
+        private void CountPosts(List<Posts_employees> postsEmployee)
+        { 
             WaiterWindow waiter = new WaiterWindow();
 
             if (postsEmployee.Count > 1)

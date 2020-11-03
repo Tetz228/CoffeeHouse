@@ -23,6 +23,7 @@ namespace WpfApp1
         private void FillingComboBox()
         {
             ComboBoxChoiceRole.DataContext = PostsEmployee.ToList();
+            ComboBoxChoiceRole.SelectedIndex += 1;
         }
 
         private void Сonfirm_Click(object sender, RoutedEventArgs e)
