@@ -5,24 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="WaiterWindow" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Окно официанта" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Menu Height="23" Width="804" HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuItem Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
-            <MenuItem Header="Отчёт официанта" Height="23" FontFamily="Verdana" FontSize="14"/>
             <!--MenuItem Header="Приходно-кассовый ордер" Height="23" FontFamily="Verdana" FontSize="14"/-->
-            <MenuItem Header="Личный кабинет" Height="23" FontFamily="Verdana" FontSize="14" Margin="400,0,0,0"/>
+            <MenuItem x:Name="MenuItemUser" Header="Имя пользователя" Height="23" FontFamily="Verdana" FontSize="14">
+                <MenuItem x:Name="MenuItemProfile" Header="Мой профиль" Height="23" FontFamily="Verdana" FontSize="14"/>
+                <MenuItem x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemLogOutAccount_Click"/>
+                <MenuItem x:Name="MenuItemExit" Header="Выход" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemExit_Click"/>
+            </MenuItem>
         </Menu>
-        <DataGrid x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804">
+        <DataGrid AutoGenerateColumns="False" x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Fk_table}" Width="160*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Fk_status_order}" Width="160*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Count_person}" Width="160*" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Data_time}" Width="160*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Order_price}" Width="160*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn  Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_table}" Width="100*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Count_person}" Width="100" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_status_order}" Width="90*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Width="160*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Width="160*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_emp}" Width="160*" Header="Принял заказ" FontFamily="Verdana" FontSize="14"/>
             </DataGrid.Columns>
         </DataGrid>
-
     </Grid>
 </Window>

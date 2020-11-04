@@ -35,15 +35,18 @@ namespace WpfApp1
                 else
                 {
                     List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
-                                                                            emp.Fk_employee == findUser.Employee.ID).ToList();
-                    CountPosts(postsEmployee);
+                                                                              emp.Fk_employee == findUser.Employee.ID).ToList();
+                    CountPosts(postsEmployee, findUser);
                 }
             }
         }
 
-        private void CountPosts(List<Posts_employees> postsEmployee)
-        { 
-            WaiterWindow waiter = new WaiterWindow();
+        private void CountPosts(List<Posts_employees> postsEmployee, User findUser)
+        {
+            WaiterWindow waiter = new WaiterWindow()
+            {
+                FoundUser = findUser
+            };
 
             if (postsEmployee.Count > 1)
             {
