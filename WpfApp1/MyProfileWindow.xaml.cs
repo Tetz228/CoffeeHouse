@@ -1,5 +1,13 @@
-﻿using System.Linq;
+﻿using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace WpfApp1
 {
@@ -19,7 +27,6 @@ namespace WpfApp1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GetInfoEmployee();
-
         }
 
         private void GetInfoEmployee()
@@ -29,12 +36,28 @@ namespace WpfApp1
                 var selectEmp = db.Employees.FirstOrDefault(id => id.ID == IdProfile);
 
                 LabelLFM.Content = selectEmp.MName != "Не указано"
-                                               ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
-                                               : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
+                                                   ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
+                                                   : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
 
                 LabelPost.Content = PostProfile;
                 LabelPhone_number.Content = selectEmp.Phone_number;
                 LabelStatus.Content = selectEmp.Status_employees.Name;
+            }
+        }
+
+        private void ChangePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog
+            {
+                Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
+                CheckFileExists = true,
+                Title = "Выберете изображение"
+            };
+
+            if (file.ShowDialog() == true)
+            {
+                ImageSource image = new BitmapImage(new Uri(file.FileName));
+                Avatar.Source = image;
             }
         }
     }
