@@ -6,13 +6,15 @@ namespace WpfApp1
 {
     public partial class ChoiceRoleWindow : Window
     {
-        public List<Posts_employees> PostsEmployee { get; set; }
+        private List<Posts_employees> RolesUser { get; set; }
 
         public string GetRole { get; set; }
 
-        public ChoiceRoleWindow()
+        public ChoiceRoleWindow(List<Posts_employees> rolesUser)
         {
             InitializeComponent();
+
+            RolesUser = rolesUser;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -22,7 +24,7 @@ namespace WpfApp1
 
         private void FillingComboBox()
         {
-            ComboBoxChoiceRole.DataContext = PostsEmployee.ToList();
+            ComboBoxChoiceRole.DataContext = RolesUser.ToList();
             ComboBoxChoiceRole.SelectedIndex += 1;
         }
 

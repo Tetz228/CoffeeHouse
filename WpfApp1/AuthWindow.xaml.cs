@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -35,7 +34,8 @@ namespace WpfApp1
                 else
                 {
                     List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
-                                                                              emp.Fk_employee == findUser.Employee.ID).ToList();
+                                                                                    findUser.Employee.ID == emp.Fk_employee).ToList();
+
                     CountPosts(postsEmployee, findUser);
                 }
             }
@@ -43,17 +43,11 @@ namespace WpfApp1
 
         private void CountPosts(List<Posts_employees> postsEmployee, User findUser)
         {
-            WaiterWindow waiter = new WaiterWindow()
-            {
-                FoundUser = findUser
-            };
+            WaiterWindow waiter;
 
             if (postsEmployee.Count > 1)
             {
-                ChoiceRoleWindow choiceRole = new ChoiceRoleWindow()
-                {
-                    PostsEmployee = postsEmployee
-                };
+                ChoiceRoleWindow choiceRole = new ChoiceRoleWindow(postsEmployee);
 
                 choiceRole.ShowDialog();
 
@@ -65,6 +59,7 @@ namespace WpfApp1
                             /*Окно администратора*/
                             break;
                         case "Официант":
+                            waiter = new WaiterWindow(findUser.Employee.ID, choiceRole.GetRole);
                             waiter.Show();
                             Close();
                             break;
@@ -82,6 +77,7 @@ namespace WpfApp1
                         /*Окно администратора*/
                         break;
                     case "Официант":
+                        waiter = new WaiterWindow(findUser.Employee.ID, postsEmployee[0].Post.Name);
                         waiter.Show();
                         Close();
                         break;

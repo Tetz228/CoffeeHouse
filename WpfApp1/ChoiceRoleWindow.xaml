@@ -8,7 +8,7 @@
         Title="Выбор роли" Height="186.192" Width="271.06" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="Сonfirm" Content="Подтвердить" HorizontalAlignment="Left" Margin="11,109,0,0" VerticalAlignment="Top" Width="109" FontFamily="Verdana" Height="32" FontSize="14" Click="Сonfirm_Click"/>
-        <Button x:Name="Сancel" Content="Отмена" HorizontalAlignment="Left" Margin="140,109,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontFamily="Verdana" Height="32" Click="Сancel_Click"/>
+        <Button x:Name="Сancel" Content="Отмена" HorizontalAlignment="Left" Margin="150,109,0,0" VerticalAlignment="Top" Width="96" FontSize="14" FontFamily="Verdana" Height="32" Click="Сancel_Click"/>
         <ComboBox x:Name="ComboBoxChoiceRole" HorizontalAlignment="Left" Margin="58,52,0,0" VerticalAlignment="Top" Width="144"
                   ItemsSource="{Binding}" SelectedValuePath="Post.ID" DisplayMemberPath="Post.Name" FontFamily="Verdana" FontSize="14"/>
         <Label Content="Под какой ролью хотите войти?" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="14" Width="244" Height="28"/>

@@ -85,6 +85,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="MyProfileWindow.xaml.cs">
+      <DependentUpon>MyProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WaiterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +239,9 @@
       <DependentUpon>Cafe.edmx</DependentUpon>
       <LastGenOutput>Cafe.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Windows\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
