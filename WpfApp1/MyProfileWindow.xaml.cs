@@ -10,14 +10,12 @@ namespace WpfApp1
     public partial class MyProfileWindow : Window
     {
         private int IdProfile { get; set; }
-        private string PostProfile { get; set; }
 
-        public MyProfileWindow(int idProfile, string postProfile)
+        public MyProfileWindow(int idProfile)
         {
             InitializeComponent();
 
             IdProfile = idProfile;
-            PostProfile = postProfile;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -35,7 +33,7 @@ namespace WpfApp1
                                                    ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
                                                    : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
 
-                LabelPost.Content = PostProfile;
+                LabelPost.Content = "Официант";
                 LabelPhone_number.Content = selectEmp.Phone_number;
                 LabelStatus.Content = selectEmp.Status_employees.Name;
             }

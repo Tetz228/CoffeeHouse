@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 
@@ -6,15 +8,16 @@ namespace WpfApp1
 {
     public partial class ChoiceRoleWindow : Window
     {
-        private List<Posts_employees> RolesUser { get; set; }
+        private User UserAndRoles { get; set; }
 
-        public string GetRole { get; set; }
+        public int GetFkPost { get; set; }
+        
 
-        public ChoiceRoleWindow(List<Posts_employees> rolesUser)
+        public ChoiceRoleWindow(User user)
         {
             InitializeComponent();
 
-            RolesUser = rolesUser;
+            UserAndRoles = user;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -24,13 +27,16 @@ namespace WpfApp1
 
         private void FillingComboBox()
         {
-            ComboBoxChoiceRole.DataContext = RolesUser.ToList();
-            ComboBoxChoiceRole.SelectedIndex += 1;
+            using (CafeEntities db = new CafeEntities())
+            {
+                ComboBoxChoiceRole.DataContext = db.Posts_employees.Include(post => post.Post).Where(emp => UserAndRoles.Employee.ID == emp.Fk_employee).ToList();
+                ComboBoxChoiceRole.SelectedIndex += 1;
+            }
         }
 
         private void Сonfirm_Click(object sender, RoutedEventArgs e)
         {
-            GetRole = ComboBoxChoiceRole.Text;
+            GetFkPost = (int)ComboBoxChoiceRole.SelectedValue;
 
             Close();
         }

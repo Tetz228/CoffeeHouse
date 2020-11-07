@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WpfApp1
 {
@@ -14,78 +11,36 @@ namespace WpfApp1
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            Login(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            ActionsUser actionsUser = new ActionsUser();
+
+            (bool existUser, int idUser) user = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+
+            if (user.existUser)
+                switch (actionsUser.CountAndNamePost())
+                {
+                    case "Администратор":
+                        //AdminWindow admin = new AdminWindow(user.idUser);
+                        //admin.Show();
+                        //Close();
+                        break;
+                    case "Официант":
+                        WaiterWindow waiter = new WaiterWindow(user.idUser);
+                        waiter.Show();
+                        Close();
+                        break;
+                    case "Повар":
+                        //CockWindow cock = new CockWindow(user.idUser)
+                        //cock.Show();
+                        //Close();
+                        break;
+                }
+            else
+                MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void Login(string login, string password)
-        {
-            using (CafeEntities db = new CafeEntities())
-            {
-                var findUser = db.Users.FirstOrDefault((fUser) =>
-                                                        fUser.Login == login && fUser.Password == password);
-
-                if (findUser == null)
-                    MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
-                else
-                {
-                    List<Posts_employees> postsEmployee = db.Posts_employees.Where((emp) =>
-                                                                                    findUser.Employee.ID == emp.Fk_employee).ToList();
-
-                    CountPosts(postsEmployee, findUser);
-                }
-            }
-        }
-
-        private void CountPosts(List<Posts_employees> postsEmployee, User findUser)
-        {
-            WaiterWindow waiter;
-
-            if (postsEmployee.Count > 1)
-            {
-                ChoiceRoleWindow choiceRole = new ChoiceRoleWindow(postsEmployee);
-
-                choiceRole.ShowDialog();
-
-                if (choiceRole.GetRole != null)
-                {
-                    switch (choiceRole.GetRole)
-                    {
-                        case "Администратор":
-                            /*Окно администратора*/
-                            break;
-                        case "Официант":
-                            waiter = new WaiterWindow(findUser.Employee.ID, choiceRole.GetRole);
-                            waiter.Show();
-                            Close();
-                            break;
-                        case "Повар":
-                            /*Окно повара*/
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                switch (postsEmployee[0].Post.Name)
-                {
-                    case "Администратор":
-                        /*Окно администратора*/
-                        break;
-                    case "Официант":
-                        waiter = new WaiterWindow(findUser.Employee.ID, postsEmployee[0].Post.Name);
-                        waiter.Show();
-                        Close();
-                        break;
-                    case "Повар":
-                        /*Окно повара*/
-                        break;
-                }
-            }
         }
     }
 }

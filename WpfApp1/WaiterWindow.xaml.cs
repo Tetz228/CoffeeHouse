@@ -5,15 +5,13 @@ namespace WpfApp1
 {
     public partial class WaiterWindow : Window
     {
-        private int IdEmployee { get; set; }
-        private string EmployeePost { get; set; }
+        private int IdEmployee { get; }
 
-        public WaiterWindow(int idEmp, string empPost)
+        public WaiterWindow(int idEmp)
         {
             InitializeComponent();
 
             IdEmployee = idEmp;
-            EmployeePost = empPost;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -43,8 +41,8 @@ namespace WpfApp1
                 var selectEmp = db.Employees.FirstOrDefault(id => id.ID == IdEmployee);
 
                 MenuItemUser.Header = selectEmp.MName != "Не указано"
-                                                               ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
-                                                               : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
+                                                      ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
+                                                      : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
 
                 DataGridOrders.ItemsSource = selectOrders.ToList();
             }
@@ -65,7 +63,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
-            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee, EmployeePost);
+            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee);
 
             myProfile.ShowDialog();
         }
