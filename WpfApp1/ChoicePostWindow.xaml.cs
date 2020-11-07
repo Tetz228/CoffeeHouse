@@ -6,14 +6,14 @@ using System.Windows;
 
 namespace WpfApp1
 {
-    public partial class ChoiceRoleWindow : Window
+    public partial class ChoicePostWindow : Window
     {
         private User UserAndRoles { get; set; }
 
         public int GetFkPost { get; set; }
         
 
-        public ChoiceRoleWindow(User user)
+        public ChoicePostWindow(User user)
         {
             InitializeComponent();
 

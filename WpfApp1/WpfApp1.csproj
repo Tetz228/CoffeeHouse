@@ -74,10 +74,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChoiceRoleWindow.xaml.cs">
-      <DependentUpon>ChoiceRoleWindow.xaml</DependentUpon>
+    <Compile Include="ChoicePostWindow.xaml.cs">
+      <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ActionsOrders.cs" />
     <Compile Include="Contract.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -183,7 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.edmx</DependentUpon>
     </Compile>
-    <Page Include="ChoiceRoleWindow.xaml">
+    <Page Include="ChoicePostWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

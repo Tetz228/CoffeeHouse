@@ -6,6 +6,13 @@ public class ActionsUser
 {
     private User user { get; set; }
 
+    public ActionsUser(){}
+
+    public ActionsUser(int id)
+    {
+        SearchUser(id);
+    }
+
     public (bool existUser, int idUser) SearchUser(string log, string pass)
     {
         using (CafeEntities db = new CafeEntities())
@@ -27,7 +34,13 @@ public class ActionsUser
         }
     }
 
-    public string CountAndNamePost()
+    
+
+    public string GettingLFMEmployee() => user.Employee.MName != "Не указано" 
+                                                              ? user.Employee.LName + " " + user.Employee.FName.Substring(0, 1) + ". " + user.Employee.FName.Substring(0, 1) + "."
+                                                              : user.Employee.LName + " " + user.Employee.FName.Substring(0, 1) + ".";
+
+    public string CountPostAndTheirNames()
     {
         using (CafeEntities db = new CafeEntities())
         {
@@ -35,7 +48,7 @@ public class ActionsUser
 
             if (user.Employee.Posts_employees.Count > 1)
             {
-                ChoiceRoleWindow choiceRole = new ChoiceRoleWindow(user);
+                ChoicePostWindow choiceRole = new ChoicePostWindow(user);
 
                 choiceRole.ShowDialog();
 
@@ -57,6 +70,4 @@ public class ActionsUser
             return gg.Post.Name;
         }
     }
-
-
 }

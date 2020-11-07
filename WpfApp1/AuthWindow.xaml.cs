@@ -16,7 +16,7 @@ namespace WpfApp1
             (bool existUser, int idUser) user = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
             if (user.existUser)
-                switch (actionsUser.CountAndNamePost())
+                switch (actionsUser.CountPostAndTheirNames())
                 {
                     case "Администратор":
                         //AdminWindow admin = new AdminWindow(user.idUser);

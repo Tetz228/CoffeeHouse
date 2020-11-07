@@ -9,7 +9,6 @@
     <Grid>
         <Menu Height="23" Width="804" HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuItem Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
-            
             <MenuItem x:Name="MenuItemUser" Header="ФИО пользователя" Height="23" FontFamily="Verdana" FontSize="14">
                 <MenuItem x:Name="MenuItemProfile" Header="Мой профиль" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemProfile_Click"/>
                 <MenuItem x:Name="MenuItemReport" Header="Отчёт за смену" Height="23" FontFamily="Verdana" FontSize="14"/>
