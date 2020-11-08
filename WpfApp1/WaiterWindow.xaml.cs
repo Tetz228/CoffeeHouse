@@ -31,7 +31,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
-            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee);
+            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee,"Официант");
 
             myProfile.ShowDialog();
         }

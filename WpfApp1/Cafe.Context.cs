@@ -8,12 +8,11 @@
     
     public partial class CafeEntities : DbContext
     {
-        public CafeEntities()
-            : base("name=CafeEntities")
+        public CafeEntities() : base("name=CafeEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

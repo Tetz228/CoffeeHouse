@@ -1,58 +1,56 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Linq;
+using System.Data.Entity;
+
 
 namespace WpfApp1
 {
     public partial class MyProfileWindow : Window
     {
-        private int IdProfile { get; set; }
+        private int IdProfile { get; }
 
-        public MyProfileWindow(int idProfile)
+        private string Post { get; }
+
+        public MyProfileWindow(int id, string post)
         {
             InitializeComponent();
 
-            IdProfile = idProfile;
+            IdProfile = id;
+            Post = post;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GetInfoEmployee();
-        }
+            ActionsUser user = new ActionsUser(IdProfile);
 
-        private void GetInfoEmployee()
-        {
-            using (CafeEntities db = new CafeEntities())
-            {
-                var selectEmp = db.Employees.FirstOrDefault(id => id.ID == IdProfile);
-
-                LabelLFM.Content = selectEmp.MName != "Не указано"
-                                                   ? selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ". " + selectEmp.FName.Substring(0, 1) + "."
-                                                   : selectEmp.LName + " " + selectEmp.FName.Substring(0, 1) + ".";
-
-                LabelPost.Content = "Официант";
-                LabelPhone_number.Content = selectEmp.Phone_number;
-                LabelStatus.Content = selectEmp.Status_employees.Name;
-            }
+            LabelLFM.Content = user.GettingLFMEmployee();
+            LabelPost.Content = Post;
+            LabelPhone_number.Content = user.GettingPhoneNumberEmployee();
+            LabelStatus.Content = user.GettingStatusName();
+            Avatar.Source = user.GettingPhoto();
         }
 
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog
-            {
-                Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
-                CheckFileExists = true,
-                Title = "Выберете изображение"
-            };
+            ActionsUser user = new ActionsUser(IdProfile);
+            user.ChangePhoto(out ImageSource image);
 
-            if (file.ShowDialog() == true)
-            {
-                ImageSource image = new BitmapImage(new Uri(file.FileName));
+            if (image != null)
                 Avatar.Source = image;
-            }
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void ChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("В разработке");
         }
     }
 }

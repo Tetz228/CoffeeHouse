@@ -8,16 +8,15 @@ namespace WpfApp1
 {
     public partial class ChoicePostWindow : Window
     {
-        private User UserAndRoles { get; set; }
-
         public int GetFkPost { get; set; }
-        
 
-        public ChoicePostWindow(User user)
+        private int IdUser { get; set; }
+
+        public ChoicePostWindow(int id)
         {
             InitializeComponent();
 
-            UserAndRoles = user;
+            IdUser = id;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -29,7 +28,7 @@ namespace WpfApp1
         {
             using (CafeEntities db = new CafeEntities())
             {
-                ComboBoxChoiceRole.DataContext = db.Posts_employees.Include(post => post.Post).Where(emp => UserAndRoles.Employee.ID == emp.Fk_employee).ToList();
+                ComboBoxChoiceRole.DataContext = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdUser).ToList();
                 ComboBoxChoiceRole.SelectedIndex += 1;
             }
         }
