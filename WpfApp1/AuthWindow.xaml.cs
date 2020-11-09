@@ -11,25 +11,25 @@ namespace WpfApp1
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            ActionsUser actionsUser = new ActionsUser();
+            ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool existUser, int idUser) user = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            (bool userExist, int userId) user = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
-            if (user.existUser)
+            if (user.userExist)
                 switch (actionsUser.CountPostAndTheirNames())
                 {
                     case "Администратор":
-                        //AdminWindow admin = new AdminWindow(user.idUser);
+                        //AdminWindow admin = new AdminWindow(user.userId);
                         //admin.Show();
                         //Close();
                         break;
                     case "Официант":
-                        WaiterWindow waiter = new WaiterWindow(user.idUser);
+                        WaiterWindow waiter = new WaiterWindow(user.userId);
                         waiter.Show();
                         Close();
                         break;
                     case "Повар":
-                        //CockWindow cock = new CockWindow(user.idUser)
+                        //CockWindow cock = new CockWindow(user.userId)
                         //cock.Show();
                         //Close();
                         break;

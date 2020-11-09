@@ -8,7 +8,7 @@
         Title="Окно официанта" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Menu Height="23" Width="804" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <MenuItem Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
+            <MenuItem x:Name="AddOrder" Click="AddOrder_Click" Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
             <MenuItem x:Name="MenuItemUser" Header="ФИО пользователя" Height="23" FontFamily="Verdana" FontSize="14">
                 <MenuItem x:Name="MenuItemProfile" Header="Мой профиль" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemProfile_Click"/>
                 <MenuItem x:Name="MenuItemReport" Header="Отчёт за смену" Height="23" FontFamily="Verdana" FontSize="14"/>
@@ -18,7 +18,7 @@
         </Menu>
         <DataGrid AutoGenerateColumns="False" x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
                 <DataGridTextColumn Binding="{Binding Fk_table}" Width="100*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
                 <DataGridTextColumn Binding="{Binding Count_person}" Width="100" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
                 <DataGridTextColumn Binding="{Binding Fk_status_order}" Width="90*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>

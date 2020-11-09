@@ -25,7 +25,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ActionsUser user = new ActionsUser(IdProfile);
+            ActionsUsers user = new ActionsUsers(IdProfile);
 
             LabelLFM.Content = user.GettingLFMEmployee();
             LabelPost.Content = Post;
@@ -36,7 +36,7 @@ namespace WpfApp1
 
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            ActionsUser user = new ActionsUser(IdProfile);
+            ActionsUsers user = new ActionsUsers(IdProfile);
             user.ChangePhoto(out ImageSource image);
 
             if (image != null)

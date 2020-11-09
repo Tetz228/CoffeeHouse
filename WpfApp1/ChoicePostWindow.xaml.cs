@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -36,7 +35,6 @@ namespace WpfApp1
         private void Сonfirm_Click(object sender, RoutedEventArgs e)
         {
             GetFkPost = (int)ComboBoxChoiceRole.SelectedValue;
-
             Close();
         }
 

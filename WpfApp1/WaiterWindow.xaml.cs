@@ -31,7 +31,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
-            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee,"Официант");
+            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee, "Официант");
 
             myProfile.ShowDialog();
         }
@@ -39,6 +39,13 @@ namespace WpfApp1
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void AddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrderWindow addOrderWindow = new AddOrderWindow();
+
+            addOrderWindow.ShowDialog();
         }
     }
 }
