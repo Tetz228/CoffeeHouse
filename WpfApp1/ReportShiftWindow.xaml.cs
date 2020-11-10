@@ -16,15 +16,24 @@ namespace WpfApp1
 {
     public partial class ReportShiftWindow : Window
     {
+        private int IdEmp { get; set; }
+
+        private ActionsOrders actionsOrders = new ActionsOrders();
 
         public ReportShiftWindow(int id)
         {
             InitializeComponent();
+            IdEmp = id;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+           DataGridOrders.ItemsSource = actionsOrders.OutputOrdersEmployee(IdEmp);
+        }
 
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="ReportShiftWindow" Height="494.384" Width="811.096" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="Отчет за смену" Height="494.384" Width="811.096" Loaded="Window_Loaded" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" Height="411" Width="804" Margin="0,0,-1,0" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
+        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Table.Table_number}" Header="Номер столика"/>

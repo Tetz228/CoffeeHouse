@@ -25,6 +25,28 @@ namespace WpfApp1
             }
         }
 
+        public List<Order> OutputOrdersEmployee(int idEmployee)
+        {
+            using (var db = new CafeEntities())
+            {
+                List<Order> orders = new List<Order>();
+                
+                var selectOrder = db.Orders.Include(status => status.Status_orders)
+                                           .Include(table => table.Table)
+                                           .Include(emp => emp.Table.Employee)
+                                           .Include(orderDishes => orderDishes.Ordering_dishes)
+                                           .Where(order => order.ID > 0)
+                                           .Where(test => test.Table.Employee.ID == idEmployee)
+                                           .ToArray();
+
+                foreach (var data in selectOrder)
+                    if(data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
+                        orders.Add(data);
+
+                return orders;
+            }
+        }
+
         //Вывод информации о блюдах, которые указаны в заказе
         public Ordering_dishes[] OutputOrdering_dishes(int idOrder)
         {

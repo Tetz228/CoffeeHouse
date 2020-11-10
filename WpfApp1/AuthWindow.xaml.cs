@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -6,14 +7,14 @@ namespace WpfApp1
     {
         public AuthWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "lo", PasswordBoxPassword.Password = "pa");
+            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
             if (existAndIdUser.userExist)
                 switch (actionsUser.CountPostAndTheirNames())
