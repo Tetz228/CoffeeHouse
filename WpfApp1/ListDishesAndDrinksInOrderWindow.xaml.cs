@@ -14,12 +14,12 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    public partial class ListDishesAndDrinksInOrder : Window
+    public partial class ListDishesAndDrinksInOrderWindow : Window
     {
         private int IdOrder { get;}
         private decimal Summ { get; set; }
 
-        public ListDishesAndDrinksInOrder(int idOrder)
+        public ListDishesAndDrinksInOrderWindow(int idOrder)
         {
             InitializeComponent();
             IdOrder = idOrder;

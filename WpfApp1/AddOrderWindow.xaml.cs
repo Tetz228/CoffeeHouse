@@ -33,7 +33,7 @@ namespace WpfApp1
 
             actionsOrders.AddOrder(infoOrder, out int idOrder);
 
-            ListDishesAndDrinksInOrder orderDetailsWindow = new ListDishesAndDrinksInOrder(idOrder);
+            ListDishesAndDrinksInOrderWindow orderDetailsWindow = new ListDishesAndDrinksInOrderWindow(idOrder);
 
             Close();
 
