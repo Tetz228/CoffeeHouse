@@ -8,8 +8,8 @@
         Title="Авторизация" Height="275.103" Width="316.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <Label Content="Авторизация" Margin="71,0,71,0" VerticalAlignment="Top" Height="35" FontFamily="Verdana" FontSize="20"/>
-        <Label Content="Логин" Margin="10,69,0,0" VerticalAlignment="Top" Height="26" FontFamily="Verdana" HorizontalAlignment="Left" Width="54" FontSize="14"/>
-        <Label Content="Пароль" Margin="10,123,0,0" VerticalAlignment="Top" Height="26" FontFamily="Verdana" HorizontalAlignment="Left" Width="66" FontSize="14"/>
+        <Label Content="Логин" Margin="22,69,0,0" VerticalAlignment="Top" Height="26" FontFamily="Verdana" HorizontalAlignment="Left" Width="54" FontSize="14"/>
+        <Label Content="Пароль" Margin="10,122,0,0" VerticalAlignment="Top" Height="34" FontFamily="Verdana" HorizontalAlignment="Left" Width="66" FontSize="14"/>
         <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="81,71,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontSize="14"/>
         <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="81,125,0,0" VerticalAlignment="Top" Width="210" Height="24" FontSize="14"/>
         <StackPanel HorizontalAlignment="Left" Height="31" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="298" Orientation="Horizontal">

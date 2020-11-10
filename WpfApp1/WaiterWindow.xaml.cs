@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Collections;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace WpfApp1
 {
@@ -20,6 +23,7 @@ namespace WpfApp1
             actionsOrders = new ActionsOrders(IdEmployee);
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+            
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
@@ -50,6 +54,27 @@ namespace WpfApp1
             addOrderWindow.ShowDialog();
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+        }
+
+        private void DataGridOrders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (DataGridOrders.SelectedItem != null) 
+            {
+                Order order = DataGridOrders.SelectedItem as Order;
+
+                AddOrderWindow addOrder = new AddOrderWindow(order);
+                addOrder.ShowDialog();
+
+                DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+                //Для админа\повара
+                //ListDishesAndDrinksInOrderWindow listDishesAndDrinks = new ListDishesAndDrinksInOrderWindow(order.ID);
+                //listDishesAndDrinks.ShowDialog();
+            }
+        }
+
+        private void DataGridOrders_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DataGridOrders.SelectedItem = null;
         }
     }
 }

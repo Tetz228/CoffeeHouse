@@ -47,10 +47,5 @@ namespace WpfApp1
         {
             Close();
         }
-
-        private void ChangePassword_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("В разработке");
-        }
     }
 }

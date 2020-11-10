@@ -22,9 +22,10 @@ public class ActionsUsers
     //Поиск пользователя по логину и паролю
     public (bool userExist, int userId) SearchUser(string log, string pass)
     {
-        using (CafeEntities db = new CafeEntities())
+        using (var db = new CafeEntities())
         {
-            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status=>status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees).FirstOrDefault(fUser => fUser.Login == log && fUser.Password == pass);
+            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status=>status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
+                                     .FirstOrDefault(fUser => fUser.Login == log && fUser.Password == pass);
 
             return UserAuthorized == null ? (false, 0) : (true, UserAuthorized.ID);
         }
@@ -33,10 +34,11 @@ public class ActionsUsers
     //Поиск пользователя по его id в базе данных
     private User SearchUser(int id)
     {
-        using (CafeEntities db = new CafeEntities())
+        using (var db = new CafeEntities())
         {
             UserAuthorized = db.Users.Include(emp => emp.Employee).Include(empStatus => empStatus.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
-                           .Include(cont => cont.Employee.Contracts).Include(shiftList => shiftList.Employee.Shift_list).Include(table => table.Employee.Tables).FirstOrDefault(fUser => fUser.ID == id);
+                                     .Include(cont => cont.Employee.Contracts).Include(shiftList => shiftList.Employee.Shift_list).Include(table => table.Employee.Tables)
+                                     .FirstOrDefault(fUser => fUser.ID == id);
 
             return UserAuthorized;
         }
@@ -45,41 +47,41 @@ public class ActionsUsers
 
     #region Кол-во должностей у сотрудника и получение названия выбранной должности
 
-    //Проверка на количество должностей у сотрудника 
+    //Проверка на количество должностей у сотрудника и получение название должности
     public string CountPostAndTheirNames()
     {
-        using (CafeEntities db = new CafeEntities())
+        using (var db = new CafeEntities())
         {
-            int g;
+            int fkPost;
 
             if (UserAuthorized.Employee.Posts_employees.Count > 1)
             {
-                ChoicePostWindow choiceRole = new ChoicePostWindow(UserAuthorized.ID);
+                ChoicePostWindow choicePost = new ChoicePostWindow(UserAuthorized.ID);
 
-                choiceRole.ShowDialog();
+                choicePost.ShowDialog();
 
-                g = choiceRole.GetFkPost;
+                fkPost = choicePost.GetFkPost;
             }
             else
-                g = UserAuthorized.Employee.Posts_employees.ToArray()[0].Fk_post;
+                fkPost = UserAuthorized.Employee.Posts_employees.ToArray()[0].Fk_post;
 
-            return g == 0 ? "Должность не выбрана" : PostName(g);
+            return fkPost == 0 ? "Должность не выбрана" : PostName(fkPost);
         }
     }
 
     //Получение название должности
     private static string PostName(int fkPost)
     {
-        using (CafeEntities db = new CafeEntities())
+        using (var db = new CafeEntities())
         {
-            var gg = db.Posts_employees.Include(post => post.Post).FirstOrDefault(e => e.Post.ID == fkPost);
-            return gg.Post.Name;
+            var postName = db.Posts_employees.Include(post => post.Post).FirstOrDefault(e => e.Post.ID == fkPost);
+            return postName.Post.Name;
         }
     }
 
     #endregion
 
-    #region Вывод всякой информации
+    #region Вывод информации о пользо
 
     //Вывод ФИО сотрудника
     public string GettingLFMEmployee() => UserAuthorized.Employee.MName == "Не указано"
@@ -108,7 +110,7 @@ public class ActionsUsers
     //Изменение фотографии сотрудника
     public void ChangePhoto(out ImageSource image)
     {
-        using (CafeEntities db = new CafeEntities())
+        using (var db = new CafeEntities())
         {
             var changePhoto = db.Users.Include(emp => emp.Employee).Where(emp => emp.ID == UserAuthorized.ID).FirstOrDefault();
 

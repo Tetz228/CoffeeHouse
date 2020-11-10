@@ -16,15 +16,15 @@
                 <MenuItem x:Name="MenuItemExit" Header="Выход" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemExit_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid AutoGenerateColumns="False" x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804" IsReadOnly="True">
+        <DataGrid AutoGenerateColumns="False" x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804" IsReadOnly="True" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Fk_table}" Width="100*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Count_person}" Width="100" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Fk_status_order}" Width="90*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Width="160*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Width="160*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Fk_emp}" Width="160*" Header="Принял заказ" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Table.Table_number}" Width="*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Count_person}" Width="*" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Status_orders.Name}" Width="*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Width="*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Width="*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Table.Employee.LName}" Width="*" Header="Принял заказ" FontFamily="Verdana" FontSize="14"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

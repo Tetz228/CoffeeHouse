@@ -13,9 +13,9 @@ namespace WpfApp1
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool userExist, int userId) user = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
-            if (user.userExist)
+            if (existAndIdUser.userExist)
                 switch (actionsUser.CountPostAndTheirNames())
                 {
                     case "Администратор":
@@ -24,7 +24,7 @@ namespace WpfApp1
                         //Close();
                         break;
                     case "Официант":
-                        WaiterWindow waiter = new WaiterWindow(user.userId);
+                        WaiterWindow waiter = new WaiterWindow(existAndIdUser.idUser);
                         waiter.Show();
                         Close();
                         break;

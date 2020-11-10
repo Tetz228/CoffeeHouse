@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace WpfApp1
 {
     public partial class ListDishesAndDrinksInOrderWindow : Window
     {
-        private int IdOrder { get;}
-        private decimal Summ { get; set; }
+        private int IdOrder { get; }
+
+        public static decimal SumOrder { get; set; }
+
+        private ActionsOrders actionsOrders = new ActionsOrders();
 
         public ListDishesAndDrinksInOrderWindow(int idOrder)
         {
@@ -25,18 +16,34 @@ namespace WpfApp1
             IdOrder = idOrder;
         }
 
+        public ListDishesAndDrinksInOrderWindow()
+        {
+
+        }
+
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             AddDishAndDrinkWindow addDishAndDrinkWindow = new AddDishAndDrinkWindow(IdOrder);
             addDishAndDrinkWindow.ShowDialog();
 
-            ActionsOrders actionsOrders = new ActionsOrders();
             DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
         {
+            actionsOrders.AddSumOrder(IdOrder, SumOrder);
+            SumOrder = 0;
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+        }
+
+        private void DataGridOrderingDishes_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DataGridOrderingDishes.SelectedItem = null;
         }
     }
 }

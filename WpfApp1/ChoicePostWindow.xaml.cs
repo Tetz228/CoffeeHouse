@@ -25,7 +25,7 @@ namespace WpfApp1
 
         private void FillingComboBox()
         {
-            using (CafeEntities db = new CafeEntities())
+            using (var db = new CafeEntities())
             {
                 ComboBoxChoiceRole.DataContext = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdUser).ToList();
                 ComboBoxChoiceRole.SelectedIndex += 1;

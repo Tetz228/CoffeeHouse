@@ -33,7 +33,6 @@ namespace WpfApp1
         private void ComboBoxTypesDishes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxDishes.DataContext = actionsOrders.OutputByTypesDishes((int)ComboBoxTypesDishes.SelectedValue);
-            
             ComboBoxDishes.SelectedIndex += 1;
         }
 
@@ -45,17 +44,20 @@ namespace WpfApp1
 
         private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>();
+            Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+            {
+                { "dish", (int)ComboBoxDishes.SelectedValue },
+                { "status", (int)ComboBoxStatus.SelectedValue },
+                { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
+                { "drink", (int)ComboBoxDrinks.SelectedValue },
+                { "countDrink", Convert.ToInt32(TextBoxCountDrink.Text) },
+                { "idOrder", IdOrder }
+            };
 
-            infoDisheAndDrinkInOrder.Add("dish", (int)ComboBoxDishes.SelectedValue);
-            infoDisheAndDrinkInOrder.Add("status", (int)ComboBoxStatus.SelectedValue);
-            infoDisheAndDrinkInOrder.Add("countDish", Convert.ToInt32(TextBoxCountDishes.Text));
-            infoDisheAndDrinkInOrder.Add("drink", (int)ComboBoxDrinks.SelectedValue);
-            infoDisheAndDrinkInOrder.Add("countDrink", Convert.ToInt32(TextBoxCountDrink.Text));
-            infoDisheAndDrinkInOrder.Add("idOrder", IdOrder);
+            actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
 
-            actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder,out decimal summ);
-            
+            ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+
             Close();
         }
     }

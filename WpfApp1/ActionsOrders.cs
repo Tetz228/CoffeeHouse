@@ -11,66 +11,38 @@ namespace WpfApp1
     {
         public ActionsOrders(int id) : base(id) { }
 
-        public ActionsOrders() {}
+        public ActionsOrders() { }
 
         #region Методы на вывод информации
 
         //Вывод информации о заказах
-        public IEnumerable OutputOrders()
+        public Order[] OutputOrders()
         {
             using (var db = new CafeEntities())
             {
-                DataGrid itemsSource = new DataGrid();
+                var selectOrder = db.Orders.Where(order => order.ID > 0).Include(status => status.Status_orders).Include(table => table.Table)
+                                           .Include(emp=>emp.Table.Employee).Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
 
-                var selectOrders = from order in db.Orders
-                                   join status_order in db.Status_orders on order.Fk_status_order equals status_order.ID
-                                   join table in db.Tables on order.Fk_table equals table.ID
-                                   join emp in db.Employees on table.Fk_employee equals emp.ID
-                                   select new
-                                   {
-                                       ID = order.ID,
-                                       Fk_table = table.Table_number,
-                                       Count_person = order.Count_person,
-                                       Fk_status_order = status_order.Name,
-                                       Data_time = order.Data_time,
-                                       Order_price = order.Order_price,
-                                       Fk_emp = emp.LName + " " + emp.FName.Substring(0, 1) + ". " + emp.MName.Substring(0, 1) + "."
-                                   };
-
-                return itemsSource.ItemsSource = selectOrders.ToList();
+                return selectOrder;
             }
         }
 
         //Вывод информации о блюдах, которые указаны в заказе
-        public IEnumerable OutputOrdering_dishes(int idOrder)
+        public Ordering_dishes[] OutputOrdering_dishes(int idOrder)
         {
             using (var db = new CafeEntities())
-            {
-                DataGrid itemsSource = new DataGrid();
+            {               
+                var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder)
+                    .Include(dbOrdering => dbOrdering.Order)
+                    .Include(dbOrdering => dbOrdering.Drink)
+                    .Include(dbOrdering => dbOrdering.Dish.Types_dishes)
+                    .Include(dbOrdering => dbOrdering.Status_dish)
+                    .Include(dbOrdering => dbOrdering.Drink)
+                    .Include(dbOrdering => dbOrdering.Drink.Types_drinks)
+                    .Include(dbOrdering => dbOrdering.Order.Table)
+                    .ToArray();
 
-                var selectOrdering_dishes = from ordering_dishes in db.Ordering_dishes
-                                   join orders in db.Orders on ordering_dishes.Fk_order equals orders.ID
-                                   join tables in db.Tables on orders.Fk_table equals tables.ID
-                                   join dishes in db.Dishes on ordering_dishes.Fk_dish equals dishes.ID
-                                   join types_dishes in db.Types_dishes on dishes.Fk_type_dish equals types_dishes.ID
-                                   join status_dish in db.Status_dish on ordering_dishes.Fk_status_dish equals status_dish.ID
-                                   join drinks in db.Drinks on ordering_dishes.Fk_drink equals drinks.ID
-                                   join types_drink in db.Types_drinks on drinks.Fk_drink_type equals types_drink.ID
-                                   where orders.ID == idOrder
-                                   select new
-                                   {
-                                       ID = ordering_dishes.ID,
-                                       Fk_dish = dishes.Name,
-                                       Fk_status_dish = status_dish.Name,
-                                       Count_dish = ordering_dishes.Count_dish,
-                                       Price_dish = dishes.Price,
-                                       Fk_drink = drinks.Name,
-                                       Count_drink = ordering_dishes.Count_drink,
-                                       Price_drink = drinks.Price,
-                                       Table_number = tables.Table_number
-                                   };
-               
-                return itemsSource.ItemsSource = selectOrdering_dishes.ToList();
+                return selectOrdering_dishes;
             }
         }
         #endregion
@@ -204,11 +176,11 @@ namespace WpfApp1
         }
 
         //Добавление блюд, которые входят в определенный заказ
-        public void AddOrder_dish(Dictionary<string, int> infoDisheAndDrinkInOrder,out decimal summ)
+        public void AddOrder_dish(Dictionary<string, int> infoDisheAndDrinkInOrder, out decimal sum)
         {
             using (var db = new CafeEntities())
             {
-                summ = 0;
+                sum = 0;
 
                 Ordering_dishes ordering_Dishes = new Ordering_dishes()
                 {
@@ -229,10 +201,33 @@ namespace WpfApp1
 
                 foreach (var item in ordering_l)
                 {
-                    summ += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
+                    sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
                 }
             }
         }
+
+        //Добавление суммы заказа заказ после того, как выбраны все блюда\напитки
+        public void AddSumOrder(int idOrder, decimal sumOrder)
+        {
+            using (var db = new CafeEntities())
+            {
+                var sql = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
+                sql.Order_price = sumOrder;
+                db.SaveChanges();
+            }
+        }
         #endregion
+
+        public void UpdateOrder(int idOrder,int idStatus)
+        {
+            using (var db = new CafeEntities())
+            {
+                var sql = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
+
+                sql.Fk_status_order = idStatus;
+
+                db.SaveChanges();
+            }
+        }
     }
 }
