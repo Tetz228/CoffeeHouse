@@ -30,7 +30,7 @@ public class ActionsUsers
         }
     }
 
-    //Поиск пользователя по его id
+    //Поиск пользователя по его id в базе данных
     private User SearchUser(int id)
     {
         using (CafeEntities db = new CafeEntities())
@@ -43,7 +43,7 @@ public class ActionsUsers
     }
     #endregion
 
-    #region Кол-во должностей у сотрудника и получение название выбранной должности
+    #region Кол-во должностей у сотрудника и получение названия выбранной должности
 
     //Проверка на количество должностей у сотрудника 
     public string CountPostAndTheirNames()

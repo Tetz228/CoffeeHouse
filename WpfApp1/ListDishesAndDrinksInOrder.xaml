@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfApp1.ListDishesAndDrinksInOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Список блюд\напитков в заказе" Height="474.51" Width="951.999" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Menu Height="23" Width="944" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Verdana" FontSize="14">
+            <MenuItem x:Name="Add" Click="Add_Click" Header="Добавить блюда\напитки" Height="23" FontFamily="Verdana" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <MenuItem x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" FontFamily="Verdana" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="588,0,0,0"/>
+        </Menu>
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="DataGridOrderingDishes" HorizontalAlignment="Left" Height="421" Margin="0,23,0,0" VerticalAlignment="Top" Width="944">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  MaxWidth="0" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Table_number}" Width="96*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_dish}" Width="50*" Header="Блюдо" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_status_dish}" Width="100*" Header="Статус блюда" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Count_dish}" Width="90*" Header="Кол-во блюд" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Price_dish, StringFormat={}{0:F} руб.}" Width="92*" Header="Цена за блюдо" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_drink}" Width="90*" Header="Напиток" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Count_drink}" Width="160*" Header="Кол-во напитков" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Price_drink, StringFormat={}{0:F} руб.}" Width="95*" Header="Цена за напиток" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn Binding="{Binding Fk_order}" MaxWidth="0" Header="Номер заказа" FontFamily="Verdana" FontSize="14"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

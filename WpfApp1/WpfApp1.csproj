@@ -79,8 +79,8 @@
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetailsWindow.xaml.cs">
-      <DependentUpon>OrderDetailsWindow.xaml</DependentUpon>
+    <Compile Include="ListDishesAndDrinksInOrder.xaml.cs">
+      <DependentUpon>ListDishesAndDrinksInOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cafe.cs">
       <AutoGen>True</AutoGen>
@@ -183,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OrderDetailsWindow.xaml">
+    <Page Include="ListDishesAndDrinksInOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

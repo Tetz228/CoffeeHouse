@@ -63,9 +63,11 @@ namespace WpfApp1
                                        Fk_dish = dishes.Name,
                                        Fk_status_dish = status_dish.Name,
                                        Count_dish = ordering_dishes.Count_dish,
+                                       Price_dish = dishes.Price,
                                        Fk_drink = drinks.Name,
                                        Count_drink = ordering_dishes.Count_drink,
-                                       Fk_order = ordering_dishes.Fk_order
+                                       Price_drink = drinks.Price,
+                                       Table_number = tables.Table_number
                                    };
                
                 return itemsSource.ItemsSource = selectOrdering_dishes.ToList();
@@ -160,9 +162,9 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var typesDishes = db.Dishes.Include(type => type.Types_dishes).Where(dish => dish.Fk_type_dish == Fk_type).ToList();
+                var typesDishes = db.Dishes.Include(type => type.Types_dishes).Where(dish => dish.Fk_type_dish == Fk_type);
 
-                return typesDishes;
+                return typesDishes.ToList();
             }
         }
 
@@ -181,15 +183,15 @@ namespace WpfApp1
         #region Методы на добавление
 
         //Добавление заказа
-        public void AddOrder(int numberTable, int statusOrder, string coutPeople, out int idOrder)
+        public void AddOrder(Dictionary<string, int> infoOrder, out int idOrder)
         {
             using (var db = new CafeEntities())
             {
                 Order order = new Order
                 {
-                    Fk_table = numberTable,
-                    Fk_status_order = statusOrder,
-                    Count_person = Convert.ToInt32(coutPeople),
+                    Fk_table = infoOrder["table"],
+                    Fk_status_order = infoOrder["status"],
+                    Count_person = infoOrder["people"],
                     Data_time = DateTime.Now,
                     Order_price = 0
                 };
@@ -198,27 +200,37 @@ namespace WpfApp1
                 db.SaveChanges();
 
                 idOrder = order.ID;
-
             }
         }
 
         //Добавление блюд, которые входят в определенный заказ
-        public void AddOrder_dish(int idDish, int idStatusDish, int countDishes, int idDrink, int countDrinks, int idOrder)
+        public void AddOrder_dish(Dictionary<string, int> infoDisheAndDrinkInOrder,out decimal summ)
         {
             using (var db = new CafeEntities())
             {
+                summ = 0;
+
                 Ordering_dishes ordering_Dishes = new Ordering_dishes()
                 {
-                    Fk_dish = idDish,
-                    Fk_status_dish = idStatusDish,
-                    Count_dish = countDishes,
-                    Fk_drink = idDrink,
-                    Count_drink = countDrinks,
-                    Fk_order = idOrder
+                    Fk_dish = infoDisheAndDrinkInOrder["dish"],
+                    Fk_status_dish = infoDisheAndDrinkInOrder["status"],
+                    Count_dish = infoDisheAndDrinkInOrder["countDish"],
+                    Fk_drink = infoDisheAndDrinkInOrder["drink"],
+                    Count_drink = infoDisheAndDrinkInOrder["countDrink"],
+                    Fk_order = infoDisheAndDrinkInOrder["idOrder"]
                 };
 
                 db.Ordering_dishes.Add(ordering_Dishes);
                 db.SaveChanges();
+
+                var sql = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
+
+                List<Ordering_dishes> ordering_l = sql;
+
+                foreach (var item in ordering_l)
+                {
+                    summ += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
+                }
             }
         }
         #endregion

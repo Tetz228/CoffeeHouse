@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -32,6 +33,7 @@ namespace WpfApp1
         private void ComboBoxTypesDishes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxDishes.DataContext = actionsOrders.OutputByTypesDishes((int)ComboBoxTypesDishes.SelectedValue);
+            
             ComboBoxDishes.SelectedIndex += 1;
         }
 
@@ -43,8 +45,17 @@ namespace WpfApp1
 
         private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
         {
-            actionsOrders.AddOrder_dish((int)ComboBoxDishes.SelectedValue, (int)ComboBoxStatus.SelectedValue, Convert.ToInt32(TextBoxCountDishes.Text), (int)ComboBoxDrinks.SelectedValue, Convert.ToInt32(TextBoxCountDrinks.Text), IdOrder);
+            Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>();
 
+            infoDisheAndDrinkInOrder.Add("dish", (int)ComboBoxDishes.SelectedValue);
+            infoDisheAndDrinkInOrder.Add("status", (int)ComboBoxStatus.SelectedValue);
+            infoDisheAndDrinkInOrder.Add("countDish", Convert.ToInt32(TextBoxCountDishes.Text));
+            infoDisheAndDrinkInOrder.Add("drink", (int)ComboBoxDrinks.SelectedValue);
+            infoDisheAndDrinkInOrder.Add("countDrink", Convert.ToInt32(TextBoxCountDrink.Text));
+            infoDisheAndDrinkInOrder.Add("idOrder", IdOrder);
+
+            actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder,out decimal summ);
+            
             Close();
         }
     }

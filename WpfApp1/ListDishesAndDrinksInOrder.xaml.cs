@@ -14,11 +14,12 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    public partial class OrderDetailsWindow : Window
+    public partial class ListDishesAndDrinksInOrder : Window
     {
         private int IdOrder { get;}
+        private decimal Summ { get; set; }
 
-        public OrderDetailsWindow(int idOrder)
+        public ListDishesAndDrinksInOrder(int idOrder)
         {
             InitializeComponent();
             IdOrder = idOrder;
@@ -33,7 +34,7 @@ namespace WpfApp1
             DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
-        private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
+        private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

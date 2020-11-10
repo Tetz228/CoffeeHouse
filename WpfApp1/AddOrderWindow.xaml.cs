@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -24,13 +26,23 @@ namespace WpfApp1
         {
             ActionsOrders actionsOrders = new ActionsOrders();
 
-            actionsOrders.AddOrder((int)ComboBoxTables.SelectedValue, (int)ComboBoxStatusOrders.SelectedValue, TextBoxCountPeople.Text, out int idOrder);
+            Dictionary<string, int> infoOrder = new Dictionary<string, int>();
+            infoOrder.Add("table", (int)ComboBoxTables.SelectedValue);
+            infoOrder.Add("status", (int)ComboBoxStatusOrders.SelectedValue);
+            infoOrder.Add("people", Convert.ToInt32(TextBoxCountPeople.Text));
 
-            OrderDetailsWindow orderDetailsWindow = new OrderDetailsWindow(idOrder);
+            actionsOrders.AddOrder(infoOrder, out int idOrder);
+
+            ListDishesAndDrinksInOrder orderDetailsWindow = new ListDishesAndDrinksInOrder(idOrder);
 
             Close();
 
             orderDetailsWindow.ShowDialog();
+        }
+
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

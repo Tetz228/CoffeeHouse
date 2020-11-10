@@ -6,6 +6,8 @@ namespace WpfApp1
     {
         private int IdEmployee { get; }
 
+        private ActionsOrders actionsOrders;
+
         public WaiterWindow(int idEmp)
         {
             InitializeComponent();
@@ -15,7 +17,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ActionsOrders actionsOrders = new ActionsOrders(IdEmployee);
+            actionsOrders = new ActionsOrders(IdEmployee);
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
@@ -46,6 +48,8 @@ namespace WpfApp1
             AddOrderWindow addOrderWindow = new AddOrderWindow();
 
             addOrderWindow.ShowDialog();
+
+            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
     }
 }
