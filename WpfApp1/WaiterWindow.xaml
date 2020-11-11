@@ -6,26 +6,29 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Окно официанта" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    
     <Grid>
-        <Menu Height="23" Width="804" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <MenuItem x:Name="AddOrder" Click="AddOrder_Click" Header="Добавить заказ" Height="23" FontFamily="Verdana" FontSize="14"/>
-            <MenuItem x:Name="MenuItemUser" Header="ФИО пользователя" Height="23" FontFamily="Verdana" FontSize="14">
-                <MenuItem x:Name="MenuItemProfile" Header="Мой профиль" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemProfile_Click"/>
-                <MenuItem x:Name="MenuItemReport" Header="Отчёт за смену" Height="23" FontFamily="Verdana" FontSize="14"/>
-                <MenuItem x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemLogOutAccount_Click"/>
-                <MenuItem x:Name="MenuItemExit" Header="Выход" Height="23" FontFamily="Verdana" FontSize="14" Click="MenuItemExit_Click"/>
+        <Menu Style="{StaticResource ResourceKey = menuItem}" Width="804">
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Click="AddOrder_Click" Header="Добавить заказ"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReport" Header="Отчёт за смену"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
             </MenuItem>
         </Menu>
-        <DataGrid AutoGenerateColumns="False" x:Name="DataGridOrders" HorizontalAlignment="Left" Height="464" Margin="0,23,0,0" VerticalAlignment="Top" Width="804" IsReadOnly="True" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
+        
+        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" Height="464" Width="804" Margin="0,23,0,0" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Table.Table_number}" Width="*" Header="Номер столика" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Count_person}" Width="*" Header="Кол-во человек" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Status_orders.Name}" Width="*" Header="Статус заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Width="*" Header="Дата и время заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Width="*" Header="Сумма заказа" FontFamily="Verdana" FontSize="14"/>
-                <DataGridTextColumn Binding="{Binding Table.Employee.LName}" Width="*" Header="Принял заказ" FontFamily="Verdana" FontSize="14"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Table.Table_number}" Header="Номер столика"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Count_person}" Header="Кол-во человек"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Status_orders.Name}" Header="Статус заказа"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Header="Дата и время заказа"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Header="Сумма заказа"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Table.Employee.LName}" Header="Принял заказ"/>
             </DataGrid.Columns>
         </DataGrid>
+        
     </Grid>
 </Window>

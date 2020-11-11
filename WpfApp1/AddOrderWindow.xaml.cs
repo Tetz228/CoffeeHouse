@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace WpfApp1
@@ -31,9 +32,16 @@ namespace WpfApp1
                 ComboBoxTables.DataContext = actionsOrders.FillingComboBoxTables();
                 ComboBoxStatusOrders.DataContext = actionsOrders.FillingComboBoxStatusOrders();
 
-                ComboBoxTables.SelectedIndex += 1;
-                ComboBoxStatusOrders.SelectedIndex += 1;
+                using (var db = new CafeEntities())
+                {
+                    var sql = db.Status_orders.Where(status => status.Name == "Не оплачен").FirstOrDefault();
+
+                    ComboBoxTables.SelectedIndex += 1;
+                    ComboBoxStatusOrders.SelectedValue = sql.ID;
+                    ComboBoxStatusOrders.IsEnabled = false;
+                }
             }
+            
             else
             {
                 ComboBoxTables.DataContext = actionsOrders.FillingComboBoxTables();
@@ -42,6 +50,9 @@ namespace WpfApp1
                 ComboBoxTables.SelectedValue = order.Table.Table_number;
                 ComboBoxStatusOrders.SelectedValue = order.Status_orders.ID;
                 TextBoxCountPeople.Text = order.Count_person.ToString();
+
+                ComboBoxTables.IsEnabled = false;
+                TextBoxCountPeople.IsEnabled = false;
             }
         }
 

@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Авторизация" Height="275.103" Width="316.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
+        Title="Авторизация" Height="275.103" Width="328.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <Label Content="Авторизация" Margin="71,0,71,0" VerticalAlignment="Top" Height="35" FontFamily="Verdana" FontSize="20"/>
         <Label Content="Логин" Margin="22,69,0,0" VerticalAlignment="Top" Height="26" FontFamily="Verdana" HorizontalAlignment="Left" Width="54" FontSize="14"/>
-        <Label Content="Пароль" Margin="10,122,0,0" VerticalAlignment="Top" Height="34" FontFamily="Verdana" HorizontalAlignment="Left" Width="66" FontSize="14"/>
-        <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="81,71,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontSize="14"/>
-        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="81,125,0,0" VerticalAlignment="Top" Width="210" Height="24" FontSize="14"/>
+        <Label Content="Пароль" Margin="8,116,0,0" VerticalAlignment="Top" Height="30" FontFamily="Verdana" HorizontalAlignment="Left" Width="66" FontSize="14"/>
+        <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="79,71,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontSize="14"/>
+        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,122,0,0" VerticalAlignment="Top" Width="210" Height="24" FontSize="14"/>
         <StackPanel HorizontalAlignment="Left" Height="31" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="298" Orientation="Horizontal">
             <Button Name="LoginButton" Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" FontSize="14" Click="LoginButton_Click"/>
             <Button Name="ExitButton" Content="Выйти" HorizontalAlignment="Center" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" Margin="87,0,0,0" FontSize="14" Click="ExitButton_Click"/>

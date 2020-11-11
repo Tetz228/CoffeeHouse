@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,11 +25,9 @@ namespace WpfApp1
             ComboBoxTypesDrinks.DataContext = actionsOrders.FillingComboBoxTypesDrinks();
             ComboBoxDishes.DataContext = actionsOrders.FillingComboBoxDishes();
             ComboBoxDrinks.DataContext = actionsOrders.FillingComboBoxDrinks();
-            ComboBoxStatus.DataContext = actionsOrders.FillingComboBoxStatusDishes();
 
             ComboBoxTypesDishes.SelectedIndex += 1;
             ComboBoxTypesDrinks.SelectedIndex += 1;
-            ComboBoxStatus.SelectedIndex += 1;
         }
 
         private void ComboBoxTypesDishes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,20 +44,30 @@ namespace WpfApp1
 
         private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+            using (var db = new CafeEntities())
             {
-                { "dish", (int)ComboBoxDishes.SelectedValue },
-                { "status", (int)ComboBoxStatus.SelectedValue },
-                { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
-                { "drink", (int)ComboBoxDrinks.SelectedValue },
-                { "countDrink", Convert.ToInt32(TextBoxCountDrink.Text) },
-                { "idOrder", IdOrder }
-            };
+                var sql = db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
 
-            actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
+                Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+                {
+                    { "dish", (int)ComboBoxDishes.SelectedValue },
+                    { "status", sql.ID},
+                    { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
+                    { "drink", (int)ComboBoxDrinks.SelectedValue },
+                    { "countDrink", Convert.ToInt32(TextBoxCountDrink.Text) },
+                    { "idOrder", IdOrder }
+                };
 
-            ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+                actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
 
+                ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+
+                Close();
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
             Close();
         }
     }

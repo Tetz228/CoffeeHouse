@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using System.Windows;
-using System.Windows.Documents;
+﻿using System.Windows;
 
 namespace WpfApp1
 {
@@ -23,7 +20,7 @@ namespace WpfApp1
             actionsOrders = new ActionsOrders(IdEmployee);
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-            
+
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
@@ -58,7 +55,7 @@ namespace WpfApp1
 
         private void DataGridOrders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (DataGridOrders.SelectedItem != null) 
+            if (DataGridOrders.SelectedItem != null)
             {
                 Order order = DataGridOrders.SelectedItem as Order;
 

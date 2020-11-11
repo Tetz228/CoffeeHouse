@@ -9,20 +9,19 @@
     <Grid>
         <ComboBox Name="ComboBoxTypesDishes" ItemsSource="{Binding}" SelectedValuePath="ID" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="192" Height="26" FontFamily="Verdana" FontSize="14" SelectionChanged="ComboBoxTypesDishes_SelectionChanged"/>
         <ComboBox ItemsSource="{Binding}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDishes" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="192" Height="26" FontFamily="Verdana" FontSize="14"/>
-        <ComboBox ItemsSource="{Binding}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxStatus" Margin="10,194,0,0" FontFamily="Verdana" FontSize="14" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="192"/>
+
         <ComboBox ItemsSource="{Binding}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxTypesDrinks" HorizontalAlignment="Left" Margin="234,82,0,0" VerticalAlignment="Top" Width="234" Height="26" FontFamily="Verdana" FontSize="14" SelectionChanged="ComboBoxTypesDrinks_SelectionChanged"/>
         <ComboBox ItemsSource="{Binding}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDrinks" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="234" Height="27" FontFamily="Verdana" FontSize="14"/>
         <Button x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" FontFamily="Verdana" Width="96" Height="31" FontSize="14" Content="ОК" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        <Button Content="Отмена" HorizontalAlignment="Right" Margin="0,0,13,10" VerticalAlignment="Bottom" Width="96" Height="31" FontFamily="Verdana" FontSize="14"  />
+        <Button x:Name="Cancel" Click="Cancel_Click" Content="Отмена" HorizontalAlignment="Right" Margin="0,0,13,10" VerticalAlignment="Bottom" Width="96" Height="31" FontFamily="Verdana" FontSize="14"  />
         <Label FontFamily="Verdana" FontSize="14" Content="Какое блюдо\напиток хотите добавить в заказ?" HorizontalAlignment="Left" Margin="67,0,0,249" Height="27" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="TextBoxCountDishes" Text="0" Margin="372,194,0,0" FontFamily="Verdana" FontSize="14" TextAlignment="Center" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
-        <TextBox x:Name="TextBoxCountDrink" Text="0" HorizontalAlignment="Left" Height="26" Margin="234,194,0,0" VerticalAlignment="Top" Width="54" FontFamily="Verdana" FontSize="14" TextAlignment="Center"/>
+        <TextBox x:Name="TextBoxCountDishes" Text="1" Margin="10,197,0,0" FontFamily="Verdana" FontSize="14" TextAlignment="Center" Height="21" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40"/>
+        <TextBox x:Name="TextBoxCountDrink" Text="1" HorizontalAlignment="Left" Height="26" Margin="234,197,0,0" VerticalAlignment="Top" Width="54" FontFamily="Verdana" FontSize="14" TextAlignment="Center"/>
         <Label FontFamily="Verdana" FontSize="14" Content="Типы блюд" Margin="10,55,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93"/>
         <Label FontFamily="Verdana" FontSize="14" Content="Блюда" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label FontFamily="Verdana" FontSize="14" Content="Кол-во блюд" Margin="372,167,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="107"/>
+        <Label FontFamily="Verdana" FontSize="14" Content="Кол-во блюд" Margin="10,170,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="107"/>
         <Label FontFamily="Verdana" FontSize="14" Content="Типы напитков" VerticalAlignment="Top" HorizontalAlignment="Left" Width="124" Margin="234,55,0,0"/>
         <Label FontFamily="Verdana" FontSize="14" Content="Напитки" HorizontalAlignment="Left" Margin="234,112,0,0" VerticalAlignment="Top" Width="78"/>
-        <Label FontFamily="Verdana" FontSize="14" Content="Кол-во напитков" Margin="234,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"/>
-        <Label FontFamily="Verdana" FontSize="14" Content="Статус блюда" Margin="10,167,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="117"/>
+        <Label FontFamily="Verdana" FontSize="14" Content="Кол-во напитков" Margin="234,171,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133"/>
     </Grid>
 </Window>
