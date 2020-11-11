@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Авторизация" Height="275.103" Width="328.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
+        Title="Авторизация" Height="255.56" Width="328.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
+    
     <Grid>
-        <Label Content="Авторизация" Margin="71,0,71,0" VerticalAlignment="Top" Height="35" FontFamily="Verdana" FontSize="20"/>
-        <Label Content="Логин" Margin="22,69,0,0" VerticalAlignment="Top" Height="26" FontFamily="Verdana" HorizontalAlignment="Left" Width="54" FontSize="14"/>
-        <Label Content="Пароль" Margin="8,116,0,0" VerticalAlignment="Top" Height="30" FontFamily="Verdana" HorizontalAlignment="Left" Width="66" FontSize="14"/>
-        <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="79,71,0,0" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="210" FontFamily="Verdana" FontSize="14"/>
-        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,122,0,0" VerticalAlignment="Top" Width="210" Height="24" FontSize="14"/>
-        <StackPanel HorizontalAlignment="Left" Height="31" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="298" Orientation="Horizontal">
-            <Button Name="LoginButton" Content="Войти" HorizontalAlignment="Left" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" FontSize="14" Click="LoginButton_Click"/>
-            <Button Name="ExitButton" Content="Выйти" HorizontalAlignment="Center" VerticalAlignment="Top" Width="96" FontFamily="Verdana" Height="31" Margin="87,0,0,0" FontSize="14" Click="ExitButton_Click"/>
-        </StackPanel>
+        <Label Style="{StaticResource labels}" Content="Авторизация" Margin="97,0,0,0" FontSize="20"/>
+        <Label Style="{StaticResource labels}" Content="Логин" Margin="22,0,0,132" Height="26" VerticalAlignment="Bottom"/>
+        <Label Style="{StaticResource labels}" Content="Пароль" Margin="12,0,0,78" Height="30" VerticalAlignment="Bottom"/>
+        
+        <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="79,0,0,132" TextWrapping="NoWrap"  VerticalAlignment="Bottom" Width="210" FontFamily="Verdana" FontSize="14"/>
+        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,0,0,81" VerticalAlignment="Bottom" Width="210" Height="24" FontSize="14"/>
+        
+        <Button Style="{StaticResource button}" Name="LoginButton" Content="Войти" Click="LoginButton_Click" Margin="10,0,0,10"/>
+        <Button Style="{StaticResource button}" x:Name="ExitButton" Content="Выйти" Margin="0,0,10,10" Click="ExitButton_Click" HorizontalAlignment="Right"/>
+
     </Grid>
 </Window>

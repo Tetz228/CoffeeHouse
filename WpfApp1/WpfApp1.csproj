@@ -118,6 +118,9 @@
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReportShiftWindow.xaml.cs">
+      <DependentUpon>ReportShiftWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Select_contracts_Result.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -183,7 +186,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DictionaryResxaml.xaml">
+    <Page Include="ReportShiftWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourcesForXAML.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

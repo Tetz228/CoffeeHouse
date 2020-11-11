@@ -1,10 +1,5 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Linq;
-using System.Data.Entity;
 
 
 namespace WpfApp1

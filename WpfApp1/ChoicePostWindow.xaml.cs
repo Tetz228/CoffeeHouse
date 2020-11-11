@@ -27,7 +27,7 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                ComboBoxChoiceRole.DataContext = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdUser).ToList();
+                ComboBoxChoiceRole.ItemsSource = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdUser).ToList();
                 ComboBoxChoiceRole.SelectedIndex += 1;
             }
         }

@@ -18,8 +18,6 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            this.order = new Order();
-
             this.order = order;
         }
 
@@ -29,23 +27,22 @@ namespace WpfApp1
 
             if (order == null)
             {
-                ComboBoxTables.DataContext = actionsOrders.FillingComboBoxTables();
-                ComboBoxStatusOrders.DataContext = actionsOrders.FillingComboBoxStatusOrders();
+                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
+                ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
 
                 using (var db = new CafeEntities())
                 {
-                    var sql = db.Status_orders.Where(status => status.Name == "Не оплачен").FirstOrDefault();
+                    var statusOrder = db.Status_orders.Where(status => status.Name == "Принят").FirstOrDefault();
 
                     ComboBoxTables.SelectedIndex += 1;
-                    ComboBoxStatusOrders.SelectedValue = sql.ID;
+                    ComboBoxStatusOrders.SelectedValue = statusOrder.ID;
                     ComboBoxStatusOrders.IsEnabled = false;
                 }
-            }
-            
+            }          
             else
             {
-                ComboBoxTables.DataContext = actionsOrders.FillingComboBoxTables();
-                ComboBoxStatusOrders.DataContext = actionsOrders.FillingComboBoxStatusOrders();
+                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
+                ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
 
                 ComboBoxTables.SelectedValue = order.Table.Table_number;
                 ComboBoxStatusOrders.SelectedValue = order.Status_orders.ID;
@@ -77,7 +74,7 @@ namespace WpfApp1
             }
             else
             {
-                actionsOrders.UpdateOrder(order.ID, (int)ComboBoxStatusOrders.SelectedValue);
+                actionsOrders.UpdateStatusOrder(order.ID, (int)ComboBoxStatusOrders.SelectedValue);
 
                 Close();
             }

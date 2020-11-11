@@ -20,7 +20,6 @@ namespace WpfApp1
             actionsOrders = new ActionsOrders(IdEmployee);
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
@@ -35,7 +34,6 @@ namespace WpfApp1
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
             MyProfileWindow myProfile = new MyProfileWindow(IdEmployee, "Официант");
-
             myProfile.ShowDialog();
         }
 
@@ -47,7 +45,6 @@ namespace WpfApp1
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
             AddOrderWindow addOrderWindow = new AddOrderWindow();
-
             addOrderWindow.ShowDialog();
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
@@ -63,15 +60,18 @@ namespace WpfApp1
                 addOrder.ShowDialog();
 
                 DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-                //Для админа\повара
-                //ListDishesAndDrinksInOrderWindow listDishesAndDrinks = new ListDishesAndDrinksInOrderWindow(order.ID);
-                //listDishesAndDrinks.ShowDialog();
             }
         }
 
         private void DataGridOrders_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DataGridOrders.SelectedItem = null;
+        }
+
+        private void MenuItemReport_Click(object sender, RoutedEventArgs e)
+        {
+            ReportShiftWindow reportShift = new ReportShiftWindow(IdEmployee);
+            reportShift.ShowDialog();
         }
     }
 }

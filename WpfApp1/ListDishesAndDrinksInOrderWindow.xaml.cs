@@ -13,12 +13,8 @@ namespace WpfApp1
         public ListDishesAndDrinksInOrderWindow(int idOrder)
         {
             InitializeComponent();
+
             IdOrder = idOrder;
-        }
-
-        public ListDishesAndDrinksInOrderWindow()
-        {
-
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -33,6 +29,7 @@ namespace WpfApp1
         {
             actionsOrders.AddSumOrder(IdOrder, SumOrder);
             SumOrder = 0;
+
             Close();
         }
 

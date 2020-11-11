@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Windows.Controls;
 
 namespace WpfApp1
 {
@@ -21,7 +19,7 @@ namespace WpfApp1
             using (var db = new CafeEntities())
             {
                 var selectOrder = db.Orders.Where(order => order.ID > 0).Include(status => status.Status_orders).Include(table => table.Table)
-                                           .Include(emp=>emp.Table.Employee).Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
+                                                                        .Include(emp => emp.Table.Employee).Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
 
                 return selectOrder;
             }
@@ -31,16 +29,14 @@ namespace WpfApp1
         public Ordering_dishes[] OutputOrdering_dishes(int idOrder)
         {
             using (var db = new CafeEntities())
-            {               
-                var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder)
-                    .Include(dbOrdering => dbOrdering.Order)
-                    .Include(dbOrdering => dbOrdering.Drink)
-                    .Include(dbOrdering => dbOrdering.Dish.Types_dishes)
-                    .Include(dbOrdering => dbOrdering.Status_dish)
-                    .Include(dbOrdering => dbOrdering.Drink)
-                    .Include(dbOrdering => dbOrdering.Drink.Types_drinks)
-                    .Include(dbOrdering => dbOrdering.Order.Table)
-                    .ToArray();
+            {
+                var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder).Include(dbOrdering => dbOrdering.Order)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Drink)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Dish.Types_dishes)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Status_dish)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Drink)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Drink.Types_drinks)
+                                                                                                                  .Include(dbOrdering => dbOrdering.Order.Table).ToArray();
 
                 return selectOrdering_dishes;
             }
@@ -50,79 +46,79 @@ namespace WpfApp1
         #region Заполнение ComboBox`ов
 
         // Заполнение ComboBox`а под названием "Типы блюд"
-        public object FillingComboBoxTypesDishes()
+        public List<Types_dishes> FillingComboBoxTypesDishes()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Types_dishes.ToList();
+                var typesDishes = db.Types_dishes.ToList();
 
-                return obj;
+                return typesDishes;
             }
         }
 
         // Заполнение ComboBox`а под названием "Типы напитков"
-        public object FillingComboBoxTypesDrinks()
+        public List<Types_drinks> FillingComboBoxTypesDrinks()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Types_drinks.ToList();
+                var typesDrinks = db.Types_drinks.ToList();
 
-                return obj;
+                return typesDrinks;
             }
         }
 
         // Заполнение ComboBox`а под названием "Блюда"
-        public object FillingComboBoxDishes()
+        public List<Dish> FillingComboBoxDishes()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Dishes.ToList();
+                var dishes = db.Dishes.ToList();
 
-                return obj;
+                return dishes;
             }
         }
 
         // Заполнение ComboBox`а под названием "Напитки"
-        public object FillingComboBoxDrinks()
+        public List<Drink> FillingComboBoxDrinks()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Drinks.ToList();
+                var drinks = db.Drinks.ToList();
 
-                return obj;
+                return drinks;
             }
         }
 
         // Заполнение ComboBox`а под названием "Столы"
-        public object FillingComboBoxTables()
+        public List<Table> FillingComboBoxTables()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Tables.ToList();
+                var tables = db.Tables.ToList();
 
-                return obj;
+                return tables;
             }
         }
 
         // Заполнение ComboBox`а под названием "Статусы заказов"
-        public object FillingComboBoxStatusOrders()
+        public List<Status_orders> FillingComboBoxStatusOrders()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Status_orders.ToList();
+                var statusOrders = db.Status_orders.ToList();
 
-                return obj;
+                return statusOrders;
             }
         }
 
         // Заполнение ComboBox`а под названием "Статусы блюд"
-        public object FillingComboBoxStatusDishes()
+        public List<Status_dish> FillingComboBoxStatusDishes()
         {
             using (var db = new CafeEntities())
             {
-                object obj = db.Status_dish.ToList();
+                var statusDishes = db.Status_dish.ToList();
 
-                return obj;
+                return statusDishes;
             }
         }
         #endregion
@@ -145,9 +141,9 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var typesDrinks = db.Drinks.Include(type => type.Types_drinks).Where(drink => drink.Fk_drink_type == Fk_type).ToList();
+                var typesDrinks = db.Drinks.Include(type => type.Types_drinks).Where(drink => drink.Fk_drink_type == Fk_type);
 
-                return typesDrinks;
+                return typesDrinks.ToList();
             }
         }
         #endregion
@@ -195,39 +191,43 @@ namespace WpfApp1
                 db.Ordering_dishes.Add(ordering_Dishes);
                 db.SaveChanges();
 
-                var sql = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
+                var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
-                List<Ordering_dishes> ordering_l = sql;
+                List<Ordering_dishes> orderingDishesList = dishesOrder;
 
-                foreach (var item in ordering_l)
+                foreach (var item in orderingDishesList)
                 {
                     sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
                 }
             }
         }
 
-        //Добавление суммы заказа заказ после того, как выбраны все блюда\напитки
+        //Добавление суммы заказа после подтверждения заказа
         public void AddSumOrder(int idOrder, decimal sumOrder)
         {
             using (var db = new CafeEntities())
             {
-                var sql = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
-                sql.Order_price = sumOrder;
+                var orderSum = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
+                orderSum.Order_price = sumOrder;
+
                 db.SaveChanges();
             }
         }
         #endregion
 
-        public void UpdateOrder(int idOrder,int idStatus)
+        #region Методы на обновление
+
+        //Обновление статуса заказа
+        public void UpdateStatusOrder(int idOrder, int idStatus)
         {
             using (var db = new CafeEntities())
             {
-                var sql = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
-
-                sql.Fk_status_order = idStatus;
+                var statusOrder = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
+                statusOrder.Fk_status_order = idStatus;
 
                 db.SaveChanges();
             }
         }
+        #endregion
     }
 }

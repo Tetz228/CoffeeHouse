@@ -20,7 +20,7 @@ public class ActionsUsers
     #region Поиск пользователя
 
     //Поиск пользователя по логину и паролю
-    public (bool userExist, int userId) SearchUser(string log, string pass)
+    public (bool existUser, int idUser) SearchUser(string log, string pass)
     {
         using (var db = new CafeEntities())
         {
@@ -31,14 +31,14 @@ public class ActionsUsers
         }
     }
 
-    //Поиск пользователя по его id в базе данных
-    private User SearchUser(int id)
+    //Поиск пользователя по его id
+    private User SearchUser(int idUser)
     {
         using (var db = new CafeEntities())
         {
             UserAuthorized = db.Users.Include(emp => emp.Employee).Include(empStatus => empStatus.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
                                      .Include(cont => cont.Employee.Contracts).Include(shiftList => shiftList.Employee.Shift_list).Include(table => table.Employee.Tables)
-                                     .FirstOrDefault(fUser => fUser.ID == id);
+                                     .FirstOrDefault(fUser => fUser.ID == idUser);
 
             return UserAuthorized;
         }
@@ -69,7 +69,7 @@ public class ActionsUsers
         }
     }
 
-    //Получение название должности
+    //Получение название должности по fk
     private static string PostName(int fkPost)
     {
         using (var db = new CafeEntities())

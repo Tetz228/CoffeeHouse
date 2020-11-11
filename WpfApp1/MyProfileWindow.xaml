@@ -6,21 +6,24 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Мой профиль" Height="453.622" Width="338.229" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    
     <Grid>
         <StackPanel Height="107" Margin="49,0,0,89" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137">
-            <Label Content="ФИО:" FontFamily="Verdana" FontSize="14"/>
-            <Label Content="Должность:" FontFamily="Verdana" FontSize="14"/>
-            <Label Content="Номер телефона:" FontFamily="Verdana" FontSize="14"/>
-            <Label Content="Статус:" FontFamily="Verdana" FontSize="14"/>
+            <Label Style="{StaticResource labels}" Content="ФИО:"/>
+            <Label Style="{StaticResource labels}" Content="Должность:"/>
+            <Label Style="{StaticResource labels}" Content="Номер телефона:"/>
+            <Label Style="{StaticResource labels}" Content="Статус:"/>
         </StackPanel>
-        <Button x:Name="OK" Content="ОК" Click="OK_Click" Margin="98,0,0,17" VerticalAlignment="Bottom" Height="31" FontFamily="Verdana" FontSize="14" HorizontalAlignment="Left" Width="129"/>
+
         <StackPanel HorizontalAlignment="Right" Height="107" Margin="0,0,-29,89" VerticalAlignment="Bottom" Width="170">
-            <Label x:Name="LabelLFM" Content="ФИО пользователя" FontFamily="Verdana" FontSize="14"/>
-            <Label x:Name="LabelPost" Content="Должность пользователя" FontFamily="Verdana" FontSize="14"/>
-            <Label x:Name="LabelPhone_number" Content="Номер телефона пользователя" FontFamily="Verdana" FontSize="14"/>
-            <Label x:Name="LabelStatus" Content="Статус пользователя" FontFamily="Verdana" FontSize="14"/>
+            <Label Style="{StaticResource labels}" x:Name="LabelLFM" Content="ФИО пользователя"/>
+            <Label Style="{StaticResource labels}" x:Name="LabelPost" Content="Должность пользователя"/>
+            <Label Style="{StaticResource labels}" x:Name="LabelPhone_number" Content="Номер телефона пользователя"/>
+            <Label Style="{StaticResource labels}" x:Name="LabelStatus" Content="Статус пользователя"/>
         </StackPanel>
-        <Button x:Name="ChangePhoto" Content="Изменить фото" HorizontalAlignment="Left" Margin="98,0,0,239" VerticalAlignment="Bottom" Height="31" Width="139" Click="ChangePhoto_Click" FontFamily="Verdana" FontSize="14"/>
+
+        <Button Style="{StaticResource button}" x:Name="OK" Content="ОК" Click="OK_Click" Margin="98,0,0,17"/>
+        <Button Style="{StaticResource button}" x:Name="ChangePhoto" Content="Изменить фото" Click="ChangePhoto_Click" Margin="98,0,0,239" />
         <Image x:Name="Avatar" Height="114" Margin="25,10,19,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
