@@ -10,9 +10,6 @@
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Width="804">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Header="Добавить заказ" Click="AddOrder_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder1" Header="Добавить заказ" Click="AddOrder_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder2" Header="Добавить заказ" Click="AddOrder_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder3" Header="Добавить заказ" Click="AddOrder_Click"/>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReport" Click="MenuItemReport_Click" Header="Отчёт за смену"/>
