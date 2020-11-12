@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace WpfApp1
 {
@@ -7,7 +6,7 @@ namespace WpfApp1
     {
         public AuthWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

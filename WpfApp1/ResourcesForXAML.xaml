@@ -12,9 +12,8 @@
 
     <Style x:Key="dataGrid" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="IsReadOnly" Value="True"/>
     </Style>
 
     <Style x:Key="dataGridColumnHeader" TargetType="DataGridColumnHeader">

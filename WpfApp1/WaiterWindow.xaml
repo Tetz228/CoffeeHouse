@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Окно официанта -> Список заказов" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Окно официанта -> Список заказов" Width="992" Height="444" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Grid>
-        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="487" Width="804"/>
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="415" Width="986"/>
     </Grid>
 </Window>

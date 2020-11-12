@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace WpfApp1
 {
     public partial class AddDishAndDrinkWindow : Window
     {
-        private ActionsOrders actionsOrders = new ActionsOrders();
+        private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
         private int IdOrder { get; }
 
@@ -50,7 +50,8 @@ namespace WpfApp1
             {
                 try
                 {
-                    var statusDish = ComboBoxTypesDishes.Text == "-" ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault() : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
+                    var statusDish = ComboBoxTypesDishes.Text == "-" ? db.Status_dish.Where(status => status.Name == "-")
+                                                        .FirstOrDefault() : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
 
                     Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
                     {
@@ -72,7 +73,7 @@ namespace WpfApp1
                 {
                     System.Windows.Forms.MessageBox.Show("Ошибка при добавлении блюда или напитка в заказ.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
         }
 

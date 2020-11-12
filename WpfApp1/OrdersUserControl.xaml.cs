@@ -7,7 +7,7 @@ namespace WpfApp1
 {
     public partial class OrdersUserControl : UserControl
     {
-        private ActionsOrders actionsOrders;
+        private readonly ActionsOrders actionsOrders;
 
         private int IdEmployee { get; }
 
@@ -46,6 +46,8 @@ namespace WpfApp1
         {
             AddOrderWindow addOrderWindow = new AddOrderWindow();
             addOrderWindow.ShowDialog();
+
+            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
 
         private void MenuItemLogOutAccount_Click(object sender, RoutedEventArgs e)

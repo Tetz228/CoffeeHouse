@@ -31,7 +31,7 @@ namespace WpfApp1
             using (var db = new CafeEntities())
             {
                 List<Order> orders = new List<Order>();
-                
+
                 var selectOrder = db.Orders.Include(status => status.Status_orders)
                                            .Include(table => table.Table)
                                            .Include(emp => emp.Table.Employee)
@@ -42,7 +42,7 @@ namespace WpfApp1
 
                 //Выборка заказов за сегодняшнюю смену
                 foreach (var data in selectOrder)
-                    if(data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    if (data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
                         orders.Add(data);
 
                 return orders;
@@ -214,7 +214,7 @@ namespace WpfApp1
 
                 db.Ordering_dishes.Add(ordering_Dishes);
                 db.SaveChanges();
-              
+
                 var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
                 foreach (var item in dishesOrder)

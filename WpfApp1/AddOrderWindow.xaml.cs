@@ -11,6 +11,8 @@ namespace WpfApp1
     {
         private Order order;
 
+        private readonly ActionsOrders actionsOrders = new ActionsOrders();
+
         public AddOrderWindow()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ActionsOrders actionsOrders = new ActionsOrders();
+
 
             if (order == null)
             {
@@ -57,16 +59,16 @@ namespace WpfApp1
 
         private void ButtonConfirm_Click(object sender, RoutedEventArgs e)
         {
-            ActionsOrders actionsOrders = new ActionsOrders();
-
             if (order == null)
             {
                 try
                 {
-                    Dictionary<string, int> infoOrder = new Dictionary<string, int>();
-                    infoOrder.Add("table", (int)ComboBoxTables.SelectedValue);
-                    infoOrder.Add("status", (int)ComboBoxStatusOrders.SelectedValue);
-                    infoOrder.Add("people", Convert.ToInt32(TextBoxCountPeople.Text));
+                    Dictionary<string, int> infoOrder = new Dictionary<string, int>
+                    {
+                        { "table", (int)ComboBoxTables.SelectedValue },
+                        { "status", (int)ComboBoxStatusOrders.SelectedValue },
+                        { "people", Convert.ToInt32(TextBoxCountPeople.Text) }
+                    };
 
                     actionsOrders.AddOrder(infoOrder, out int idOrder);
 
@@ -75,7 +77,6 @@ namespace WpfApp1
                     Close();
 
                     orderDetailsWindow.ShowDialog();
-
                 }
                 catch
                 {

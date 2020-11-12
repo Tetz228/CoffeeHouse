@@ -8,13 +8,18 @@ namespace WpfApp1
 
         public static decimal SumOrder { get; set; }
 
-        private ActionsOrders actionsOrders = new ActionsOrders();
+        private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
         public ListDishesAndDrinksInOrderWindow(int idOrder)
         {
             InitializeComponent();
 
             IdOrder = idOrder;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -31,11 +36,6 @@ namespace WpfApp1
             SumOrder = 0;
 
             Close();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void DataGridOrderingDishes_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

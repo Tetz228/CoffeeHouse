@@ -10,10 +10,10 @@
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Height="23" Width="944">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="Add" Click="Add_Click" Header="Добавить блюда\напитки" Height="23"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="580,0,0,0"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="590,0,0,0"/>
         </Menu>
         
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrderingDishes" Height="421" Margin="0,23,0,0" Width="944" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown">
+        <DataGrid  Style="{StaticResource dataGrid}" x:Name="DataGridOrderingDishes" Height="421" Margin="0,23,0,0" Width="944" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Name}" Width="*" Header="Блюдо"/>

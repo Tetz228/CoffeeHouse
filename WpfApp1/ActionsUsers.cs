@@ -1,11 +1,11 @@
-﻿using win32 =  Microsoft.Win32;
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp1;
+using win32 = Microsoft.Win32;
 
 public class ActionsUsers
 {
@@ -25,7 +25,7 @@ public class ActionsUsers
     {
         using (var db = new CafeEntities())
         {
-            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status=>status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
+            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status => status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
                                      .FirstOrDefault(fUser => fUser.Login == log && fUser.Password == pass);
 
             UserAuthorized.Employee.Posts_employees = db.Posts_employees.Where(dbPost => dbPost.Fk_employee == UserAuthorized.Employee.ID).Include(post => post.Post).ToList();
@@ -95,13 +95,13 @@ public class ActionsUsers
         {
             image = new BitmapImage(new Uri(UserAuthorized.Employee.Photo));
             return image;
-            
+
         }
         catch
         {
-            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return null;
-        }      
+        }
     }
 
     #endregion

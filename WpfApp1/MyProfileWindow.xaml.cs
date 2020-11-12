@@ -10,18 +10,20 @@ namespace WpfApp1
 
         private string Post { get; }
 
+        ActionsUsers user;
+
         public MyProfileWindow(int id, string post)
         {
             InitializeComponent();
 
             IdProfile = id;
             Post = post;
+
+            user = new ActionsUsers(IdProfile);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ActionsUsers user = new ActionsUsers(IdProfile);
-
             LabelLFM.Content = user.GettingLFMEmployee();
             LabelPost.Content = Post;
             LabelPhone_number.Content = user.GettingPhoneNumberEmployee();
@@ -31,7 +33,6 @@ namespace WpfApp1
 
         private void ChangePhoto_Click(object sender, RoutedEventArgs e)
         {
-            ActionsUsers user = new ActionsUsers(IdProfile);
             user.ChangePhoto(out ImageSource image);
 
             if (image != null)
