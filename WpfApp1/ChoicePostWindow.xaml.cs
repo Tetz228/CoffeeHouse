@@ -7,7 +7,7 @@ namespace WpfApp1
 {
     public partial class ChoicePostWindow : Window
     {
-        public int GetFkPost { get; set; }
+        public string GetPost { get; set; }
 
         private int IdUser { get; set; }
 
@@ -34,7 +34,7 @@ namespace WpfApp1
 
         private void Сonfirm_Click(object sender, RoutedEventArgs e)
         {
-            GetFkPost = (int)ComboBoxChoiceRole.SelectedValue;
+            GetPost = ComboBoxChoiceRole.Text;
             Close();
         }
 

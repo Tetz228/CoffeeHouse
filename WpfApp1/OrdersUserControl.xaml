@@ -4,11 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1"
-             mc:Ignorable="d" 
-             d:DesignHeight="464" d:DesignWidth="804" Loaded="UserControl_Loaded">
+             mc:Ignorable="d" d:DesignWidth="804" Loaded="UserControl_Loaded" Height="483.606">
     <Grid>
-        
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" Height="464" Width="804" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
+        <Menu Style="{StaticResource ResourceKey = menuItem}" Width="804">
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Header="Добавить заказ" Click="AddOrder_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="GoToWaiterWindow" Header="Перейти ко всем заказам" Visibility="Collapsed" Click="GoToWaiterWindow_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReport" Click="MenuItemReport_Click" Header="Отчёт за смену"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" Height="461" Width="804" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown" Margin="0,23,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Table.Table_number}" Header="Номер столика"/>

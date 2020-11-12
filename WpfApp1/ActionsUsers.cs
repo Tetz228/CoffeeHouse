@@ -28,6 +28,8 @@ public class ActionsUsers
             UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status=>status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
                                      .FirstOrDefault(fUser => fUser.Login == log && fUser.Password == pass);
 
+            UserAuthorized.Employee.Posts_employees = db.Posts_employees.Where(dbPost => dbPost.Fk_employee == UserAuthorized.Employee.ID).Include(post => post.Post).ToList();
+
             return UserAuthorized == null ? (false, 0) : (true, UserAuthorized.ID);
         }
     }
@@ -41,6 +43,8 @@ public class ActionsUsers
                                      .Include(cont => cont.Employee.Contracts).Include(shiftList => shiftList.Employee.Shift_list).Include(table => table.Employee.Tables)
                                      .FirstOrDefault(fUser => fUser.ID == idUser);
 
+            UserAuthorized.Employee.Posts_employees = db.Posts_employees.Where(dbPost => dbPost.Fk_employee == UserAuthorized.Employee.ID).Include(post => post.Post).ToList();
+
             return UserAuthorized;
         }
     }
@@ -53,30 +57,16 @@ public class ActionsUsers
     {
         using (var db = new CafeEntities())
         {
-            int fkPost;
-
             if (UserAuthorized.Employee.Posts_employees.Count > 1)
             {
                 ChoicePostWindow choicePost = new ChoicePostWindow(UserAuthorized.ID);
 
                 choicePost.ShowDialog();
 
-                fkPost = choicePost.GetFkPost;
+                return choicePost.GetPost;
             }
             else
-                fkPost = UserAuthorized.Employee.Posts_employees.ToArray()[0].Fk_post;
-
-            return fkPost == 0 ? "Должность не выбрана" : PostName(fkPost);
-        }
-    }
-
-    //Получение название должности по fk
-    private static string PostName(int fkPost)
-    {
-        using (var db = new CafeEntities())
-        {
-            var postName = db.Posts_employees.Include(post => post.Post).FirstOrDefault(e => e.Post.ID == fkPost);
-            return postName.Post.Name;
+                return UserAuthorized.Employee.Posts_employees.ToArray()[0].Post.Name;
         }
     }
 

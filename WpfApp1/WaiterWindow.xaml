@@ -8,17 +8,6 @@
         Title="Окно официанта -> Список заказов" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Grid>
-        <Menu Style="{StaticResource ResourceKey = menuItem}" Width="804">
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="GoToWaiterWindow" Header="Перейти ко всем заказам" Visibility="Collapsed" Click="GoToWaiterWindow_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Header="Добавить заказ" Click="AddOrder_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReport" Click="MenuItemReport_Click" Header="Отчёт за смену"/>
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
-            </MenuItem>
-        </Menu>
-        <ContentControl x:Name="OrderControl" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Height="464" Width="804"/>
-
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="487" Width="804"/>
     </Grid>
 </Window>
