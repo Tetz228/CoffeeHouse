@@ -112,14 +112,17 @@
     <Compile Include="Ordering_dishes.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrdersUserControl.xaml.cs">
+      <DependentUpon>OrdersUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReportShiftWindow.xaml.cs">
-      <DependentUpon>ReportShiftWindow.xaml</DependentUpon>
+    <Compile Include="ReportShiftUserControl.xaml.cs">
+      <DependentUpon>ReportShiftUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Select_contracts_Result.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
@@ -186,7 +189,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReportShiftWindow.xaml">
+    <Page Include="OrdersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportShiftUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace WpfApp1
 {
@@ -38,7 +40,7 @@ namespace WpfApp1
                     ComboBoxStatusOrders.SelectedValue = statusOrder.ID;
                     ComboBoxStatusOrders.IsEnabled = false;
                 }
-            }          
+            }
             else
             {
                 ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
@@ -58,19 +60,27 @@ namespace WpfApp1
             ActionsOrders actionsOrders = new ActionsOrders();
 
             if (order == null)
-            {                
-                Dictionary<string, int> infoOrder = new Dictionary<string, int>();
-                infoOrder.Add("table", (int)ComboBoxTables.SelectedValue);
-                infoOrder.Add("status", (int)ComboBoxStatusOrders.SelectedValue);
-                infoOrder.Add("people", Convert.ToInt32(TextBoxCountPeople.Text));
+            {
+                try
+                {
+                    Dictionary<string, int> infoOrder = new Dictionary<string, int>();
+                    infoOrder.Add("table", (int)ComboBoxTables.SelectedValue);
+                    infoOrder.Add("status", (int)ComboBoxStatusOrders.SelectedValue);
+                    infoOrder.Add("people", Convert.ToInt32(TextBoxCountPeople.Text));
 
-                actionsOrders.AddOrder(infoOrder, out int idOrder);
+                    actionsOrders.AddOrder(infoOrder, out int idOrder);
 
-                ListDishesAndDrinksInOrderWindow orderDetailsWindow = new ListDishesAndDrinksInOrderWindow(idOrder);
+                    ListDishesAndDrinksInOrderWindow orderDetailsWindow = new ListDishesAndDrinksInOrderWindow(idOrder);
 
-                Close();
+                    Close();
 
-                orderDetailsWindow.ShowDialog();
+                    orderDetailsWindow.ShowDialog();
+
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("Ошибка при добавлении заказа.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

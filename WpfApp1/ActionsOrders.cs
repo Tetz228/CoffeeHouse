@@ -25,7 +25,8 @@ namespace WpfApp1
             }
         }
 
-        public List<Order> OutputOrdersEmployee(int idEmployee)
+        //Вывод информации о заказа за смену 
+        public List<Order> OutputReportShiftEmployee(int idEmployee)
         {
             using (var db = new CafeEntities())
             {
@@ -39,6 +40,7 @@ namespace WpfApp1
                                            .Where(test => test.Table.Employee.ID == idEmployee)
                                            .ToArray();
 
+                //Выборка заказов за сегодняшнюю смену
                 foreach (var data in selectOrder)
                     if(data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
                         orders.Add(data);
@@ -134,15 +136,15 @@ namespace WpfApp1
         }
 
         // Заполнение ComboBox`а под названием "Статусы блюд"
-        public List<Status_dish> FillingComboBoxStatusDishes()
-        {
-            using (var db = new CafeEntities())
-            {
-                var statusDishes = db.Status_dish.ToList();
+        //public List<Status_dish> FillingComboBoxStatusDishes()
+        //{
+        //    using (var db = new CafeEntities())
+        //    {
+        //        var statusDishes = db.Status_dish.ToList();
 
-                return statusDishes;
-            }
-        }
+        //        return statusDishes;
+        //    }
+        //}
         #endregion
 
         #region Вывод блюд/напитков по типам
@@ -212,12 +214,10 @@ namespace WpfApp1
 
                 db.Ordering_dishes.Add(ordering_Dishes);
                 db.SaveChanges();
-
+              
                 var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
-                List<Ordering_dishes> orderingDishesList = dishesOrder;
-
-                foreach (var item in orderingDishesList)
+                foreach (var item in dishesOrder)
                 {
                     sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
                 }

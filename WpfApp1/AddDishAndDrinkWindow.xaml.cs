@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Controls;
 
 namespace WpfApp1
@@ -47,23 +48,31 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var statusDish = ComboBoxTypesDishes.Text == "-" ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault() : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
-
-                Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+                try
                 {
-                    { "dish", (int)ComboBoxDishes.SelectedValue },
-                    { "status", statusDish.ID},
-                    { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
-                    { "drink", (int)ComboBoxDrinks.SelectedValue },
-                    { "countDrink", Convert.ToInt32(TextBoxCountDrink.Text) },
-                    { "idOrder", IdOrder }
-                };
+                    var statusDish = ComboBoxTypesDishes.Text == "-" ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault() : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
 
-                actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
+                    Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+                    {
+                        { "dish", (int)ComboBoxDishes.SelectedValue },
+                        { "status", statusDish.ID},
+                        { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
+                        { "drink", (int)ComboBoxDrinks.SelectedValue },
+                        { "countDrink", Convert.ToInt32(TextBoxCountDrink.Text) },
+                        { "idOrder", IdOrder }
+                    };
 
-                ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+                    actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
 
-                Close();
+                    ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+
+                    Close();
+                }
+                catch
+                {
+                    System.Windows.Forms.MessageBox.Show("Ошибка при добавлении блюда или напитка в заказ.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
 

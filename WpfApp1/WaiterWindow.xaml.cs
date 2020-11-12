@@ -18,8 +18,8 @@ namespace WpfApp1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             actionsOrders = new ActionsOrders(IdEmployee);
+            OrderControl.Content = new OrdersUserControl();
 
-            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
@@ -45,33 +45,29 @@ namespace WpfApp1
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
             AddOrderWindow addOrderWindow = new AddOrderWindow();
-            addOrderWindow.ShowDialog();
-
-            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-        }
-
-        private void DataGridOrders_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            if (DataGridOrders.SelectedItem != null)
-            {
-                Order order = DataGridOrders.SelectedItem as Order;
-
-                AddOrderWindow addOrder = new AddOrderWindow(order);
-                addOrder.ShowDialog();
-
-                DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-            }
-        }
-
-        private void DataGridOrders_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            DataGridOrders.SelectedItem = null;
+            addOrderWindow.ShowDialog();    
         }
 
         private void MenuItemReport_Click(object sender, RoutedEventArgs e)
         {
-            ReportShiftWindow reportShift = new ReportShiftWindow(IdEmployee);
-            reportShift.ShowDialog();
+            OrderControl.Content = new ReportShiftUserControl(IdEmployee);
+
+            GoToWaiterWindow.Visibility = Visibility.Visible;
+            AddOrder.Visibility = Visibility.Collapsed;
+            MenuItemUser.Visibility = Visibility.Collapsed;
+
+            Title = "Окно официанта -> Отчет за смену";
+        }
+
+        private void GoToWaiterWindow_Click(object sender, RoutedEventArgs e)
+        {
+            OrderControl.Content = new OrdersUserControl();
+
+            GoToWaiterWindow.Visibility = Visibility.Collapsed;
+            AddOrder.Visibility = Visibility.Visible;
+            MenuItemUser.Visibility = Visibility.Visible;  
+            
+            Title = "Окно официанта -> Список заказов";
         }
     }
 }

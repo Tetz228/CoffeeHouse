@@ -1,7 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using win32 =  Microsoft.Win32;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp1;
@@ -98,9 +99,19 @@ public class ActionsUsers
     //Вывод фотографии сотрудника
     public ImageSource GettingPhoto()
     {
-        ImageSource image = new BitmapImage(new Uri(UserAuthorized.Employee.Photo));
+        ImageSource image;
 
-        return image;
+        try
+        {
+            image = new BitmapImage(new Uri(UserAuthorized.Employee.Photo));
+            return image;
+            
+        }
+        catch
+        {
+            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            return null;
+        }      
     }
 
     #endregion
@@ -114,7 +125,7 @@ public class ActionsUsers
         {
             var changePhoto = db.Users.Include(emp => emp.Employee).Where(emp => emp.ID == UserAuthorized.ID).FirstOrDefault();
 
-            OpenFileDialog file = new OpenFileDialog
+            win32.OpenFileDialog file = new win32.OpenFileDialog
             {
                 Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
                 CheckFileExists = true,

@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Окно официанта" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
-    
+        Title="Окно официанта -> Список заказов" Height="516" Width="810" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Width="804">
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="GoToWaiterWindow" Header="Перейти ко всем заказам" Visibility="Collapsed" Click="GoToWaiterWindow_Click"/>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Header="Добавить заказ" Click="AddOrder_Click"/>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
@@ -17,18 +18,7 @@
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
             </MenuItem>
         </Menu>
-        
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrders" Height="464" Width="804" Margin="0,23,0,0" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown">
-            <DataGrid.Columns>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Table.Table_number}" Header="Номер столика"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Count_person}" Header="Кол-во человек"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Status_orders.Name}" Header="Статус заказа"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Header="Дата и время заказа"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Order_price,StringFormat={}{0:F} руб.}" Header="Сумма заказа"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Width="*" Binding="{Binding Table.Employee.LName}" Header="Принял заказ"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
+        <ContentControl x:Name="OrderControl" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Height="464" Width="804"/>
+
     </Grid>
 </Window>
