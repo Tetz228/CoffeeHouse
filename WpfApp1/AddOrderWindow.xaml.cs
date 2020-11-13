@@ -11,27 +11,29 @@ namespace WpfApp1
     {
         private Order order;
 
-        private readonly ActionsOrders actionsOrders = new ActionsOrders();
+        private readonly ActionsOrders actionsOrders;
 
-        public AddOrderWindow()
+        public AddOrderWindow(int idUser)
         {
             InitializeComponent();
+
+            actionsOrders = new ActionsOrders(idUser);
         }
 
-        public AddOrderWindow(Order order)
+        public AddOrderWindow(Order order, int idUser)
         {
             InitializeComponent();
 
             this.order = order;
+
+            actionsOrders = new ActionsOrders(idUser);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-
             if (order == null)
             {
-                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
+                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIdEmployee());
                 ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
 
                 using (var db = new CafeEntities())

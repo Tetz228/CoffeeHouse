@@ -112,8 +112,8 @@
     <Compile Include="Ordering_dishes.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrdersUserControl.xaml.cs">
-      <DependentUpon>OrdersUserControl.xaml</DependentUpon>
+    <Compile Include="OrdersReportsProfileUserControl.xaml.cs">
+      <DependentUpon>OrdersReportsProfileUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
@@ -186,7 +186,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OrdersUserControl.xaml">
+    <Page Include="OrdersReportsProfileUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -26,18 +26,20 @@ namespace WpfApp1
         }
 
         //Вывод информации о заказа за смену 
-        public List<Order> OutputReportShiftEmployee(int idEmployee)
+        public List<Order> OutputReportShiftEmployee()
         {
             using (var db = new CafeEntities())
             {
                 List<Order> orders = new List<Order>();
+
+                int idEmp = GettingIdEmployee();
 
                 var selectOrder = db.Orders.Include(status => status.Status_orders)
                                            .Include(table => table.Table)
                                            .Include(emp => emp.Table.Employee)
                                            .Include(orderDishes => orderDishes.Ordering_dishes)
                                            .Where(order => order.ID > 0)
-                                           .Where(test => test.Table.Employee.ID == idEmployee)
+                                           .Where(tableEmp => tableEmp.Table.Employee.ID == idEmp)
                                            .ToArray();
 
                 //Выборка заказов за сегодняшнюю смену
@@ -119,6 +121,17 @@ namespace WpfApp1
             using (var db = new CafeEntities())
             {
                 var tables = db.Tables.ToList();
+
+                return tables;
+            }
+        }
+
+        // Заполнение ComboBox`а под названием "Столы". Отображение столов, за которые отвечает пользователь
+        public List<Table> FillingComboBoxTables(int idEmp)
+        {
+            using (var db = new CafeEntities())
+            {
+                var tables = db.Tables.Where(emp=>emp.Fk_employee==idEmp).ToList();
 
                 return tables;
             }

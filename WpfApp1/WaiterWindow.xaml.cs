@@ -4,18 +4,18 @@ namespace WpfApp1
 {
     public partial class WaiterWindow : Window
     {
-        private int IdEmployee { get; }
+        private int IdUser { get; }
 
-        public WaiterWindow(int idEmp)
+        public WaiterWindow(int idUser)
         {
             InitializeComponent();
 
-            IdEmployee = idEmp;
+            IdUser = idUser;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainControl.Content = new OrdersUserControl(IdEmployee);          
+            MainControl.Content = new OrdersReportsProfileUserControl(IdUser);          
         }
     }
 }

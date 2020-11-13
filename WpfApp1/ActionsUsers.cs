@@ -72,7 +72,10 @@ public class ActionsUsers
 
     #endregion
 
-    #region Вывод информации о пользо
+    #region Вывод информации о пользователе
+
+    // Вывод id сотрудника
+    public int GettingIdEmployee() => UserAuthorized.Employee.ID;
 
     //Вывод ФИО сотрудника
     public string GettingLFMEmployee() => UserAuthorized.Employee.MName == "Не указано"

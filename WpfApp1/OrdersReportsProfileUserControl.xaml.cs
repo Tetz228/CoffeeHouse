@@ -5,17 +5,18 @@ using System.Windows.Input;
 
 namespace WpfApp1
 {
-    public partial class OrdersUserControl : UserControl
+    public partial class OrdersReportsProfileUserControl : UserControl
     {
         private readonly ActionsOrders actionsOrders;
 
-        private int IdEmployee { get; }
+        private int IdUser { get; }
 
-        public OrdersUserControl(int id)
+        public OrdersReportsProfileUserControl(int idUser)
         {
             InitializeComponent();
-            IdEmployee = id;
-            actionsOrders = new ActionsOrders(IdEmployee);
+
+            IdUser = idUser;
+            actionsOrders = new ActionsOrders(IdUser);
         }
 
         private void DataGridOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -24,11 +25,12 @@ namespace WpfApp1
             {
                 Order order = DataGridOrders.SelectedItem as Order;
 
-                AddOrderWindow addOrder = new AddOrderWindow(order);
+                AddOrderWindow addOrder = new AddOrderWindow(order, IdUser);
                 addOrder.ShowDialog();
 
                 DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
             }
+            
         }
 
         private void DataGridOrders_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -44,7 +46,7 @@ namespace WpfApp1
 
         private void AddOrder_Click(object sender, RoutedEventArgs e)
         {
-            AddOrderWindow addOrderWindow = new AddOrderWindow();
+            AddOrderWindow addOrderWindow = new AddOrderWindow(IdUser);
             addOrderWindow.ShowDialog();
 
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
@@ -59,7 +61,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {                                                               //Создать метод, который получает название должности
-            MyProfileWindow myProfile = new MyProfileWindow(IdEmployee, "Официант");
+            MyProfileWindow myProfile = new MyProfileWindow(IdUser, "Официант");
             myProfile.ShowDialog();
         }
 
@@ -70,7 +72,7 @@ namespace WpfApp1
 
         private void MenuItemReport_Click(object sender, RoutedEventArgs e)
         {
-            DataGridOrders.ItemsSource = actionsOrders.OutputReportShiftEmployee(IdEmployee);
+            DataGridOrders.ItemsSource = actionsOrders.OutputReportShiftEmployee();
             
             GoToWaiterWindow.Visibility = Visibility.Visible;
             AddOrder.Visibility = Visibility.Collapsed;
@@ -92,6 +94,23 @@ namespace WpfApp1
             Window.GetWindow(this).Title = "Окно официанта -> Список заказов";
 
             DataGridOrders.IsEnabled = true;
+        }
+
+        private void MenuItemCashOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGridOrders.SelectedItem != null)
+            {
+                Order order = DataGridOrders.SelectedItem as Order;
+
+                //AddOrderWindow addOrder = new AddOrderWindow(order, IdUser);
+                //addOrder.ShowDialog();
+
+                //DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+            }
+            else
+            {
+                MessageBox.Show("Выберите заказ для формирования приходно-кассового ордера");
+            }
         }
     }
 }
