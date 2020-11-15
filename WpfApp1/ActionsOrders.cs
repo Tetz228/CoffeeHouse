@@ -26,6 +26,7 @@ namespace WpfApp1
             }
         }
 
+        //Вывод информации о "моих" заказах
         public Order[] MyOrders()
         {
             int idEmp = GettingIdEmployee();
@@ -88,101 +89,6 @@ namespace WpfApp1
             }
         }
 
-        #endregion
-
-        #region Заполнение ComboBox`ов
-
-        // Заполнение ComboBox`а под названием "Типы блюд"
-        public List<Types_dishes> FillingComboBoxTypesDishes()
-        {
-            using (var db = new CafeEntities())
-            {
-                var typesDishes = db.Types_dishes.ToList();
-
-                return typesDishes;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Типы напитков"
-        public List<Types_drinks> FillingComboBoxTypesDrinks()
-        {
-            using (var db = new CafeEntities())
-            {
-                var typesDrinks = db.Types_drinks.ToList();
-
-                return typesDrinks;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Блюда"
-        public List<Dish> FillingComboBoxDishes()
-        {
-            using (var db = new CafeEntities())
-            {
-                var dishes = db.Dishes.ToList();
-
-                return dishes;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Напитки"
-        public List<Drink> FillingComboBoxDrinks()
-        {
-            using (var db = new CafeEntities())
-            {
-                var drinks = db.Drinks.ToList();
-
-                return drinks;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Столы"
-        public List<Table> FillingComboBoxTables()
-        {
-            using (var db = new CafeEntities())
-            {
-                var tables = db.Tables.ToList();
-
-                return tables;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Столы". Отображение столов, за которые отвечает пользователь
-        public List<Table> FillingComboBoxTables(int idEmp)
-        {
-            using (var db = new CafeEntities())
-            {
-                var tables = db.Tables.Where(emp => emp.Fk_employee == idEmp).ToList();
-
-                return tables;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Статусы заказов"
-        public List<Status_orders> FillingComboBoxStatusOrders()
-        {
-            using (var db = new CafeEntities())
-            {
-                var statusOrders = db.Status_orders.ToList();
-
-                return statusOrders;
-            }
-        }
-
-        // Заполнение ComboBox`а под названием "Статусы блюд"
-        //public List<Status_dish> FillingComboBoxStatusDishes()
-        //{
-        //    using (var db = new CafeEntities())
-        //    {
-        //        var statusDishes = db.Status_dish.ToList();
-
-        //        return statusDishes;
-        //    }
-        //}
-        #endregion
-
-        #region Вывод блюд/напитков по типам
-
         //Вывод блюд по типам
         public List<Dish> OutputByTypesDishes(int Fk_type)
         {
@@ -204,6 +110,98 @@ namespace WpfApp1
                 return typesDrinks;
             }
         }
+
+        #endregion
+
+        #region Заполнение ComboBox`ов
+
+        // Заполнение ComboBox`а "Типы блюд"
+        public List<Types_dishes> FillingComboBoxTypesDishes()
+        {
+            using (var db = new CafeEntities())
+            {
+                var typesDishes = db.Types_dishes.ToList();
+
+                return typesDishes;
+            }
+        }
+
+        // Заполнение ComboBox`а "Типы напитков"
+        public List<Types_drinks> FillingComboBoxTypesDrinks()
+        {
+            using (var db = new CafeEntities())
+            {
+                var typesDrinks = db.Types_drinks.ToList();
+
+                return typesDrinks;
+            }
+        }
+
+        // Заполнение ComboBox`а "Блюда"
+        public List<Dish> FillingComboBoxDishes()
+        {
+            using (var db = new CafeEntities())
+            {
+                var dishes = db.Dishes.ToList();
+
+                return dishes;
+            }
+        }
+
+        // Заполнение ComboBox`а "Напитки"
+        public List<Drink> FillingComboBoxDrinks()
+        {
+            using (var db = new CafeEntities())
+            {
+                var drinks = db.Drinks.ToList();
+
+                return drinks;
+            }
+        }
+
+        // Заполнение ComboBox`а "Столы"
+        public List<Table> FillingComboBoxTables()
+        {
+            using (var db = new CafeEntities())
+            {
+                var tables = db.Tables.ToList();
+
+                return tables;
+            }
+        }
+
+        // Заполнение ComboBox`а "Столы". Отображение только столов, за которые отвечает пользователь
+        public List<Table> FillingComboBoxTables(int idEmp)
+        {
+            using (var db = new CafeEntities())
+            {
+                var tables = db.Tables.Where(emp => emp.Fk_employee == idEmp).ToList();
+
+                return tables;
+            }
+        }
+
+        // Заполнение ComboBox`а "Статусы заказов"
+        public List<Status_orders> FillingComboBoxStatusOrders()
+        {
+            using (var db = new CafeEntities())
+            {
+                var statusOrders = db.Status_orders.ToList();
+
+                return statusOrders;
+            }
+        }
+
+        // Заполнение ComboBox`а "Статусы блюд"
+        //public List<Status_dish> FillingComboBoxStatusDishes()
+        //{
+        //    using (var db = new CafeEntities())
+        //    {
+        //        var statusDishes = db.Status_dish.ToList();
+
+        //        return statusDishes;
+        //    }
+        //}
         #endregion
 
         #region Методы на добавление
@@ -230,7 +228,7 @@ namespace WpfApp1
         }
 
         //Добавление блюд, которые входят в определенный заказ
-        public void AddOrder_dish(Dictionary<string, int> infoDisheAndDrinkInOrder, out decimal sum)
+        public void AddOrder_dish(Dictionary<string, int> infoDisheDrinkInOrder, out decimal sum)
         {
             using (var db = new CafeEntities())
             {
@@ -238,12 +236,12 @@ namespace WpfApp1
 
                 Ordering_dishes ordering_Dishes = new Ordering_dishes()
                 {
-                    Fk_dish = infoDisheAndDrinkInOrder["dish"],
-                    Fk_status_dish = infoDisheAndDrinkInOrder["status"],
-                    Count_dish = infoDisheAndDrinkInOrder["countDish"],
-                    Fk_drink = infoDisheAndDrinkInOrder["drink"],
-                    Count_drink = infoDisheAndDrinkInOrder["countDrink"],
-                    Fk_order = infoDisheAndDrinkInOrder["idOrder"]
+                    Fk_dish = infoDisheDrinkInOrder["dish"],
+                    Fk_status_dish = infoDisheDrinkInOrder["status"],
+                    Count_dish = infoDisheDrinkInOrder["countDish"],
+                    Fk_drink = infoDisheDrinkInOrder["drink"],
+                    Count_drink = infoDisheDrinkInOrder["countDrink"],
+                    Fk_order = infoDisheDrinkInOrder["idOrder"]
                 };
 
                 db.Ordering_dishes.Add(ordering_Dishes);

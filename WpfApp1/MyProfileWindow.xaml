@@ -22,8 +22,8 @@
             <Label Style="{StaticResource labels}" x:Name="LabelStatus" Content="Статус пользователя"/>
         </StackPanel>
 
-        <Button Style="{StaticResource button}" x:Name="OK" Content="ОК" Click="OK_Click" Margin="98,0,0,17"/>
-        <Button Style="{StaticResource button}" x:Name="ChangePhoto" Content="Изменить фото" Click="ChangePhoto_Click" Margin="98,0,0,227" />
+        <Button Style="{StaticResource button}" x:Name="ButtonOK" Content="ОК" Click="ButtonOK_Click" Margin="98,0,0,17"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonChangePhoto" Content="Изменить фото" Click="ButtonChangePhoto_Click" Margin="98,0,0,227" />
         <Image x:Name="Avatar" Height="114" Margin="25,10,19,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -11,6 +11,8 @@ public class ActionsUsers
 {
     private User UserAuthorized { get; set; }
 
+    public string SelectedPost { get; set; }
+
     public ActionsUsers() {}
 
     public ActionsUsers(int id)
@@ -25,7 +27,9 @@ public class ActionsUsers
     {
         using (var db = new CafeEntities())
         {
-            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(status => status.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
+            UserAuthorized = db.Users.Include(emp => emp.Employee)
+                                     .Include(status => status.Employee.Status_employees)
+                                     .Include(empPost => empPost.Employee.Posts_employees)
                                      .FirstOrDefault(fUser => fUser.Login == log && fUser.Password == pass);
 
             UserAuthorized.Employee.Posts_employees = db.Posts_employees.Where(dbPost => dbPost.Fk_employee == UserAuthorized.Employee.ID).Include(post => post.Post).ToList();
@@ -39,8 +43,12 @@ public class ActionsUsers
     {
         using (var db = new CafeEntities())
         {
-            UserAuthorized = db.Users.Include(emp => emp.Employee).Include(empStatus => empStatus.Employee.Status_employees).Include(empPost => empPost.Employee.Posts_employees)
-                                     .Include(cont => cont.Employee.Contracts).Include(shiftList => shiftList.Employee.Shift_list).Include(table => table.Employee.Tables)
+            UserAuthorized = db.Users.Include(emp => emp.Employee)
+                                     .Include(empStatus => empStatus.Employee.Status_employees)
+                                     .Include(empPost => empPost.Employee.Posts_employees)
+                                     .Include(cont => cont.Employee.Contracts)
+                                     .Include(shiftList => shiftList.Employee.Shift_list)
+                                     .Include(table => table.Employee.Tables)
                                      .FirstOrDefault(fUser => fUser.ID == idUser);
 
             UserAuthorized.Employee.Posts_employees = db.Posts_employees.Where(dbPost => dbPost.Fk_employee == UserAuthorized.Employee.ID).Include(post => post.Post).ToList();
@@ -63,10 +71,12 @@ public class ActionsUsers
 
                 choicePost.ShowDialog();
 
-                return choicePost.GetPost;
+                SelectedPost = choicePost.GetPost;
             }
             else
-                return UserAuthorized.Employee.Posts_employees.ToArray()[0].Post.Name;
+                SelectedPost = UserAuthorized.Employee.Posts_employees.ToArray()[0].Post.Name;
+
+            return SelectedPost;
         }
     }
 
@@ -89,6 +99,9 @@ public class ActionsUsers
                                                                         : UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName
                                                                         + UserAuthorized.Employee.FName;
     */
+
+    // Вывод выбранной должности при авторизации
+    public string GettingSelectedPostEmployee() => SelectedPost;
 
     //Вывод номера телефона сотрудника
     public string GettingPhoneNumberEmployee() => UserAuthorized.Employee.Phone_number;

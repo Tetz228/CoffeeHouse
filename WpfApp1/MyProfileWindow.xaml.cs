@@ -1,37 +1,32 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-
 namespace WpfApp1
 {
     public partial class MyProfileWindow : Window
     {
         private int IdProfile { get; }
 
-        private string Post { get; }
+        private readonly ActionsUsers user;
 
-        ActionsUsers user;
-
-        public MyProfileWindow(int id, string post)
+        public MyProfileWindow(int id)
         {
             InitializeComponent();
 
             IdProfile = id;
-            Post = post;
-
             user = new ActionsUsers(IdProfile);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LabelLFM.Content = user.GettingLFMEmployee();
-            LabelPost.Content = Post;
+            LabelPost.Content = user.GettingSelectedPostEmployee();
             LabelPhone_number.Content = user.GettingPhoneNumberEmployee();
             LabelStatus.Content = user.GettingStatusName();
             Avatar.Source = user.GettingPhoto();
         }
 
-        private void ChangePhoto_Click(object sender, RoutedEventArgs e)
+        private void ButtonChangePhoto_Click(object sender, RoutedEventArgs e)
         {
             user.ChangePhoto(out ImageSource image);
 
@@ -39,7 +34,7 @@ namespace WpfApp1
                 Avatar.Source = image;
         }
 
-        private void OK_Click(object sender, RoutedEventArgs e)
+        private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

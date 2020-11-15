@@ -46,15 +46,16 @@ namespace WpfApp1
 
         private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new CafeEntities())
+            try
             {
-                try
+                using (var db = new CafeEntities())
                 {
-                    var statusDish = ComboBoxTypesDishes.Text == "-" 
-                                                              ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault() 
+
+                    var statusDish = ComboBoxTypesDishes.Text == "-"
+                                                              ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault()
                                                               : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
 
-                    Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
+                    Dictionary<string, int> infoDisheDrinkInOrder = new Dictionary<string, int>
                     {
                         { "dish", (int)ComboBoxDishes.SelectedValue },
                         { "status", statusDish.ID},
@@ -64,17 +65,16 @@ namespace WpfApp1
                         { "idOrder", IdOrder }
                     };
 
-                    actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
+                    actionsOrders.AddOrder_dish(infoDisheDrinkInOrder, out decimal sum);
 
                     ListDishesDrinksInOrderWindow.SumOrder = sum;
 
                     Close();
                 }
-                catch
-                {
-                    System.Windows.Forms.MessageBox.Show("Ошибка при добавлении блюда или напитка в заказ.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Ошибка при добавлении блюда или напитка в заказ.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

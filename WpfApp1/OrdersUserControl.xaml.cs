@@ -24,41 +24,44 @@ namespace WpfApp1
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
 
+        public void GoToCashOrderWindow()
+        {
+            if (DataGridOrders.SelectedItem != null)
+            {
+                Order selectedOrder = DataGridOrders.SelectedItem as Order;
+
+                PaymentTypeWindow paymentType = new PaymentTypeWindow();
+                paymentType.ShowDialog();
+
+                if (paymentType.Type != null)
+                {
+                    CashOrderWindow cashOrderWindow = new CashOrderWindow(selectedOrder.ID, selectedOrder.Order_price, paymentType.Type);
+                    cashOrderWindow.ShowDialog();
+                }
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Ошибка! Выберете заказ из списка.", "Заказ не выбран.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void DataGridOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (DataGridOrders.SelectedItem != null)
             {
-                Order order = DataGridOrders.SelectedItem as Order;
+                Order selectedOrder = DataGridOrders.SelectedItem as Order;
 
-                AddOrderWindow addOrder = new AddOrderWindow(order, IdUser);
-                addOrder.ShowDialog();
+                if (selectedOrder.Status_orders.Name == "Принят")
+                {
+                    EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, IdUser);
+                    editOrder.ShowDialog();
 
-                DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+                    DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+                }
             }
         }
 
         private void DataGridOrders_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DataGridOrders.SelectedItem = null;
-        }
-
-        public void GoToCashOrderWindow()
-        {
-            if (DataGridOrders.SelectedItem != null)
-            {                
-                Order order = DataGridOrders.SelectedItem as Order;
-
-                PaymentTypeWindow paymentType = new PaymentTypeWindow();
-                paymentType.ShowDialog();
-
-                CashOrderWindow cashOrderWindow = new CashOrderWindow(order.ID,order.Order_price, paymentType.Type);
-
-                cashOrderWindow.ShowDialog();
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Ошибка! Выберете заказ из списка.", "Заказ не выбран.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         public void UpdateDataGrid()

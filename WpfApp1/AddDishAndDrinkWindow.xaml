@@ -13,8 +13,8 @@
         <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" SelectionChanged="ComboBoxTypesDrinks_SelectionChanged" Name="ComboBoxTypesDrinks" Margin="234,82,0,0" Width="234" Height="26" />
         <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDrinks" Margin="234,139,0,0" Width="234" Height="26"/>
         
-        <TextBox Style="{StaticResource TextBox}" x:Name="TextBoxCountDishes" Margin="10,197,0,0"/>
-        <TextBox Style="{StaticResource TextBox}" x:Name="TextBoxCountDrink" Margin="234,197,0,0"/>
+        <TextBox Style="{StaticResource textBox}" x:Name="TextBoxCountDishes" Margin="10,197,0,0"/>
+        <TextBox Style="{StaticResource textBox}" x:Name="TextBoxCountDrink" Margin="234,197,0,0"/>
         
         <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="10,0,0,10"/>
         <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,13,10" HorizontalAlignment="Right"/>

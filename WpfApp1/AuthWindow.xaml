@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Авторизация" Height="255.56" Width="328.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
-    
+
     <Grid>
         <Label Style="{StaticResource labels}" Content="Авторизация" Margin="97,0,0,0" FontSize="20"/>
-        <Label Style="{StaticResource labels}" Content="Логин" Margin="22,0,0,132" Height="26" VerticalAlignment="Bottom"/>
-        <Label Style="{StaticResource labels}" Content="Пароль" Margin="12,0,0,78" Height="30" VerticalAlignment="Bottom"/>
-        
-        <TextBox Name="TextBoxLogin" HorizontalAlignment="Left" Height="24" Margin="79,0,0,132" TextWrapping="NoWrap"  VerticalAlignment="Bottom" Width="210" FontFamily="Verdana" FontSize="14"/>
-        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,0,0,81" VerticalAlignment="Bottom" Width="210" Height="24" FontSize="14"/>
-        
-        <Button Style="{StaticResource button}" Name="LoginButton" Content="Войти" Click="LoginButton_Click" Margin="10,0,0,10"/>
-        <Button Style="{StaticResource button}" x:Name="ExitButton" Content="Выйти" Margin="0,0,10,10" Click="ExitButton_Click" HorizontalAlignment="Right"/>
+        <Label Style="{StaticResource labels}" Content="Логин" Margin="22,0,0,130" Height="26" VerticalAlignment="Bottom" />
+        <Label Style="{StaticResource labels}" Content="Пароль" Margin="16,0,0,76" Height="30" VerticalAlignment="Bottom" />
+
+        <TextBox Style="{StaticResource textBox}" Text="" Name="TextBoxLogin" Height="24" Margin="79,0,0,130" Width="210" VerticalAlignment="Bottom"/>
+        <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,0,0,79" VerticalAlignment="Bottom" Width="210" Height="24" FontSize="14"/>
+
+        <Button Style="{StaticResource button}" Name="ButtonLogin" Content="Войти" Click="ButtonLogin_Click" Margin="10,0,0,10"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonExit" Content="Выйти" Margin="0,0,10,10" Click="ButtonExit_Click" HorizontalAlignment="Right"/>
 
     </Grid>
 </Window>

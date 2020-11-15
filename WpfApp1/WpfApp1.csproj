@@ -82,6 +82,9 @@
     <Compile Include="CashOrderWindow.xaml.cs">
       <DependentUpon>CashOrderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditOrderWindow.xaml.cs">
+      <DependentUpon>EditOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
       <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CashOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

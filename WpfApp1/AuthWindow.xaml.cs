@@ -9,13 +9,13 @@ namespace WpfApp1
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
-            if (existAndIdUser.userExist)
+            if (existUser)
                 switch (actionsUser.CountPostAndTheirNames())
                 {
                     case "Администратор":
@@ -24,7 +24,7 @@ namespace WpfApp1
                         //Close();
                         break;
                     case "Официант":
-                        WaiterWindow waiter = new WaiterWindow(existAndIdUser.idUser);
+                        WaiterWindow waiter = new WaiterWindow(idUser);
                         waiter.Show();
                         Close();
                         break;
@@ -38,7 +38,7 @@ namespace WpfApp1
                 MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

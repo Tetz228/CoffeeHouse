@@ -8,7 +8,7 @@
         Title="Приходно-кассовый ордер" Height="491" Width="677" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
 
-        <ListView Style="{StaticResource listView}" x:Name="ListDishes" HorizontalAlignment="Right" Height="190"  Width="661" VerticalAlignment="Top" Loaded="ListView_Loaded">
+        <ListView Style="{StaticResource listView}" x:Name="ListViewDishes" HorizontalAlignment="Right" Height="190"  Width="661" VerticalAlignment="Top" Loaded="ListView_Loaded">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Dish.Types_dishes.Name}" >Тип блюда</GridViewColumn>
@@ -20,7 +20,7 @@
             </ListView.View>
         </ListView>
 
-        <ListView Style="{StaticResource listView}" x:Name="ListDrinks" HorizontalAlignment="Right" Height="190"  Width="661" VerticalAlignment="Top" Loaded="ListView_Loaded" Margin="0,190,0,0">
+        <ListView Style="{StaticResource listView}" x:Name="ListViewDrinks" HorizontalAlignment="Right" Height="190"  Width="661" VerticalAlignment="Top" Loaded="ListView_Loaded" Margin="0,190,0,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Drink.Types_drinks.Name}" >Тип напитка</GridViewColumn>
@@ -31,9 +31,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="TotalSum" Style="{StaticResource labels}" Content="Итоговая сумма" Margin="10,0,0,9" Width="390" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="27"/>
-        <Button Style="{StaticResource button}" x:Name="OKButton" Click="OKButton_Click" Content="ОК" HorizontalAlignment="Right" Margin="0,0,98,4" Width="75" Height="31"/>
-        <Button Style="{StaticResource button}" x:Name="PrintButton" Click="PrintButton_Click" Content="Печать" HorizontalAlignment="Right" Margin="0,0,10,4" Width="75" Height="31"/>
-        <Label x:Name="PaymentType" Style="{StaticResource labels}" Content="Тип оплаты" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Width="319"/>
+      
+        <Label Style="{StaticResource labels}" x:Name="PaymentType" Content="Тип оплаты" Margin="10,390,0,0" Width="319"/>
+        <Label Style="{StaticResource labels}" x:Name="TotalSum"  Content="Итоговая сумма" Margin="10,417,0,0" Width="390" Height="27"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonOK" Click="ButtonOK_Click" Content="ОК" HorizontalAlignment="Right" Margin="0,0,98,4" Width="75" Height="31"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonPrint" Click="ButtonPrint_Click" Content="Печать" HorizontalAlignment="Right" Margin="0,0,10,4" Width="75" Height="31"/>
+        
     </Grid>
 </Window>

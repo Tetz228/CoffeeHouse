@@ -22,18 +22,17 @@ namespace WpfApp1
 
         private void ListView_Loaded(object sender, RoutedEventArgs e)
         {
-            TotalSum.Content = "Итоговая сумма заказа - " + Sum + " руб.";
+            TotalSum.Content = "Итоговая сумма заказа: " + Sum + " руб.";
             PaymentType.Content = "Тип оплаты: " + TypePayment;
-
-            ListDrinks.ItemsSource = ListDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            ListViewDrinks.ItemsSource = ListViewDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
-        private void OKButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
-        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        private void ButtonPrint_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -6,7 +6,7 @@ namespace WpfApp1
     {
         private readonly ActionsOrders actionsOrders;
 
-        private readonly OrdersUserControl ordersAndReportUserControl; 
+        private readonly OrdersUserControl ordersUserControl; 
 
         private int IdUser { get; }
 
@@ -16,12 +16,12 @@ namespace WpfApp1
 
             IdUser = idUser;
             actionsOrders = new ActionsOrders(idUser);
-            ordersAndReportUserControl = new OrdersUserControl(idUser);
+            ordersUserControl = new OrdersUserControl(idUser);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainControl.Content = ordersAndReportUserControl;
+            MainControl.Content = ordersUserControl;
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
@@ -30,7 +30,7 @@ namespace WpfApp1
             AddOrderWindow addOrderWindow = new AddOrderWindow(IdUser);
             addOrderWindow.ShowDialog();
 
-            ordersAndReportUserControl.UpdateDataGrid();
+            ordersUserControl.UpdateDataGrid();
         }
 
         private void MenuItemLogOutAccount_Click(object sender, RoutedEventArgs e)
@@ -43,7 +43,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {                                                              
-            MyProfileWindow myProfile = new MyProfileWindow(IdUser, "Официант");
+            MyProfileWindow myProfile = new MyProfileWindow(IdUser);
             myProfile.ShowDialog();
         }
 
@@ -52,10 +52,9 @@ namespace WpfApp1
             Close();
         }
 
-        //Отчёты
         private void MenuItemCashOrder_Click(object sender, RoutedEventArgs e)
         {
-            ordersAndReportUserControl.GoToCashOrderWindow();
+            ordersUserControl.GoToCashOrderWindow();
         }
 
         private void MenuItemReportShift_Click(object sender, RoutedEventArgs e)
@@ -63,24 +62,23 @@ namespace WpfApp1
             
         }
 
-        //Фильтры
         private void MenuItemMyOrders_Click(object sender, RoutedEventArgs e)
         {
-            ordersAndReportUserControl.FilterMyOrders();
+            ordersUserControl.FilterMyOrders();
 
             Title = "Окно официанта -> Мои заказы";
         }
 
         private void MenuItemAllOrders_Click(object sender, RoutedEventArgs e)
         {
-            ordersAndReportUserControl.UpdateDataGrid();
+            ordersUserControl.UpdateDataGrid();
 
-            Title = "Окно официанта -> Список заказов";
+            Title = "Окно официанта -> Список всех заказов";
         }
 
         private void MenuItemShiftOrders_Click(object sender, RoutedEventArgs e)
         {
-            ordersAndReportUserControl.FilterShiftOrders();
+            ordersUserControl.FilterShiftOrders();
 
             Title = "Окно официанта -> Заказы за смену";
         }
