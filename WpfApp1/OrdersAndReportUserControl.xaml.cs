@@ -54,17 +54,17 @@ namespace WpfApp1
             DataGridOrders.IsEnabled = true;
         }
 
-        public void GoToCashOrderWindow()
-        {            
-            if (DataGridOrders.SelectedItem != null)
-            {
-                Order order = DataGridOrders.SelectedItem as Order;
+        //public void GoToCashOrderWindow()
+        //{            
+        //    if (DataGridOrders.SelectedItem != null)
+        //    {
+        //        Order order = DataGridOrders.SelectedItem as Order;
 
-            }
-            else
-            {
-                MessageBox.Show("Выберите заказ для формирования приходно-кассового ордера");
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Выберите заказ для формирования приходно-кассового ордера");
+        //    }
+        //}
     }
 }

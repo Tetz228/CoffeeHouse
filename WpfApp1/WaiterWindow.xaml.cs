@@ -42,7 +42,7 @@ namespace WpfApp1
         }
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
-        {                                                               //Создать метод, который получает название должности
+        {                                                              
             MyProfileWindow myProfile = new MyProfileWindow(IdUser, "Официант");
             myProfile.ShowDialog();
         }
@@ -78,8 +78,7 @@ namespace WpfApp1
 
         private void MenuItemCashOrder_Click(object sender, RoutedEventArgs e)
         {
-            reportsProfileUserControl.GoToCashOrderWindow();
-            
+            //reportsProfileUserControl.GoToCashOrderWindow();
         }
     }
 }
