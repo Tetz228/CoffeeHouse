@@ -8,18 +8,22 @@ namespace WpfApp1
 
         private decimal Sum { get; }
 
+        private string TypePayment { get; }
+
         private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
-        public CashOrderWindow(int idOrder, decimal sum)
+        public CashOrderWindow(int idOrder, decimal sum, string typePayment)
         {
             InitializeComponent();
             IdOrder = idOrder;
             Sum = sum;
+            TypePayment = typePayment;
         }
 
         private void ListView_Loaded(object sender, RoutedEventArgs e)
         {
             TotalSum.Content = "Итоговая сумма заказа - " + Sum + " руб.";
+            PaymentType.Content = "Тип оплаты: " + TypePayment;
 
             ListDrinks.ItemsSource = ListDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }

@@ -18,10 +18,27 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var selectOrder = db.Orders.Where(order => order.ID > 0).Include(status => status.Status_orders).Include(table => table.Table)
-                                                                        .Include(emp => emp.Table.Employee).Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
+                var selectOrders = db.Orders.Where(order => order.ID > 0).Include(status => status.Status_orders)
+                                                                         .Include(table => table.Table)
+                                                                         .Include(emp => emp.Table.Employee)
+                                                                         .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
+                return selectOrders;
+            }
+        }
 
-                return selectOrder;
+        public Order[] MyOrders()
+        {
+            int idEmp = GettingIdEmployee();
+
+            using (var db = new CafeEntities())
+            {
+                var selectMyOrders = db.Orders.Where(order => order.ID > 0).Where(emp => emp.Table.Employee.ID == idEmp)
+                                                                           .Include(status => status.Status_orders)
+                                                                           .Include(table => table.Table)
+                                                                           .Include(emp => emp.Table.Employee)
+                                                                           .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
+
+                return selectMyOrders;
             }
         }
 
@@ -32,16 +49,14 @@ namespace WpfApp1
             {
                 List<Order> orders = new List<Order>();
 
-                
-
-                var selectOrder = db.Orders.Include(status => status.Status_orders)
-                                           .Include(table => table.Table)
-                                           .Include(emp => emp.Table.Employee)
-                                           .Include(orderDishes => orderDishes.Ordering_dishes)
-                                           .Where(order => order.ID > 0).ToArray();
+                var selectOrdersShift = db.Orders.Include(status => status.Status_orders)
+                                                 .Include(table => table.Table)
+                                                 .Include(emp => emp.Table.Employee)
+                                                 .Include(orderDishes => orderDishes.Ordering_dishes)
+                                                 .Where(order => order.ID > 0).ToArray();
 
                 //Выборка заказов за сегодняшнюю смену
-                foreach (var data in selectOrder)
+                foreach (var data in selectOrdersShift)
                     if (data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
                         orders.Add(data);
 
@@ -71,7 +86,7 @@ namespace WpfApp1
 
                 return selectOrdering_dishes;
             }
-        }        
+        }
 
         #endregion
 
@@ -137,7 +152,7 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var tables = db.Tables.Where(emp=>emp.Fk_employee==idEmp).ToList();
+                var tables = db.Tables.Where(emp => emp.Fk_employee == idEmp).ToList();
 
                 return tables;
             }
@@ -234,7 +249,9 @@ namespace WpfApp1
                 db.Ordering_dishes.Add(ordering_Dishes);
                 db.SaveChanges();
 
-                var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
+                var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish)
+                                                    .Include(drink => drink.Drink)
+                                                    .Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
                 foreach (var item in dishesOrder)
                     sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);

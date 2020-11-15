@@ -118,6 +118,9 @@
     <Compile Include="OrdersUserControl.xaml.cs">
       <DependentUpon>OrdersUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PaymentTypeWindow.xaml.cs">
+      <DependentUpon>PaymentTypeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -194,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrdersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -42,18 +42,17 @@ namespace WpfApp1
             DataGridOrders.SelectedItem = null;
         }
 
-        public void UpdateUserControl()
-        {
-            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-        }
-
         public void GoToCashOrderWindow()
         {
             if (DataGridOrders.SelectedItem != null)
-            {
+            {                
                 Order order = DataGridOrders.SelectedItem as Order;
 
-                CashOrderWindow cashOrderWindow = new CashOrderWindow(order.ID,order.Order_price);
+                PaymentTypeWindow paymentType = new PaymentTypeWindow();
+                paymentType.ShowDialog();
+
+                CashOrderWindow cashOrderWindow = new CashOrderWindow(order.ID,order.Order_price, paymentType.Type);
+
                 cashOrderWindow.ShowDialog();
             }
             else
@@ -62,9 +61,14 @@ namespace WpfApp1
             }
         }
 
+        public void UpdateDataGrid()
+        {
+            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+        }
+
         public void FilterMyOrders()
         {
-
+            DataGridOrders.ItemsSource = actionsOrders.MyOrders();
         }
 
         public void FilterShiftOrders()

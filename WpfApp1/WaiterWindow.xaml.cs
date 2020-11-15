@@ -30,7 +30,7 @@ namespace WpfApp1
             AddOrderWindow addOrderWindow = new AddOrderWindow(IdUser);
             addOrderWindow.ShowDialog();
 
-            ordersAndReportUserControl.UpdateUserControl();
+            ordersAndReportUserControl.UpdateDataGrid();
         }
 
         private void MenuItemLogOutAccount_Click(object sender, RoutedEventArgs e)
@@ -66,17 +66,23 @@ namespace WpfApp1
         //Фильтры
         private void MenuItemMyOrders_Click(object sender, RoutedEventArgs e)
         {
-            //ordersAndReportUserControl
+            ordersAndReportUserControl.FilterMyOrders();
+
+            Title = "Окно официанта -> Мои заказы";
+        }
+
+        private void MenuItemAllOrders_Click(object sender, RoutedEventArgs e)
+        {
+            ordersAndReportUserControl.UpdateDataGrid();
+
+            Title = "Окно официанта -> Список заказов";
         }
 
         private void MenuItemShiftOrders_Click(object sender, RoutedEventArgs e)
         {
             ordersAndReportUserControl.FilterShiftOrders();
-        }
 
-        private void MenuItemAllOrders_Click(object sender, RoutedEventArgs e)
-        {
-
+            Title = "Окно официанта -> Заказы за смену";
         }
     }
 }
