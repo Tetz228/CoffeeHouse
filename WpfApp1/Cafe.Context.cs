@@ -2,10 +2,9 @@
 {
     using System;
     using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using System.Linq;
-    
+    using System.Data.Entity.Infrastructure;
+
     public partial class CafeEntities : DbContext
     {
         public CafeEntities() : base("name=CafeEntities")
@@ -17,7 +16,7 @@
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<Dish> Dishes { get; set; }
         public virtual DbSet<Drink> Drinks { get; set; }
@@ -35,90 +34,39 @@
         public virtual DbSet<Types_dishes> Types_dishes { get; set; }
         public virtual DbSet<Types_drinks> Types_drinks { get; set; }
         public virtual DbSet<User> Users { get; set; }
-    
-        public virtual ObjectResult<Select_contracts_Result> Select_contracts()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_contracts_Result>("Select_contracts");
-        }
-    
-        public virtual int Select_dishes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Select_dishes");
-        }
-    
-        public virtual ObjectResult<Select_drinks_Result> Select_drinks()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_drinks_Result>("Select_drinks");
-        }
-    
-        public virtual ObjectResult<Select_employees_Result> Select_employees()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_employees_Result>("Select_employees");
-        }
-    
-        public virtual ObjectResult<Select_ordering_dishes_Result> Select_ordering_dishes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_ordering_dishes_Result>("Select_ordering_dishes");
-        }
-    
-        public virtual ObjectResult<Select_orders_Result> Select_orders()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_orders_Result>("Select_orders");
-        }
-    
-        public virtual ObjectResult<string> Select_posts()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_posts");
-        }
-    
-        public virtual ObjectResult<Select_posts_employees_Result> Select_posts_employees()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_posts_employees_Result>("Select_posts_employees");
-        }
-    
-        public virtual ObjectResult<Nullable<System.DateTime>> Select_shift_dates()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("Select_shift_dates");
-        }
-    
-        public virtual ObjectResult<Select_shift_list_Result> Select_shift_list()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_shift_list_Result>("Select_shift_list");
-        }
-    
-        public virtual ObjectResult<string> Select_status_dish()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_dish");
-        }
-    
-        public virtual ObjectResult<string> Select_status_employees()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_employees");
-        }
-    
-        public virtual ObjectResult<string> Select_status_orders()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_orders");
-        }
-    
-        public virtual ObjectResult<Select_tables_Result> Select_tables()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_tables_Result>("Select_tables");
-        }
-    
-        public virtual ObjectResult<string> Select_types_dishes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_types_dishes");
-        }
-    
-        public virtual ObjectResult<string> Select_types_drinks()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_types_drinks");
-        }
-    
-        public virtual ObjectResult<Select_users_Result> Select_users()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_users_Result>("Select_users");
-        }
+
+        public virtual ObjectResult<Select_contracts_Result> Select_contracts() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_contracts_Result>("Select_contracts");
+
+        public virtual int Select_dishes() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Select_dishes");
+
+        public virtual ObjectResult<Select_drinks_Result> Select_drinks() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_drinks_Result>("Select_drinks");
+        
+        public virtual ObjectResult<Select_employees_Result> Select_employees() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_employees_Result>("Select_employees");
+        
+        public virtual ObjectResult<Select_ordering_dishes_Result> Select_ordering_dishes() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_ordering_dishes_Result>("Select_ordering_dishes");
+
+        public virtual ObjectResult<Select_orders_Result> Select_orders() =>((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_orders_Result>("Select_orders");
+
+        public virtual ObjectResult<string> Select_posts() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_posts");
+
+        public virtual ObjectResult<Select_posts_employees_Result> Select_posts_employees() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_posts_employees_Result>("Select_posts_employees");      
+
+        public virtual ObjectResult<Nullable<System.DateTime>> Select_shift_dates() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("Select_shift_dates");
+
+        public virtual ObjectResult<Select_shift_list_Result> Select_shift_list() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_shift_list_Result>("Select_shift_list");
+
+        public virtual ObjectResult<string> Select_status_dish() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_dish");
+
+        public virtual ObjectResult<string> Select_status_employees() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_employees");
+
+        public virtual ObjectResult<string> Select_status_orders() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_status_orders");
+
+        public virtual ObjectResult<Select_tables_Result> Select_tables() =>  ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_tables_Result>("Select_tables");
+
+        public virtual ObjectResult<string> Select_types_dishes() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_types_dishes");
+
+        public virtual ObjectResult<string> Select_types_drinks() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Select_types_drinks");
+
+        public virtual ObjectResult<Select_users_Result> Select_users() => ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Select_users_Result>("Select_users");        
     }
 }
