@@ -25,22 +25,20 @@ namespace WpfApp1
             }
         }
 
-        //Вывод информации о заказа за смену 
-        public List<Order> OutputReportShiftEmployee()
+        //Вывод информации о заказах за смену 
+        public List<Order> OutputOrdersShift()
         {
             using (var db = new CafeEntities())
             {
                 List<Order> orders = new List<Order>();
 
-                int idEmp = GettingIdEmployee();
+                
 
                 var selectOrder = db.Orders.Include(status => status.Status_orders)
                                            .Include(table => table.Table)
                                            .Include(emp => emp.Table.Employee)
                                            .Include(orderDishes => orderDishes.Ordering_dishes)
-                                           .Where(order => order.ID > 0)
-                                           .Where(tableEmp => tableEmp.Table.Employee.ID == idEmp)
-                                           .ToArray();
+                                           .Where(order => order.ID > 0).ToArray();
 
                 //Выборка заказов за сегодняшнюю смену
                 foreach (var data in selectOrder)
@@ -64,9 +62,17 @@ namespace WpfApp1
                                                                                                                   .Include(dbOrdering => dbOrdering.Drink.Types_drinks)
                                                                                                                   .Include(dbOrdering => dbOrdering.Order.Table).ToArray();
 
+                //Подсчет суммы блюда и напитка
+                foreach (var dishesAndDrink in selectOrdering_dishes)
+                {
+                    dishesAndDrink.SumDish = dishesAndDrink.Count_dish * dishesAndDrink.Dish.Price;
+                    dishesAndDrink.SumDrink = dishesAndDrink.Count_drink * dishesAndDrink.Drink.Price;
+                }
+
                 return selectOrdering_dishes;
             }
-        }
+        }        
+
         #endregion
 
         #region Заполнение ComboBox`ов
@@ -167,9 +173,9 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var typesDishes = db.Dishes.Include(type => type.Types_dishes).Where(dish => dish.Fk_type_dish == Fk_type);
+                var typesDishes = db.Dishes.Include(type => type.Types_dishes).Where(dish => dish.Fk_type_dish == Fk_type).ToList();
 
-                return typesDishes.ToList();
+                return typesDishes;
             }
         }
 
@@ -178,9 +184,9 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var typesDrinks = db.Drinks.Include(type => type.Types_drinks).Where(drink => drink.Fk_drink_type == Fk_type);
+                var typesDrinks = db.Drinks.Include(type => type.Types_drinks).Where(drink => drink.Fk_drink_type == Fk_type).ToList();
 
-                return typesDrinks.ToList();
+                return typesDrinks;
             }
         }
         #endregion
@@ -231,9 +237,7 @@ namespace WpfApp1
                 var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish).Include(drink => drink.Drink).Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
                 foreach (var item in dishesOrder)
-                {
                     sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
-                }
             }
         }
 

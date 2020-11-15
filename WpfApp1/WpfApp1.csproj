@@ -79,8 +79,11 @@
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListDishesAndDrinksInOrderWindow.xaml.cs">
-      <DependentUpon>ListDishesAndDrinksInOrderWindow.xaml</DependentUpon>
+    <Compile Include="CashOrderWindow.xaml.cs">
+      <DependentUpon>CashOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
+      <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cafe.cs">
       <AutoGen>True</AutoGen>
@@ -112,8 +115,8 @@
     <Compile Include="Ordering_dishes.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrdersAndReportUserControl.xaml.cs">
-      <DependentUpon>OrdersAndReportUserControl.xaml</DependentUpon>
+    <Compile Include="OrdersUserControl.xaml.cs">
+      <DependentUpon>OrdersUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
@@ -186,7 +189,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OrdersAndReportUserControl.xaml">
+    <Page Include="CashOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListDishesAndDrinksInOrderWindow.xaml">
+    <Page Include="ListDishesDrinksInOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

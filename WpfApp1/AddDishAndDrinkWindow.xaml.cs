@@ -50,8 +50,9 @@ namespace WpfApp1
             {
                 try
                 {
-                    var statusDish = ComboBoxTypesDishes.Text == "-" ? db.Status_dish.Where(status => status.Name == "-")
-                                                        .FirstOrDefault() : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
+                    var statusDish = ComboBoxTypesDishes.Text == "-" 
+                                                              ? db.Status_dish.Where(status => status.Name == "-").FirstOrDefault() 
+                                                              : db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
 
                     Dictionary<string, int> infoDisheAndDrinkInOrder = new Dictionary<string, int>
                     {
@@ -65,7 +66,7 @@ namespace WpfApp1
 
                     actionsOrders.AddOrder_dish(infoDisheAndDrinkInOrder, out decimal sum);
 
-                    ListDishesAndDrinksInOrderWindow.SumOrder += sum;
+                    ListDishesDrinksInOrderWindow.SumOrder = sum;
 
                     Close();
                 }

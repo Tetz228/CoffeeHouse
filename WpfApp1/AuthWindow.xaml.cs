@@ -13,7 +13,7 @@ namespace WpfApp1
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            (bool userExist, int idUser) existAndIdUser = actionsUser.SearchUser(TextBoxLogin.Text = "lo", PasswordBoxPassword.Password = "pa");
 
             if (existAndIdUser.userExist)
                 switch (actionsUser.CountPostAndTheirNames())

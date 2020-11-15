@@ -49,6 +49,12 @@
         <Setter Property="ItemsControl.FontSize" Value="14"/>
     </Style>
 
+    <Style x:Key="listView" TargetType="ListView">
+        <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
+        <Setter Property="ItemsControl.FontSize" Value="14"/>
+        
+    </Style>
+
     <Style x:Key="TextBox" TargetType="TextBox">
         <Setter Property="ItemsControl.HorizontalAlignment" Value="Left"/>
         <Setter Property="ItemsControl.VerticalAlignment" Value="Top"/>

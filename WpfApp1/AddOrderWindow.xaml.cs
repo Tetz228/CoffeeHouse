@@ -9,8 +9,7 @@ namespace WpfApp1
 {
     public partial class AddOrderWindow : Window
     {
-        private Order order;
-
+        private readonly Order order;
         private readonly ActionsOrders actionsOrders;
 
         public AddOrderWindow(int idUser)
@@ -33,24 +32,25 @@ namespace WpfApp1
         {
             if (order == null)
             {
-                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIdEmployee());
-                ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
-
                 using (var db = new CafeEntities())
                 {
                     var statusOrder = db.Status_orders.Where(status => status.Name == "Принят").FirstOrDefault();
-
-                    ComboBoxTables.SelectedIndex += 1;
+                    
+                    ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
                     ComboBoxStatusOrders.SelectedValue = statusOrder.ID;
                     ComboBoxStatusOrders.IsEnabled = false;
                 }
+
+                ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIdEmployee());
+                ComboBoxTables.SelectedIndex += 1;
             }
+
             else
             {
                 ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
                 ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
 
-                ComboBoxTables.SelectedValue = order.Table.Table_number;
+                ComboBoxTables.SelectedValue = order.Fk_table;
                 ComboBoxStatusOrders.SelectedValue = order.Status_orders.ID;
                 TextBoxCountPeople.Text = order.Count_person.ToString();
 
@@ -58,6 +58,7 @@ namespace WpfApp1
                 TextBoxCountPeople.IsEnabled = false;
             }
         }
+
 
         private void ButtonConfirm_Click(object sender, RoutedEventArgs e)
         {
@@ -74,7 +75,7 @@ namespace WpfApp1
 
                     actionsOrders.AddOrder(infoOrder, out int idOrder);
 
-                    ListDishesAndDrinksInOrderWindow orderDetailsWindow = new ListDishesAndDrinksInOrderWindow(idOrder);
+                    ListDishesDrinksInOrderWindow orderDetailsWindow = new ListDishesDrinksInOrderWindow(idOrder);
 
                     Close();
 

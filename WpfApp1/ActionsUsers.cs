@@ -11,7 +11,7 @@ public class ActionsUsers
 {
     private User UserAuthorized { get; set; }
 
-    public ActionsUsers() { }
+    public ActionsUsers() {}
 
     public ActionsUsers(int id)
     {
@@ -83,6 +83,13 @@ public class ActionsUsers
                                                                         : UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName.Substring(0, 1) + ". "
                                                                         + UserAuthorized.Employee.FName.Substring(0, 1) + ".";
 
+    /*Вывод ФИО сотрудника полностью
+    public string GettingFullLFMEmployee() => UserAuthorized.Employee.MName == "Не указано"
+                                                                        ? UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName
+                                                                        : UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName
+                                                                        + UserAuthorized.Employee.FName;
+    */
+
     //Вывод номера телефона сотрудника
     public string GettingPhoneNumberEmployee() => UserAuthorized.Employee.Phone_number;
 
@@ -98,11 +105,10 @@ public class ActionsUsers
         {
             image = new BitmapImage(new Uri(UserAuthorized.Employee.Photo));
             return image;
-
         }
         catch
         {
-            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return null;
         }
     }

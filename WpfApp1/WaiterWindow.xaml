@@ -5,21 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Окно официанта -> Список заказов" Width="992" Height="444" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Окно официанта -> Список заказов" Width="999" Height="475" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Width="986">
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="AddOrder" Header="Добавить заказ" Click="AddOrder_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="GoToWaiterWindow" Header="Перейти ко всем заказам" Visibility="Collapsed" Click="GoToWaiterWindow_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemCashOrder" Click="MenuItemCashOrder_Click" Header="Приходно-кассовый ордер"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemAddOrder" Header="Добавить заказ" Click="MenuItemAddOrder_Click"/>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReport" Click="MenuItemReport_Click" Header="Отчёт за смену"/>
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
             </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReports" Header="Отчёты">
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReportShift" Header="Отчёт за смену" Click="MenuItemReportShift_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemCashOrder" Header="Приходно-кассовый ордер" Click="MenuItemCashOrder_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemFilters" Header="Фильтры заказов">
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemMyOrders" Header="Мои заказы" Click="MenuItemMyOrders_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemShiftOrders" Header="Заказы за смену" Click="MenuItemShiftOrders_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemAllOrders" Header="Все заказы" Click="MenuItemAllOrders_Click"/>
+            </MenuItem>
         </Menu>
-
-        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="392" Width="986" Margin="0,23,0,0"/>
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="423" Width="987" Margin="0,22,0,-1"/>
     </Grid>
+
 </Window>

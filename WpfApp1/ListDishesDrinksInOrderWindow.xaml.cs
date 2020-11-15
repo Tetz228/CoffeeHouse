@@ -2,7 +2,7 @@
 
 namespace WpfApp1
 {
-    public partial class ListDishesAndDrinksInOrderWindow : Window
+    public partial class ListDishesDrinksInOrderWindow : Window
     {
         private int IdOrder { get; }
 
@@ -10,7 +10,7 @@ namespace WpfApp1
 
         private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
-        public ListDishesAndDrinksInOrderWindow(int idOrder)
+        public ListDishesDrinksInOrderWindow(int idOrder)
         {
             InitializeComponent();
 
@@ -19,7 +19,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            DataGridOrderingDrink.ItemsSource = DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -27,7 +27,7 @@ namespace WpfApp1
             AddDishAndDrinkWindow addDishAndDrinkWindow = new AddDishAndDrinkWindow(IdOrder);
             addDishAndDrinkWindow.ShowDialog();
 
-            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            DataGridOrderingDrink.ItemsSource = DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)

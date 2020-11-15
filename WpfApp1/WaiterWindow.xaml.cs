@@ -6,7 +6,7 @@ namespace WpfApp1
     {
         private readonly ActionsOrders actionsOrders;
 
-        private readonly OrdersAndReportUserControl reportsProfileUserControl; 
+        private readonly OrdersUserControl ordersAndReportUserControl; 
 
         private int IdUser { get; }
 
@@ -16,21 +16,21 @@ namespace WpfApp1
 
             IdUser = idUser;
             actionsOrders = new ActionsOrders(idUser);
-            reportsProfileUserControl = new OrdersAndReportUserControl(idUser);
+            ordersAndReportUserControl = new OrdersUserControl(idUser);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainControl.Content = reportsProfileUserControl;
+            MainControl.Content = ordersAndReportUserControl;
             MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
         }
 
-        private void AddOrder_Click(object sender, RoutedEventArgs e)
+        private void MenuItemAddOrder_Click(object sender, RoutedEventArgs e)
         {
             AddOrderWindow addOrderWindow = new AddOrderWindow(IdUser);
             addOrderWindow.ShowDialog();
 
-            reportsProfileUserControl.GoToWaiterWindow();
+            ordersAndReportUserControl.UpdateUserControl();
         }
 
         private void MenuItemLogOutAccount_Click(object sender, RoutedEventArgs e)
@@ -52,33 +52,31 @@ namespace WpfApp1
             Close();
         }
 
-        private void MenuItemReport_Click(object sender, RoutedEventArgs e)
-        {
-            reportsProfileUserControl.GoToReportShift();
-
-            GoToWaiterWindow.Visibility = Visibility.Visible;
-            AddOrder.Visibility = Visibility.Collapsed;
-            MenuItemUser.Visibility = Visibility.Collapsed;
-            MenuItemCashOrder.Visibility = Visibility.Collapsed;
-
-            Title = "Окно официанта -> Отчет за смену";    
-        }
-
-        private void GoToWaiterWindow_Click(object sender, RoutedEventArgs e)
-        {
-            reportsProfileUserControl.GoToWaiterWindow();
-
-            GoToWaiterWindow.Visibility = Visibility.Collapsed;
-            AddOrder.Visibility = Visibility.Visible;
-            MenuItemUser.Visibility = Visibility.Visible;
-            MenuItemCashOrder.Visibility = Visibility.Visible;
-
-            Title = "Окно официанта -> Список заказов";
-        }
-
+        //Отчёты
         private void MenuItemCashOrder_Click(object sender, RoutedEventArgs e)
         {
-            //reportsProfileUserControl.GoToCashOrderWindow();
+            ordersAndReportUserControl.GoToCashOrderWindow();
+        }
+
+        private void MenuItemReportShift_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        //Фильтры
+        private void MenuItemMyOrders_Click(object sender, RoutedEventArgs e)
+        {
+            //ordersAndReportUserControl
+        }
+
+        private void MenuItemShiftOrders_Click(object sender, RoutedEventArgs e)
+        {
+            ordersAndReportUserControl.FilterShiftOrders();
+        }
+
+        private void MenuItemAllOrders_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

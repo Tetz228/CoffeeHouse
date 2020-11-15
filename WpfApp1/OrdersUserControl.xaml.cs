@@ -1,17 +1,17 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
+using control = System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace WpfApp1
 {
-    public partial class OrdersAndReportUserControl : UserControl
+    public partial class OrdersUserControl : control.UserControl
     {
         private readonly ActionsOrders actionsOrders;
 
         private int IdUser { get; }
 
-        public OrdersAndReportUserControl(int idUser)
+        public OrdersUserControl(int idUser)
         {
             InitializeComponent();
 
@@ -34,37 +34,42 @@ namespace WpfApp1
                 addOrder.ShowDialog();
 
                 DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-            }            
+            }
         }
 
         private void DataGridOrders_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DataGridOrders.SelectedItem = null;
         }
-        
-        public void GoToReportShift()
-        {            
-            DataGridOrders.ItemsSource = actionsOrders.OutputReportShiftEmployee();
-            DataGridOrders.IsEnabled = false;
-        }
 
-        public void GoToWaiterWindow()
+        public void UpdateUserControl()
         {
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
-            DataGridOrders.IsEnabled = true;
         }
 
-        //public void GoToCashOrderWindow()
-        //{            
-        //    if (DataGridOrders.SelectedItem != null)
-        //    {
-        //        Order order = DataGridOrders.SelectedItem as Order;
+        public void GoToCashOrderWindow()
+        {
+            if (DataGridOrders.SelectedItem != null)
+            {
+                Order order = DataGridOrders.SelectedItem as Order;
 
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Выберите заказ для формирования приходно-кассового ордера");
-        //    }
-        //}
+                CashOrderWindow cashOrderWindow = new CashOrderWindow(order.ID,order.Order_price);
+                cashOrderWindow.ShowDialog();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Ошибка! Выберете заказ из списка.", "Заказ не выбран.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void FilterMyOrders()
+        {
+
+        }
+
+        public void FilterShiftOrders()
+        {
+            DataGridOrders.ItemsSource = actionsOrders.OutputOrdersShift();
+        }
     }
 }
