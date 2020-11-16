@@ -8,13 +8,14 @@ namespace WpfApp1
 
         public static decimal SumOrder { get; set; }
 
-        private readonly ActionsOrders actionsOrders = new ActionsOrders();
+        private readonly ActionsOrders actionsOrders;
 
         public ListDishesDrinksInOrderWindow(int idOrder)
         {
             InitializeComponent();
 
             IdOrder = idOrder;
+            actionsOrders = new ActionsOrders();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

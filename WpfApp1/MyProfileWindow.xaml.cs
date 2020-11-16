@@ -23,7 +23,7 @@ namespace WpfApp1
             LabelPost.Content = user.GettingSelectedPostEmployee();
             LabelPhone_number.Content = user.GettingPhoneNumberEmployee();
             LabelStatus.Content = user.GettingStatusName();
-            Avatar.Source = user.GettingPhoto();
+            ImageAvatar.Source = user.GettingPhoto();
         }
 
         private void ButtonChangePhoto_Click(object sender, RoutedEventArgs e)
@@ -31,7 +31,7 @@ namespace WpfApp1
             user.ChangePhoto(out ImageSource image);
 
             if (image != null)
-                Avatar.Source = image;
+                ImageAvatar.Source = image;
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
