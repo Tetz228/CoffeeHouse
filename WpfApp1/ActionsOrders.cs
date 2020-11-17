@@ -234,10 +234,12 @@ namespace WpfApp1
             {
                 sum = 0;
 
+                var statusDish = db.Status_dish.Where(status => status.Name == "Не готово").FirstOrDefault();
+
                 Ordering_dishes ordering_Dishes = new Ordering_dishes()
                 {
                     Fk_dish = infoDisheDrinkInOrder["dish"],
-                    Fk_status_dish = infoDisheDrinkInOrder["status"],
+                    Fk_status_dish = statusDish.ID,
                     Count_dish = infoDisheDrinkInOrder["countDish"],
                     Fk_drink = infoDisheDrinkInOrder["drink"],
                     Count_drink = infoDisheDrinkInOrder["countDrink"],

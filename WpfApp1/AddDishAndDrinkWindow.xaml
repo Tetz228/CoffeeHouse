@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Добавить блюдо\напиток" Height="323.611" Width="489.188" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-    
+        Title="Добавить блюдо\напиток" Height="375.92" Width="489.188" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
     <Grid>
-        <ComboBox Style="{StaticResource comboBox}" Name="ComboBoxTypesDishes" SelectedValuePath="ID" SelectionChanged="ComboBoxTypesDishes_SelectionChanged" DisplayMemberPath="Name" Margin="10,82,0,0" Width="192" Height="26"/>
-        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDishes" Margin="10,139,0,0" Width="192" Height="26"/>
-        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" SelectionChanged="ComboBoxTypesDrinks_SelectionChanged" Name="ComboBoxTypesDrinks" Margin="234,82,0,0" Width="234" Height="26" />
-        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDrinks" Margin="234,139,0,0" Width="234" Height="26"/>
-        
-        <TextBox Style="{StaticResource textBox}" x:Name="TextBoxCountDishes" Margin="10,197,0,0"/>
-        <TextBox Style="{StaticResource textBox}" x:Name="TextBoxCountDrink" Margin="234,197,0,0"/>
-        
-        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="10,0,0,10"/>
-        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,13,10" HorizontalAlignment="Right"/>
-        
+        <ComboBox Style="{StaticResource comboBox}" Name="ComboBoxTypesDishes" SelectedValuePath="ID" SelectionChanged="ComboBoxTypesDishes_SelectionChanged" DisplayMemberPath="Name" Margin="14,126,0,0" Width="208" Height="26" IsEnabled="False"/>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDishes" Margin="14,183,0,0" Width="208" Height="26" IsEnabled="False"/>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" SelectionChanged="ComboBoxTypesDrinks_SelectionChanged" Name="ComboBoxTypesDrinks" Margin="238,126,0,0" Width="234" Height="26" IsEnabled="False" />
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" Name="ComboBoxDrinks" Margin="238,183,0,0" Width="234" Height="26" IsEnabled="False"/>
+
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxCountDishes" Margin="14,241,0,0" IsEnabled="False"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxCountDrinks" Margin="238,241,0,0" IsEnabled="False"/>
+
+        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="14,296,0,0" VerticalAlignment="Top"/>
+        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,296,9,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
         <Label Style="{StaticResource labels}" Content="Какое блюдо\напиток хотите добавить в заказ?" Margin="63,10,0,0" Height="27"/>
-        <Label Style="{StaticResource labels}" Content="Типы блюд" Margin="10,55,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93"/>
-        <Label Style="{StaticResource labels}" Content="Блюда" Margin="10,112,0,0" Width="60"/>
-        <Label Style="{StaticResource labels}" Content="Кол-во блюд" Margin="10,170,0,0" Height="27" Width="107"/>
-        <Label Style="{StaticResource labels}" Content="Типы напитков" Width="124" Margin="234,55,0,0"/>
-        <Label Style="{StaticResource labels}" Content="Напитки" Margin="234,112,0,0" Width="78"/>
-        <Label Style="{StaticResource labels}" Content="Кол-во напитков" Margin="234,170,0,0" Width="133"/>
+        <Label Style="{StaticResource labels}" Content="Типы блюд" Margin="14,99,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93"/>
+        <Label Style="{StaticResource labels}" Content="Блюда" Margin="14,156,0,0" Width="60"/>
+        <Label Style="{StaticResource labels}" Content="Кол-во блюд" Margin="14,214,0,0" Height="27" Width="107"/>
+        <Label Style="{StaticResource labels}" Content="Типы напитков" Width="124" Margin="238,99,0,0"/>
+        <Label Style="{StaticResource labels}" Content="Напитки" Margin="238,156,0,0" Width="78"/>
+        <Label Style="{StaticResource labels}" Content="Кол-во напитков" Margin="238,214,0,0" Width="133"/>
+
+        <CheckBox IsChecked="False" x:Name="ChechBoxDish" Content="Включить блюдо в заказ" HorizontalAlignment="Left" Margin="14,61,0,0" VerticalAlignment="Top" Width="208" FontFamily="Verdana" FontSize="14" Checked="ChechBoxDish_Checked" Unchecked="ChechBoxDish_Unchecked"/>
+        <CheckBox IsChecked="False" x:Name="ChechBoxDrink" Content="Включить напиток в заказ" HorizontalAlignment="Left" Margin="238,61,0,0" VerticalAlignment="Top" Width="233" FontFamily="Verdana" FontSize="14" Checked="ChechBoxDrink_Checked" Unchecked="ChechBoxDrink_Unchecked"/>
     </Grid>
 </Window>
