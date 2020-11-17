@@ -43,7 +43,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {                                                              
-            MyProfileWindow myProfile = new MyProfileWindow(IdUser);
+            MyProfileWindow myProfile = new MyProfileWindow(IdUser,"Официант");
             myProfile.ShowDialog();
         }
 

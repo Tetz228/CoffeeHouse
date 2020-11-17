@@ -7,20 +7,23 @@ namespace WpfApp1
     {
         private int IdProfile { get; }
 
+        private string SelectedPost { get;}
+
         private readonly ActionsUsers user;
 
-        public MyProfileWindow(int id)
+        public MyProfileWindow(int id, string post)
         {
             InitializeComponent();
 
             IdProfile = id;
+            SelectedPost = post;
             user = new ActionsUsers(IdProfile);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LabelLFM.Content = user.GettingLFMEmployee();
-            LabelPost.Content = user.GettingSelectedPostEmployee();
+            LabelPost.Content = SelectedPost;
             LabelPhone_number.Content = user.GettingPhoneNumberEmployee();
             LabelStatus.Content = user.GettingStatusName();
             ImageAvatar.Source = user.GettingPhoto();

@@ -12,18 +12,12 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Ordering_dishes
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public int Fk_dish { get; set; }
-        public int Fk_status_dish { get; set; }
-        public int Count_dish { get; set; }
-        public decimal SumDish { get; set; }
-        
-        public int Fk_order { get; set; }
-    
-        public virtual Dish Dish { get; set; }
-        public virtual Order Order { get; set; }
-        public virtual Status_dish Status_dish { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

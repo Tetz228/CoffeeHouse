@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="Список блюд\напитков в заказе" Height="472.756" Width="1028.669" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Список блюд\напитков в заказе" Height="411" Width="1011" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
 
     <Grid>
-        <Menu Style="{StaticResource ResourceKey = menuItem}" Height="23" Width="1169">
+        <Menu Style="{StaticResource ResourceKey = menuItem}" Height="23" Width="1005">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="Add" Click="Add_Click" Header="Добавить блюда\напитки" Height="23"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="590,0,0,0"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="654,0,0,0"/>
         </Menu>
 
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrderingDishes" Margin="0,23,0,0" Width="1013" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top" Height="199">
+        <DataGrid Style="{StaticResource dataGrid}" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrderingDishes" Margin="0,23,0,0" Width="996" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" HorizontalAlignment="Right" VerticalAlignment="Top" Height="350">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Types_dishes.Name}" Width="*" Header="Тип блюда"/>
@@ -21,18 +21,7 @@
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Status_dish.Name}" Width="*" Header="Статус блюда"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Count_dish}" Width="*" Header="Кол-во блюд"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Price, StringFormat={}{0:F} руб.}" Width="*" Header="Цена за блюдо"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding SumDrink, StringFormat={}{0:F} руб.}" Width="*" Header="Сумма"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Fk_order}" Width="*" Visibility="Hidden" Header="Номер заказа"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <DataGrid Style="{StaticResource dataGrid}" x:Name="DataGridOrderingDrink" Margin="0,221,0,0" Width="1013" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" HorizontalAlignment="Left" VerticalAlignment="Top" Height="213">
-            <DataGrid.Columns>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Drink.Types_drinks.Name}" Width="*" Header="Тип напитка"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Drink.Name}" Width="*" Header="Напиток"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Count_drink}" Width="*" Header="Кол-во напитков"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Drink.Price, StringFormat={}{0:F} руб.}" Width="*" Header="Цена за напиток"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding SumDrink, StringFormat={}{0:F} руб.}" Width="*" Header="Сумма"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding SumDish, StringFormat={}{0:F} руб.}" Width="*" Header="Сумма"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Fk_order}" Width="*" Visibility="Hidden" Header="Номер заказа"/>
             </DataGrid.Columns>
         </DataGrid>

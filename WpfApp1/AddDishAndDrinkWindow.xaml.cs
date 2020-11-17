@@ -22,27 +22,15 @@ namespace WpfApp1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ComboBoxTypesDishes.ItemsSource = actionsOrders.FillingComboBoxTypesDishes();
-            ComboBoxTypesDrinks.ItemsSource = actionsOrders.FillingComboBoxTypesDrinks();
             ComboBoxDishes.ItemsSource = actionsOrders.FillingComboBoxDishes();
-            ComboBoxDrinks.ItemsSource = actionsOrders.FillingComboBoxDrinks();
+
+            ComboBoxTypesDishes.SelectedIndex += 1;
         }
 
         private void ComboBoxTypesDishes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxTypesDishes.SelectedValue != null)
-            {
-                ComboBoxDishes.ItemsSource = actionsOrders.OutputByTypesDishes((int)ComboBoxTypesDishes.SelectedValue);
-                ComboBoxDishes.SelectedIndex += 1;
-            }
-        }
-
-        private void ComboBoxTypesDrinks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ComboBoxTypesDrinks.SelectedValue != null)
-            {
-                ComboBoxDrinks.ItemsSource = actionsOrders.OutputByTypesDrinks((int)ComboBoxTypesDrinks.SelectedValue);
-                ComboBoxDrinks.SelectedIndex += 1;
-            }
+            ComboBoxDishes.ItemsSource = actionsOrders.OutputByTypesDishes((int)ComboBoxTypesDishes.SelectedValue);
+            ComboBoxDishes.SelectedIndex += 1;
         }
 
         private void ButtonСonfirm_Click(object sender, RoutedEventArgs e)
@@ -53,8 +41,6 @@ namespace WpfApp1
                 {
                      { "dish", (int)ComboBoxDishes.SelectedValue },
                      { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
-                     { "drink", (int)ComboBoxDrinks.SelectedValue },
-                     { "countDrink", Convert.ToInt32(TextBoxCountDrinks.Text) },
                      { "idOrder", IdOrder }
                 };
 
@@ -73,48 +59,6 @@ namespace WpfApp1
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void ChechBoxDrink_Checked(object sender, RoutedEventArgs e)
-        {
-            ComboBoxTypesDrinks.IsEnabled = true;
-            ComboBoxDrinks.IsEnabled = true;
-            TextBoxCountDrinks.IsEnabled = true;
-
-            TextBoxCountDrinks.Text = "1";
-            ComboBoxTypesDrinks.SelectedIndex += 1;
-        }
-
-        private void ChechBoxDrink_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ComboBoxTypesDrinks.IsEnabled = false;
-            ComboBoxDrinks.IsEnabled = false;
-            TextBoxCountDrinks.IsEnabled = false;
-
-            TextBoxCountDrinks.Text = "";
-            ComboBoxDrinks.SelectedIndex = -1;
-            ComboBoxTypesDrinks.SelectedIndex = -1;
-        }
-
-        private void ChechBoxDish_Checked(object sender, RoutedEventArgs e)
-        {
-            ComboBoxTypesDishes.IsEnabled = true;
-            ComboBoxDishes.IsEnabled = true;
-            TextBoxCountDishes.IsEnabled = true;
-
-            TextBoxCountDishes.Text = "1";
-            ComboBoxTypesDishes.SelectedIndex += 1;
-        }
-
-        private void ChechBoxDish_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ComboBoxTypesDishes.IsEnabled = false;
-            ComboBoxDishes.IsEnabled = false;
-            TextBoxCountDishes.IsEnabled = false;
-
-            TextBoxCountDishes.Text = "";
-            ComboBoxDishes.SelectedIndex = -1;
-            ComboBoxTypesDishes.SelectedIndex = -1;
         }
     }
 }

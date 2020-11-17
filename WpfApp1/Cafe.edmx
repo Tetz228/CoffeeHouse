@@ -23,15 +23,6 @@
           <Property Name="Fk_type_dish" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
         </EntityType>
-        <EntityType Name="Drinks">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
-          <Property Name="Fk_drink_type" Type="int" Nullable="false" />
-          <Property Name="Price" Type="money" Nullable="false" />
-        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="ID" />
@@ -52,8 +43,6 @@
           <Property Name="Fk_dish" Type="int" Nullable="false" />
           <Property Name="Fk_status_dish" Type="int" Nullable="false" />
           <Property Name="Count_dish" Type="int" Nullable="false" />
-          <Property Name="Fk_drink" Type="int" Nullable="false" />
-          <Property Name="Count_drink" Type="int" Nullable="false" />
           <Property Name="Fk_order" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
@@ -65,7 +54,7 @@
           <Property Name="Fk_status_order" Type="int" Nullable="false" />
           <Property Name="Count_person" Type="int" Nullable="false" />
           <Property Name="Data_time" Type="datetime" Nullable="false" />
-          <Property Name="Order_price" Type="money" Nullable="false" />
+          <Property Name="Order_price" Type="money" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -118,6 +107,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tables">
           <Key>
             <PropertyRef Name="ID" />
@@ -132,13 +131,6 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Types_drinks">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -173,18 +165,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Drinks_Drinks_types">
-          <End Role="Types_drinks" Type="Self.Types_drinks" Multiplicity="1" />
-          <End Role="Drinks" Type="Self.Drinks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Types_drinks">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Drinks">
-              <PropertyRef Name="Fk_drink_type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Employees_Status_employees">
           <End Role="Status_employees" Type="Self.Status_employees" Multiplicity="1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -206,18 +186,6 @@
             </Principal>
             <Dependent Role="Ordering_dishes">
               <PropertyRef Name="Fk_dish" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ordering_dishes_Drinks">
-          <End Role="Drinks" Type="Self.Drinks" Multiplicity="1" />
-          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Drinks">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ordering_dishes">
-              <PropertyRef Name="Fk_drink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -341,27 +309,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Select_contracts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_drinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_ordering_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_posts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_posts_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_shift_dates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_shift_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_status_dish" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_status_employees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_status_orders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_tables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_types_dishes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_types_drinks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Select_users" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Хранилище CafeModelContainer">
           <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dishes" EntityType="Self.Dishes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Drinks" EntityType="Self.Drinks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ordering_dishes" EntityType="Self.Ordering_dishes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -372,9 +322,9 @@
           <EntitySet Name="Status_dish" EntityType="Self.Status_dish" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status_employees" EntityType="Self.Status_employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status_orders" EntityType="Self.Status_orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types_dishes" EntityType="Self.Types_dishes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Types_drinks" EntityType="Self.Types_drinks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Contracts_Employees" Association="Self.FK_Contracts_Employees">
             <End Role="Employees" EntitySet="Employees" />
@@ -384,20 +334,12 @@
             <End Role="Types_dishes" EntitySet="Types_dishes" />
             <End Role="Dishes" EntitySet="Dishes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Drinks_Drinks_types" Association="Self.FK_Drinks_Drinks_types">
-            <End Role="Types_drinks" EntitySet="Types_drinks" />
-            <End Role="Drinks" EntitySet="Drinks" />
-          </AssociationSet>
           <AssociationSet Name="FK_Employees_Status_employees" Association="Self.FK_Employees_Status_employees">
             <End Role="Status_employees" EntitySet="Status_employees" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
           <AssociationSet Name="FK_Ordering_dishes_Dishes" Association="Self.FK_Ordering_dishes_Dishes">
             <End Role="Dishes" EntitySet="Dishes" />
-            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ordering_dishes_Drinks" Association="Self.FK_Ordering_dishes_Drinks">
-            <End Role="Drinks" EntitySet="Drinks" />
             <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
           </AssociationSet>
           <AssociationSet Name="FK_Ordering_dishes_Orders" Association="Self.FK_Ordering_dishes_Orders">
@@ -467,17 +409,6 @@
           <NavigationProperty Name="Types_dishes" Relationship="Self.FK_Dishes_Type_dish" FromRole="Dishes" ToRole="Types_dishes" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Dishes" ToRole="Ordering_dishes" />
         </EntityType>
-        <EntityType Name="Drink">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Fk_drink_type" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Types_drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Drinks" ToRole="Types_drinks" />
-          <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Drinks" ToRole="Ordering_dishes" />
-        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="ID" />
@@ -504,11 +435,8 @@
           <Property Name="Fk_dish" Type="Int32" Nullable="false" />
           <Property Name="Fk_status_dish" Type="Int32" Nullable="false" />
           <Property Name="Count_dish" Type="Int32" Nullable="false" />
-          <Property Name="Fk_drink" Type="Int32" Nullable="false" />
-          <Property Name="Count_drink" Type="Int32" Nullable="false" />
           <Property Name="Fk_order" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dish" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Ordering_dishes" ToRole="Dishes" />
-          <NavigationProperty Name="Drink" Relationship="Self.FK_Ordering_dishes_Drinks" FromRole="Ordering_dishes" ToRole="Drinks" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Ordering_dishes" ToRole="Orders" />
           <NavigationProperty Name="Status_dish" Relationship="Self.FK_Ordering_dishes_Status_dish" FromRole="Ordering_dishes" ToRole="Status_dish" />
         </EntityType>
@@ -521,7 +449,7 @@
           <Property Name="Fk_status_order" Type="Int32" Nullable="false" />
           <Property Name="Count_person" Type="Int32" Nullable="false" />
           <Property Name="Data_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Orders" ToRole="Ordering_dishes" />
           <NavigationProperty Name="Status_orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Orders" ToRole="Status_orders" />
           <NavigationProperty Name="Table" Relationship="Self.FK_Orders_Tables" FromRole="Orders" ToRole="Tables" />
@@ -586,6 +514,16 @@
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Status_orders" ToRole="Orders" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Table">
           <Key>
             <PropertyRef Name="ID" />
@@ -603,14 +541,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Dishes" Relationship="Self.FK_Dishes_Type_dish" FromRole="Types_dishes" ToRole="Dishes" />
-        </EntityType>
-        <EntityType Name="Types_drinks">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Drinks" Relationship="Self.FK_Drinks_Drinks_types" FromRole="Types_drinks" ToRole="Drinks" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -655,30 +585,6 @@
             </Principal>
             <Dependent Role="Ordering_dishes">
               <PropertyRef Name="Fk_dish" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Drinks_Drinks_types">
-          <End Role="Types_drinks" Type="Self.Types_drinks" Multiplicity="1" />
-          <End Role="Drinks" Type="Self.Drink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Types_drinks">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Drinks">
-              <PropertyRef Name="Fk_drink_type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ordering_dishes_Drinks">
-          <End Role="Drinks" Type="Self.Drink" Multiplicity="1" />
-          <End Role="Ordering_dishes" Type="Self.Ordering_dishes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Drinks">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Ordering_dishes">
-              <PropertyRef Name="Fk_drink" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -817,7 +723,6 @@
         <EntityContainer Name="CafeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contracts" EntityType="Self.Contract" />
           <EntitySet Name="Dishes" EntityType="Self.Dish" />
-          <EntitySet Name="Drinks" EntityType="Self.Drink" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Ordering_dishes" EntityType="Self.Ordering_dishes" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -828,9 +733,9 @@
           <EntitySet Name="Status_dish" EntityType="Self.Status_dish" />
           <EntitySet Name="Status_employees" EntityType="Self.Status_employees" />
           <EntitySet Name="Status_orders" EntityType="Self.Status_orders" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Tables" EntityType="Self.Table" />
           <EntitySet Name="Types_dishes" EntityType="Self.Types_dishes" />
-          <EntitySet Name="Types_drinks" EntityType="Self.Types_drinks" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Contracts_Employees" Association="Self.FK_Contracts_Employees">
             <End Role="Employees" EntitySet="Employees" />
@@ -842,14 +747,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Ordering_dishes_Dishes" Association="Self.FK_Ordering_dishes_Dishes">
             <End Role="Dishes" EntitySet="Dishes" />
-            <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Drinks_Drinks_types" Association="Self.FK_Drinks_Drinks_types">
-            <End Role="Types_drinks" EntitySet="Types_drinks" />
-            <End Role="Drinks" EntitySet="Drinks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ordering_dishes_Drinks" Association="Self.FK_Ordering_dishes_Drinks">
-            <End Role="Drinks" EntitySet="Drinks" />
             <End Role="Ordering_dishes" EntitySet="Ordering_dishes" />
           </AssociationSet>
           <AssociationSet Name="FK_Employees_Status_employees" Association="Self.FK_Employees_Status_employees">
@@ -896,78 +793,7 @@
             <End Role="Shift_dates" EntitySet="Shift_dates" />
             <End Role="Shift_list" EntitySet="Shift_list" />
           </AssociationSet>
-          <FunctionImport Name="Select_contracts" ReturnType="Collection(CafeModel.Select_contracts_Result)" />
-          <FunctionImport Name="Select_dishes" />
-          <FunctionImport Name="Select_drinks" ReturnType="Collection(CafeModel.Select_drinks_Result)" />
-          <FunctionImport Name="Select_employees" ReturnType="Collection(CafeModel.Select_employees_Result)" />
-          <FunctionImport Name="Select_ordering_dishes" ReturnType="Collection(CafeModel.Select_ordering_dishes_Result)" />
-          <FunctionImport Name="Select_orders" ReturnType="Collection(CafeModel.Select_orders_Result)" />
-          <FunctionImport Name="Select_posts" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_posts_employees" ReturnType="Collection(CafeModel.Select_posts_employees_Result)" />
-          <FunctionImport Name="Select_shift_dates" ReturnType="Collection(DateTime)" />
-          <FunctionImport Name="Select_shift_list" ReturnType="Collection(CafeModel.Select_shift_list_Result)" />
-          <FunctionImport Name="Select_status_dish" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_status_employees" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_status_orders" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_tables" ReturnType="Collection(CafeModel.Select_tables_Result)" />
-          <FunctionImport Name="Select_types_dishes" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_types_drinks" ReturnType="Collection(String)" />
-          <FunctionImport Name="Select_users" ReturnType="Collection(CafeModel.Select_users_Result)" />
         </EntityContainer>
-        <ComplexType Name="Select_contracts_Result">
-          <Property Type="Int32" Name="Номер_трудового_договора" Nullable="false" />
-          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
-          <Property Type="String" Name="Скан_договора" Nullable="false" MaxLength="250" />
-        </ComplexType>
-        <ComplexType Name="Select_drinks_Result">
-          <Property Type="String" Name="Название_напитка" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="Тип_напитка" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="Цена_напитка" Nullable="false" Precision="19" />
-        </ComplexType>
-        <ComplexType Name="Select_employees_Result">
-          <Property Type="String" Name="ФИО" Nullable="false" MaxLength="212" />
-          <Property Type="String" Name="Должность" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Фотография" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="Статус" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Номер_телефона" Nullable="false" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="Select_ordering_dishes_Result">
-          <Property Type="Int32" Name="Номер_столика" Nullable="true" />
-          <Property Type="String" Name="Название_блюда" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Тип_блюда" Nullable="true" MaxLength="30" />
-          <Property Type="Decimal" Name="Цена_блюда" Nullable="true" Precision="19" />
-          <Property Type="Int32" Name="Количество_порций" Nullable="false" />
-          <Property Type="String" Name="Статус_блюда" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Название_напитка" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Тип_напитка" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="Цена_напитка" Nullable="true" Precision="19" />
-          <Property Type="Int32" Name="Количество_напитка" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="Select_orders_Result">
-          <Property Type="Int32" Name="Номер_столика" Nullable="true" />
-          <Property Type="Int32" Name="Количество_человек" Nullable="false" />
-          <Property Type="String" Name="Принял_заказ" Nullable="false" MaxLength="212" />
-          <Property Type="String" Name="Статус_заказа" Nullable="true" MaxLength="30" />
-          <Property Type="DateTime" Name="Дата_и_время_заказа" Nullable="false" Precision="23" />
-          <Property Type="Decimal" Name="Сумма_заказ" Nullable="false" Precision="19" />
-        </ComplexType>
-        <ComplexType Name="Select_posts_employees_Result">
-          <Property Type="String" Name="Должность" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
-        </ComplexType>
-        <ComplexType Name="Select_shift_list_Result">
-          <Property Type="String" Name="Сотрудик" Nullable="false" MaxLength="212" />
-          <Property Type="DateTime" Name="Дата_смены" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="Select_tables_Result">
-          <Property Type="Int32" Name="Номер_столика" Nullable="false" />
-          <Property Type="String" Name="Сотрудник__назначенный_на_столик" Nullable="false" MaxLength="212" />
-        </ComplexType>
-        <ComplexType Name="Select_users_Result">
-          <Property Type="String" Name="Логин" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Пароль" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="Сотрудник" Nullable="false" MaxLength="212" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -994,16 +820,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Drinks">
-            <EntityTypeMapping TypeName="CafeModel.Drink">
-              <MappingFragment StoreEntitySet="Drinks">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Fk_drink_type" ColumnName="Fk_drink_type" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="CafeModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
@@ -1024,8 +840,6 @@
                 <ScalarProperty Name="Fk_dish" ColumnName="Fk_dish" />
                 <ScalarProperty Name="Fk_status_dish" ColumnName="Fk_status_dish" />
                 <ScalarProperty Name="Count_dish" ColumnName="Count_dish" />
-                <ScalarProperty Name="Fk_drink" ColumnName="Fk_drink" />
-                <ScalarProperty Name="Count_drink" ColumnName="Count_drink" />
                 <ScalarProperty Name="Fk_order" ColumnName="Fk_order" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1100,6 +914,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CafeModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tables">
             <EntityTypeMapping TypeName="CafeModel.Table">
               <MappingFragment StoreEntitySet="Tables">
@@ -1117,14 +942,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Types_drinks">
-            <EntityTypeMapping TypeName="CafeModel.Types_drinks">
-              <MappingFragment StoreEntitySet="Types_drinks">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CafeModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -1135,104 +952,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Select_contracts" FunctionName="Хранилище CafeModel.Select_contracts">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_contracts_Result">
-                <ScalarProperty Name="Номер_трудового_договора" ColumnName="Номер трудового договора" />
-                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
-                <ScalarProperty Name="Скан_договора" ColumnName="Скан договора" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_dishes" FunctionName="Хранилище CafeModel.Select_dishes" />
-          <FunctionImportMapping FunctionImportName="Select_drinks" FunctionName="Хранилище CafeModel.Select_drinks">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_drinks_Result">
-                <ScalarProperty Name="Название_напитка" ColumnName="Название напитка" />
-                <ScalarProperty Name="Тип_напитка" ColumnName="Тип напитка" />
-                <ScalarProperty Name="Цена_напитка" ColumnName="Цена напитка" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_employees" FunctionName="Хранилище CafeModel.Select_employees">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_employees_Result">
-                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
-                <ScalarProperty Name="Должность" ColumnName="Должность" />
-                <ScalarProperty Name="Фотография" ColumnName="Фотография" />
-                <ScalarProperty Name="Статус" ColumnName="Статус" />
-                <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_ordering_dishes" FunctionName="Хранилище CafeModel.Select_ordering_dishes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_ordering_dishes_Result">
-                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
-                <ScalarProperty Name="Название_блюда" ColumnName="Название блюда" />
-                <ScalarProperty Name="Тип_блюда" ColumnName="Тип блюда" />
-                <ScalarProperty Name="Цена_блюда" ColumnName="Цена блюда" />
-                <ScalarProperty Name="Количество_порций" ColumnName="Количество порций" />
-                <ScalarProperty Name="Статус_блюда" ColumnName="Статус блюда" />
-                <ScalarProperty Name="Название_напитка" ColumnName="Название напитка" />
-                <ScalarProperty Name="Тип_напитка" ColumnName="Тип напитка" />
-                <ScalarProperty Name="Цена_напитка" ColumnName="Цена напитка" />
-                <ScalarProperty Name="Количество_напитка" ColumnName="Количество напитка" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_orders" FunctionName="Хранилище CafeModel.Select_orders">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_orders_Result">
-                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
-                <ScalarProperty Name="Количество_человек" ColumnName="Количество человек" />
-                <ScalarProperty Name="Принял_заказ" ColumnName="Принял заказ" />
-                <ScalarProperty Name="Статус_заказа" ColumnName="Статус заказа" />
-                <ScalarProperty Name="Дата_и_время_заказа" ColumnName="Дата и время заказа" />
-                <ScalarProperty Name="Сумма_заказ" ColumnName="Сумма заказ" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_posts" FunctionName="Хранилище CafeModel.Select_posts" />
-          <FunctionImportMapping FunctionImportName="Select_posts_employees" FunctionName="Хранилище CafeModel.Select_posts_employees">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_posts_employees_Result">
-                <ScalarProperty Name="Должность" ColumnName="Должность" />
-                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_shift_dates" FunctionName="Хранилище CafeModel.Select_shift_dates" />
-          <FunctionImportMapping FunctionImportName="Select_shift_list" FunctionName="Хранилище CafeModel.Select_shift_list">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_shift_list_Result">
-                <ScalarProperty Name="Сотрудик" ColumnName="Сотрудик" />
-                <ScalarProperty Name="Дата_смены" ColumnName="Дата смены" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_status_dish" FunctionName="Хранилище CafeModel.Select_status_dish" />
-          <FunctionImportMapping FunctionImportName="Select_status_employees" FunctionName="Хранилище CafeModel.Select_status_employees" />
-          <FunctionImportMapping FunctionImportName="Select_status_orders" FunctionName="Хранилище CafeModel.Select_status_orders" />
-          <FunctionImportMapping FunctionImportName="Select_tables" FunctionName="Хранилище CafeModel.Select_tables">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_tables_Result">
-                <ScalarProperty Name="Номер_столика" ColumnName="Номер столика" />
-                <ScalarProperty Name="Сотрудник__назначенный_на_столик" ColumnName="Сотрудник, назначенный на столик" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Select_types_dishes" FunctionName="Хранилище CafeModel.Select_types_dishes" />
-          <FunctionImportMapping FunctionImportName="Select_types_drinks" FunctionName="Хранилище CafeModel.Select_types_drinks" />
-          <FunctionImportMapping FunctionImportName="Select_users" FunctionName="Хранилище CafeModel.Select_users">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CafeModel.Select_users_Result">
-                <ScalarProperty Name="Логин" ColumnName="Логин" />
-                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
-                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

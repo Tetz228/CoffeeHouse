@@ -20,7 +20,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridOrderingDrink.ItemsSource = DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace WpfApp1
             AddDishAndDrinkWindow addDishAndDrinkWindow = new AddDishAndDrinkWindow(IdOrder);
             addDishAndDrinkWindow.ShowDialog();
 
-            DataGridOrderingDrink.ItemsSource = DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)

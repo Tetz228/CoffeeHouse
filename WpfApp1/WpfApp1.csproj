@@ -79,36 +79,43 @@
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CashOrderWindow.xaml.cs">
-      <DependentUpon>CashOrderWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="EditOrderWindow.xaml.cs">
-      <DependentUpon>EditOrderWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
-      <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
+    <Compile Include="Cafe.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cafe.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Cafe.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChoicePostWindow.xaml.cs">
-      <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
+    <Compile Include="Cafe.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cafe.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ActionsOrders.cs" />
+    <Compile Include="CashOrderWindow.xaml.cs">
+      <DependentUpon>CashOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Contract.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Dish.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Drink.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
+    <Compile Include="EditOrderWindow.xaml.cs">
+      <DependentUpon>EditOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
+      <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChoicePostWindow.xaml.cs">
+      <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActionsOrders.cs" />
     <Compile Include="MyProfileWindow.xaml.cs">
       <DependentUpon>MyProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -130,33 +137,6 @@
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Select_contracts_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_drinks_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_employees_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_ordering_dishes_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_orders_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_posts_employees_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_shift_list_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_tables_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Select_users_Result.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
     <Compile Include="Shift_dates.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -172,13 +152,13 @@
     <Compile Include="Status_orders.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Cafe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Table.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="Types_dishes.cs">
-      <DependentUpon>Cafe.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Types_drinks.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -229,16 +209,6 @@
     </Compile>
     <Compile Include="AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Cafe.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cafe.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Cafe.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Cafe.edmx</DependentUpon>
     </Compile>
     <Page Include="ChoicePostWindow.xaml">
       <SubType>Designer</SubType>
@@ -302,6 +272,5 @@
       <LastGenOutput>Cafe.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

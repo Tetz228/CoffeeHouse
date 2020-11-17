@@ -11,8 +11,6 @@ public class ActionsUsers
 {
     private User UserAuthorized { get; set; }
 
-    public string SelectedPost { get; set; }
-
     public ActionsUsers() {}
 
     public ActionsUsers(int id)
@@ -63,6 +61,8 @@ public class ActionsUsers
     //Проверка на количество должностей у сотрудника и получение название должности
     public string CountPostAndTheirNames()
     {
+        string SelectedPost;
+
         using (var db = new CafeEntities())
         {
             if (UserAuthorized.Employee.Posts_employees.Count > 1)
@@ -99,9 +99,6 @@ public class ActionsUsers
                                                                         : UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName
                                                                         + UserAuthorized.Employee.FName;
     */
-
-    // Вывод выбранной должности при авторизации
-    public string GettingSelectedPostEmployee() => SelectedPost;
 
     //Вывод номера телефона сотрудника
     public string GettingPhoneNumberEmployee() => UserAuthorized.Employee.Phone_number;

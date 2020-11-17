@@ -71,19 +71,13 @@ namespace WpfApp1
             using (var db = new CafeEntities())
             {
                 var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder).Include(dbOrdering => dbOrdering.Order)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Drink)
                                                                                                                   .Include(dbOrdering => dbOrdering.Dish.Types_dishes)
                                                                                                                   .Include(dbOrdering => dbOrdering.Status_dish)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Drink)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Drink.Types_drinks)
                                                                                                                   .Include(dbOrdering => dbOrdering.Order.Table).ToArray();
 
                 //Подсчет суммы блюда и напитка
                 foreach (var dishesAndDrink in selectOrdering_dishes)
-                {
                     dishesAndDrink.SumDish = dishesAndDrink.Count_dish * dishesAndDrink.Dish.Price;
-                    dishesAndDrink.SumDrink = dishesAndDrink.Count_drink * dishesAndDrink.Drink.Price;
-                }
 
                 return selectOrdering_dishes;
             }
@@ -100,16 +94,6 @@ namespace WpfApp1
             }
         }
 
-        //Вывод напитков по типам
-        public List<Drink> OutputByTypesDrinks(int Fk_type)
-        {
-            using (var db = new CafeEntities())
-            {
-                var typesDrinks = db.Drinks.Include(type => type.Types_drinks).Where(drink => drink.Fk_drink_type == Fk_type).ToList();
-
-                return typesDrinks;
-            }
-        }
 
         #endregion
 
@@ -126,17 +110,6 @@ namespace WpfApp1
             }
         }
 
-        // Заполнение ComboBox`а "Типы напитков"
-        public List<Types_drinks> FillingComboBoxTypesDrinks()
-        {
-            using (var db = new CafeEntities())
-            {
-                var typesDrinks = db.Types_drinks.ToList();
-
-                return typesDrinks;
-            }
-        }
-
         // Заполнение ComboBox`а "Блюда"
         public List<Dish> FillingComboBoxDishes()
         {
@@ -145,17 +118,6 @@ namespace WpfApp1
                 var dishes = db.Dishes.ToList();
 
                 return dishes;
-            }
-        }
-
-        // Заполнение ComboBox`а "Напитки"
-        public List<Drink> FillingComboBoxDrinks()
-        {
-            using (var db = new CafeEntities())
-            {
-                var drinks = db.Drinks.ToList();
-
-                return drinks;
             }
         }
 
@@ -241,8 +203,6 @@ namespace WpfApp1
                     Fk_dish = infoDisheDrinkInOrder["dish"],
                     Fk_status_dish = statusDish.ID,
                     Count_dish = infoDisheDrinkInOrder["countDish"],
-                    Fk_drink = infoDisheDrinkInOrder["drink"],
-                    Count_drink = infoDisheDrinkInOrder["countDrink"],
                     Fk_order = infoDisheDrinkInOrder["idOrder"]
                 };
 
@@ -250,11 +210,10 @@ namespace WpfApp1
                 db.SaveChanges();
 
                 var dishesOrder = db.Ordering_dishes.Include(dish => dish.Dish)
-                                                    .Include(drink => drink.Drink)
                                                     .Where(fk_order => fk_order.Fk_order == ordering_Dishes.Fk_order).ToList();
 
                 foreach (var item in dishesOrder)
-                    sum += (item.Dish.Price * item.Count_dish) + (item.Drink.Price * item.Count_drink);
+                    sum += item.Dish.Price * item.Count_dish;
             }
         }
 

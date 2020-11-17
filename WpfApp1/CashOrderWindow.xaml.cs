@@ -24,7 +24,7 @@ namespace WpfApp1
         {
             TotalSum.Content = "Итоговая сумма заказа: " + Sum + " руб.";
             PaymentType.Content = "Тип оплаты: " + TypePayment;
-            ListViewDrinks.ItemsSource = ListViewDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            ListViewDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
