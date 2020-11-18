@@ -25,7 +25,7 @@ namespace WpfApp1
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AddDishAndDrinkWindow addDishAndDrinkWindow = new AddDishAndDrinkWindow(IdOrder);
+            AddDishWindow addDishAndDrinkWindow = new AddDishWindow(IdOrder);
             addDishAndDrinkWindow.ShowDialog();
 
             DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);

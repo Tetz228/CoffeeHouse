@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace WpfApp1
 {
-    public partial class AddDishAndDrinkWindow : Window
+    public partial class AddDishWindow : Window
     {
         private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
         private int IdOrder { get; }
 
-        public AddDishAndDrinkWindow(int idOrder)
+        public AddDishWindow(int idOrder)
         {
             InitializeComponent();
 

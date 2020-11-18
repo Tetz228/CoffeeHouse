@@ -31,10 +31,5 @@ namespace WpfApp1
         {
             Close();
         }
-
-        private void ButtonPrint_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

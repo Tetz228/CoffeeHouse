@@ -18,7 +18,7 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var selectOrders = db.Orders.Where(order => order.ID > 0).Include(status => status.Status_orders)
+                var selectOrders = db.Orders.Include(status => status.Status_orders)
                                                                          .Include(table => table.Table)
                                                                          .Include(emp => emp.Table.Employee)
                                                                          .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
@@ -33,7 +33,7 @@ namespace WpfApp1
 
             using (var db = new CafeEntities())
             {
-                var selectMyOrders = db.Orders.Where(order => order.ID > 0).Where(emp => emp.Table.Employee.ID == idEmp)
+                var selectMyOrders = db.Orders.Where(emp => emp.Table.Employee.ID == idEmp)
                                                                            .Include(status => status.Status_orders)
                                                                            .Include(table => table.Table)
                                                                            .Include(emp => emp.Table.Employee)
@@ -53,8 +53,7 @@ namespace WpfApp1
                 var selectOrdersShift = db.Orders.Include(status => status.Status_orders)
                                                  .Include(table => table.Table)
                                                  .Include(emp => emp.Table.Employee)
-                                                 .Include(orderDishes => orderDishes.Ordering_dishes)
-                                                 .Where(order => order.ID > 0).ToArray();
+                                                 .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
 
                 //Выборка заказов за сегодняшнюю смену
                 foreach (var data in selectOrdersShift)

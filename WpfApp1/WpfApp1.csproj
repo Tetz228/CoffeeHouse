@@ -73,8 +73,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActionsUsers.cs" />
-    <Compile Include="AddDishAndDrinkWindow.xaml.cs">
-      <DependentUpon>AddDishAndDrinkWindow.xaml</DependentUpon>
+    <Compile Include="AddDishWindow.xaml.cs">
+      <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
@@ -167,7 +167,7 @@
     <Compile Include="WaiterWindow.xaml.cs">
       <DependentUpon>WaiterWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddDishAndDrinkWindow.xaml">
+    <Page Include="AddDishWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
