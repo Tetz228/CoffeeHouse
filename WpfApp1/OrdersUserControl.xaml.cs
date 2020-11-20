@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Input;
-using control = System.Windows.Controls;
 
 namespace WpfApp1
 {
-    public partial class OrdersUserControl : control.UserControl
+    public partial class OrdersUserControl : System.Windows.Controls.UserControl
     {
         private readonly ActionsOrders actionsOrders;
 

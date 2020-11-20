@@ -4,32 +4,33 @@ namespace WpfApp1
 {
     public partial class CashOrderWindow : Window
     {
-        private int IdOrder { get; }
-
         private decimal Sum { get; }
 
         private string TypePayment { get; }
 
-        private readonly ActionsOrders actionsOrders = new ActionsOrders();
+        private readonly ListDishesDrinkInOrderUserControl list;
 
         public CashOrderWindow(int idOrder, decimal sum, string typePayment)
         {
             InitializeComponent();
-            IdOrder = idOrder;
+
             Sum = sum;
             TypePayment = typePayment;
+            list = new ListDishesDrinkInOrderUserControl(idOrder);
         }
 
-        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            TotalSum.Content = "Итоговая сумма заказа: " + Sum + " руб.";
-            PaymentType.Content = "Тип оплаты: " + TypePayment;
-            ListViewDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
+            MainControl.Content = list;
+            list.FillDataDrid();
+
+            TotalSum.Content += Sum + " руб.";
+            PaymentType.Content += TypePayment;
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
+        }  
     }
 }

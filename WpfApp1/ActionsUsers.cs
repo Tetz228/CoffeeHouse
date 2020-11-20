@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WpfApp1;
-using win32 = Microsoft.Win32;
 
 public class ActionsUsers
 {
@@ -127,7 +126,7 @@ public class ActionsUsers
         {
             var changePhoto = db.Users.Include(emp => emp.Employee).Where(emp => emp.ID == UserAuthorized.ID).FirstOrDefault();
 
-            win32.OpenFileDialog file = new win32.OpenFileDialog
+            Microsoft.Win32.OpenFileDialog file = new Microsoft.Win32.OpenFileDialog
             {
                 Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
                 CheckFileExists = true,

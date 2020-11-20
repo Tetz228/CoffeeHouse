@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="WpfApp1.ListDishesDrinkInOrderUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" Height="372.781" Width="1006.068">
+
+    <Grid>
+        <DataGrid Style="{StaticResource dataGrid}" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrderingDishes" Margin="0,0,10,0" Width="996" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" HorizontalAlignment="Right" VerticalAlignment="Top" Height="373">
+            <DataGrid.Columns>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Types_dishes.Name}" Width="*" Header="Тип блюда"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Name}" Width="*" Header="Блюдо"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Status_dish.Name}" Width="*" Visibility="Hidden" Header="Статус блюда"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Count_dish}" Width="*" Header="Кол-во блюд"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Price, StringFormat={}{0:F} руб.}" Width="*" Header="Цена за блюдо"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding SumDish, StringFormat={}{0:F} руб.}" Width="*" Header="Сумма"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Fk_order}" Width="*" Visibility="Hidden" Header="Номер заказа"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

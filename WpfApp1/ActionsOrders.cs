@@ -91,10 +91,10 @@ namespace WpfApp1
         {
             using (var db = new CafeEntities())
             {
-                var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder).Include(dbOrdering => dbOrdering.Order)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Dish.Types_dishes)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Status_dish)
-                                                                                                                  .Include(dbOrdering => dbOrdering.Order.Table).ToArray();
+                var selectOrdering_dishes = db.Ordering_dishes.Where(dbOrdering => dbOrdering.Fk_order == idOrder).Include(order => order.Order)
+                                                                                                                  .Include(typeDish => typeDish.Dish.Types_dishes)
+                                                                                                                  .Include(statusDish => statusDish.Status_dish)
+                                                                                                                  .Include(table => table.Order.Table).ToArray();
 
                 //Подсчет суммы блюда и напитка
                 foreach (var dishesAndDrink in selectOrdering_dishes)

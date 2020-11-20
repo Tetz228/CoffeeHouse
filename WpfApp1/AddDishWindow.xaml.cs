@@ -46,7 +46,7 @@ namespace WpfApp1
 
                 actionsOrders.AddOrder_dish(infoDisheDrinkInOrder, out decimal sum);
 
-                ListDishesDrinksInOrderWindow.SumOrder = sum;
+                ListDishesDrinkInOrderUserControl.SumOrder = sum;
 
                 Close();
             }

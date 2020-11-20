@@ -109,6 +109,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ListDishesDrinkInOrderUserControl.xaml.cs">
+      <DependentUpon>ListDishesDrinkInOrderUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
       <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListDishesDrinkInOrderUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

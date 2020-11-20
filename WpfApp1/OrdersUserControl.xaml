@@ -15,7 +15,15 @@
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Status_orders.Name}" Header="Статус заказа"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Data_time, StringFormat=dd.MM.yyy HH:mm:ss}" Header="Дата и время заказа"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Order_price, StringFormat=\{0:F\} руб.}" Header="Сумма заказа"/>
-                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Table.Employee.LName}" Header="Принял заказ"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*"  Header="Принял заказ">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Table.Employee.LName"/>
+                            <Binding Path="Table.Employee.FName"/>
+                            <Binding Path="Table.Employee.MName"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
