@@ -5,7 +5,7 @@ namespace WpfApp1
 {
     public partial class ShiftReportWindow : Window
     {
-        private OrdersUserControl ordersUserControl;
+        private readonly OrdersUserControl ordersUserControl;
 
         public ShiftReportWindow(int idUser)
         {
