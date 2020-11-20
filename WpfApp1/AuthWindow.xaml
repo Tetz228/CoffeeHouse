@@ -8,7 +8,7 @@
         Title="Авторизация" Height="255.56" Width="328.952" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
 
     <Grid>
-        <Label Style="{StaticResource labels}" Content="Авторизация" Margin="97,0,0,0" FontSize="20"/>
+        <Label Style="{StaticResource labels}" Content="Авторизация" Margin="97,2,0,0" FontSize="20"/>
         <Label Style="{StaticResource labels}" Content="Логин" Margin="22,0,0,130" Height="26" VerticalAlignment="Bottom" />
         <Label Style="{StaticResource labels}" Content="Пароль" Margin="16,0,0,76" Height="30" VerticalAlignment="Bottom" />
 

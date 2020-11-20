@@ -13,13 +13,13 @@ namespace WpfApp1
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "lo", PasswordBoxPassword.Password = "pa");
+            (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
 
             if (existUser)
                 switch (actionsUser.CountPostAndTheirNames())
                 {
                     case "Администратор":
-                        //AdminWindow admin = new AdminWindow(user.userId);
+                        //AdminWindow admin = new AdminWindow(idUser);
                         //admin.Show();
                         //Close();
                         break;
@@ -29,7 +29,7 @@ namespace WpfApp1
                         Close();
                         break;
                     case "Повар":
-                        //CockWindow cock = new CockWindow(user.userId)
+                        //CockWindow cock = new CockWindow(idUser)
                         //cock.Show();
                         //Close();
                         break;

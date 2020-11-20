@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp1"
-             mc:Ignorable="d" Loaded="UserControl_Loaded" Height="421" Width="1009">
+             mc:Ignorable="d" Height="421" Width="1009">
     <Grid>
 
         <DataGrid Style="{StaticResource dataGrid}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrders" Height="414" Width="983" MouseDoubleClick="DataGridOrders_MouseDoubleClick" MouseLeftButtonDown="DataGridOrders_MouseLeftButtonDown" Margin="0,0,26,0">

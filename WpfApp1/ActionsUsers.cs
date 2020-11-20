@@ -19,7 +19,6 @@ public class ActionsUsers
     }
 
     #region Поиск пользователя
-
     //Поиск пользователя по логину и паролю
     public (bool existUser, int idUser) SearchUser(string log, string pass)
     {
@@ -57,7 +56,6 @@ public class ActionsUsers
     #endregion
 
     #region Кол-во должностей у сотрудника и получение названия выбранной должности
-
     //Проверка на количество должностей у сотрудника и получение название должности
     public string CountPostAndTheirNames()
     {
@@ -68,7 +66,6 @@ public class ActionsUsers
             if (UserAuthorized.Employee.Posts_employees.Count > 1)
             {
                 ChoicePostWindow choicePost = new ChoicePostWindow(UserAuthorized.ID);
-
                 choicePost.ShowDialog();
 
                 SelectedPost = choicePost.GetPost;
@@ -79,15 +76,13 @@ public class ActionsUsers
             return SelectedPost;
         }
     }
-
     #endregion
 
     #region Вывод информации о пользователе
-
     // Вывод id сотрудника
     public int GettingIdEmployee() => UserAuthorized.Employee.ID;
 
-    //Вывод ФИО сотрудника
+    //Вывод сокращенного ФИО сотрудника
     public string GettingLFMEmployee() => UserAuthorized.Employee.MName == "Не указано"
                                                                         ? UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName.Substring(0, 1) + "."
                                                                         : UserAuthorized.Employee.LName + " " + UserAuthorized.Employee.FName.Substring(0, 1) + ". "
@@ -122,11 +117,9 @@ public class ActionsUsers
             return null;
         }
     }
-
     #endregion
 
     #region Изменение информации о сотруднике
-
     //Изменение фотографии сотрудника
     public void ChangePhoto(out ImageSource image)
     {
@@ -152,6 +145,5 @@ public class ActionsUsers
             }
         }
     }
-
     #endregion
 }

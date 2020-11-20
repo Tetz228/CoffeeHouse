@@ -11,7 +11,7 @@
         <Menu Style="{StaticResource ResourceKey = menuItem}" Width="986">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemAddOrder" Header="Добавить заказ" Click="MenuItemAddOrder_Click"/>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReports" Header="Отчёты">
-                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReportShift" Header="Отчёт за смену" Click="MenuItemReportShift_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemReportShift" Header="Отчёт официанта" Click="MenuItemReportShift_Click"/>
                 <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemCashOrder" Header="Приходно-кассовый ордер" Click="MenuItemCashOrder_Click"/>
             </MenuItem>
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemFilters" Header="Фильтры заказов">

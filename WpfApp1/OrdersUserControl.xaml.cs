@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using control = System.Windows.Controls;
+﻿using System;
 using System.Windows.Forms;
 using System.Windows.Input;
+using control = System.Windows.Controls;
 
 namespace WpfApp1
 {
@@ -17,10 +17,7 @@ namespace WpfApp1
 
             IdUser = idUser;
             actionsOrders = new ActionsOrders(IdUser);
-        }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
 
@@ -40,7 +37,12 @@ namespace WpfApp1
                 }
             }
             else
-                System.Windows.Forms.MessageBox.Show("Ошибка! Выберете заказ из списка.", "Заказ не выбран.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ошибка! Выберете заказ из списка.", "Заказ не выбран.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void ShiftReport(DateTime? date)
+        {
+            DataGridOrders.ItemsSource = actionsOrders.ShiftReport(date);
         }
 
         private void DataGridOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)

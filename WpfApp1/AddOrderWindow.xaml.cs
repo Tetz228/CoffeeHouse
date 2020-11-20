@@ -56,7 +56,6 @@ namespace WpfApp1
             {
                 System.Windows.Forms.MessageBox.Show("Ошибка при добавлении заказа.", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

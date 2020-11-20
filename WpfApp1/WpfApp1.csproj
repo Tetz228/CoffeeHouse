@@ -137,6 +137,9 @@
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShiftReportWindow.xaml.cs">
+      <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Shift_dates.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShiftReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

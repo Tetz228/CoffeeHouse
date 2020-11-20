@@ -12,7 +12,6 @@ namespace WpfApp1
         public ActionsOrders() { }
 
         #region Методы на вывод информации
-
         //Вывод информации о заказах
         public Order[] OutputOrders()
         {
@@ -64,6 +63,29 @@ namespace WpfApp1
             }
         }
 
+        //Вывод информации о заказах за смену в выбранную дату
+        public List<Order> ShiftReport(DateTime? date)
+        {
+            using (var db = new CafeEntities())
+            {
+                List<Order> orders = new List<Order>();
+                DateTime dateShifrtReport = (DateTime)date;
+                int idEmp = GettingIdEmployee();               
+
+                var selectOrders = db.Orders.Include(status => status.Status_orders)
+                                            .Include(table => table.Table)
+                                            .Include(emp => emp.Table.Employee)
+                                            .Include(orderDishes => orderDishes.Ordering_dishes)
+                                            .Where(emp => emp.Table.Employee.ID == idEmp).ToList();
+
+                foreach (var data in selectOrders)
+                    if (data.Data_time.ToShortDateString() == dateShifrtReport.ToShortDateString())
+                        orders.Add(data);
+
+                return orders;
+            }
+        }
+
         //Вывод информации о блюдах, которые указаны в заказе
         public Ordering_dishes[] OutputOrdering_dishes(int idOrder)
         {
@@ -92,12 +114,9 @@ namespace WpfApp1
                 return typesDishes;
             }
         }
-
-
         #endregion
 
         #region Заполнение ComboBox`ов
-
         // Заполнение ComboBox`а "Типы блюд"
         public List<Types_dishes> FillingComboBoxTypesDishes()
         {
@@ -131,7 +150,7 @@ namespace WpfApp1
             }
         }
 
-        // Заполнение ComboBox`а "Столы". Отображение только столов, за которые отвечает пользователь
+        // Заполнение ComboBox`а "Столы". Отображение только столов, за которые отвечает авторизованный пользователь
         public List<Table> FillingComboBoxTables(int idEmp)
         {
             using (var db = new CafeEntities())
@@ -166,7 +185,6 @@ namespace WpfApp1
         #endregion
 
         #region Методы на добавление
-
         //Добавление заказа
         public void AddOrder(Dictionary<string, int> infoOrder, out int idOrder)
         {
@@ -184,6 +202,7 @@ namespace WpfApp1
                 db.Orders.Add(order);
                 db.SaveChanges();
 
+                // Получение ID для того, чтоб добавить блюда в заказ
                 idOrder = order.ID;
             }
         }
