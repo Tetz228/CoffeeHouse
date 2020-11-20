@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Forms;
 
 namespace WpfApp1
 {
@@ -33,10 +34,15 @@ namespace WpfApp1
 
         private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
         {
-            actionsOrders.AddSumOrder(IdOrder, SumOrder);
-            SumOrder = 0;
+            if (DataGridOrderingDishes.Items.Count != 0)
+            {
+                actionsOrders.AddSumOrder(IdOrder, SumOrder);
+                SumOrder = 0;
 
-            Close();
+                Close();
+            }
+            else
+                System.Windows.Forms.MessageBox.Show("Ошибка! В заказе отсутствуют блюда!", "Нет блюд в заказе", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void DataGridOrderingDishes_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

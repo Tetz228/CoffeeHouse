@@ -19,7 +19,6 @@ namespace WpfApp1
         public int Fk_status_dish { get; set; }
         public int Count_dish { get; set; }
         public decimal SumDish { get; set; }
-        
         public int Fk_order { get; set; }
     
         public virtual Dish Dish { get; set; }

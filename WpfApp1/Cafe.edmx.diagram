@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8ab0c2be22ab488ab6397186f1a825be" Name="Diagram1">
+      <Diagram DiagramId="7abfda6dacfa4b768a2e739ee8eb649d" Name="Diagram1">
         <EntityTypeShape EntityType="CafeModel.Contract" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Dish" Width="1.5" PointX="7.5" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Employee" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CafeModel.Ordering_dishes" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CafeModel.Ordering_dishes" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Order" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Post" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CafeModel.Posts_employees" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />

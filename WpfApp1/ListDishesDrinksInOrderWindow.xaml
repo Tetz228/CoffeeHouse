@@ -10,7 +10,7 @@
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Height="23" Width="1005">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="Add" Click="Add_Click" Header="Добавить блюда\напитки" Height="23"/>
-            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="654,0,0,0"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="ConfirmOrder" Click="ConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="645,0,0,0"/>
         </Menu>
 
         <DataGrid Style="{StaticResource dataGrid}" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrderingDishes" Margin="0,23,0,0" Width="996" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" HorizontalAlignment="Right" VerticalAlignment="Top" Height="350">

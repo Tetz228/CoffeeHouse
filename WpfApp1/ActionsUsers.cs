@@ -113,7 +113,7 @@ public class ActionsUsers
         }
         catch
         {
-            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return null;
         }
     }

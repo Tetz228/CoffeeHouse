@@ -43,6 +43,7 @@
           <Property Name="Fk_dish" Type="int" Nullable="false" />
           <Property Name="Fk_status_dish" Type="int" Nullable="false" />
           <Property Name="Count_dish" Type="int" Nullable="false" />
+          <Property Name="SumDish" Type="money" Nullable="false" />
           <Property Name="Fk_order" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
@@ -54,7 +55,7 @@
           <Property Name="Fk_status_order" Type="int" Nullable="false" />
           <Property Name="Count_person" Type="int" Nullable="false" />
           <Property Name="Data_time" Type="datetime" Nullable="false" />
-          <Property Name="Order_price" Type="money" />
+          <Property Name="Order_price" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Posts">
           <Key>
@@ -435,6 +436,7 @@
           <Property Name="Fk_dish" Type="Int32" Nullable="false" />
           <Property Name="Fk_status_dish" Type="Int32" Nullable="false" />
           <Property Name="Count_dish" Type="Int32" Nullable="false" />
+          <Property Name="SumDish" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Fk_order" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dish" Relationship="Self.FK_Ordering_dishes_Dishes" FromRole="Ordering_dishes" ToRole="Dishes" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Ordering_dishes" ToRole="Orders" />
@@ -449,7 +451,7 @@
           <Property Name="Fk_status_order" Type="Int32" Nullable="false" />
           <Property Name="Count_person" Type="Int32" Nullable="false" />
           <Property Name="Data_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Order_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Ordering_dishes" Relationship="Self.FK_Ordering_dishes_Orders" FromRole="Orders" ToRole="Ordering_dishes" />
           <NavigationProperty Name="Status_orders" Relationship="Self.FK_Orders_Status_orders" FromRole="Orders" ToRole="Status_orders" />
           <NavigationProperty Name="Table" Relationship="Self.FK_Orders_Tables" FromRole="Orders" ToRole="Tables" />
@@ -840,6 +842,7 @@
                 <ScalarProperty Name="Fk_dish" ColumnName="Fk_dish" />
                 <ScalarProperty Name="Fk_status_dish" ColumnName="Fk_status_dish" />
                 <ScalarProperty Name="Count_dish" ColumnName="Count_dish" />
+                <ScalarProperty Name="SumDish" ColumnName="SumDish" />
                 <ScalarProperty Name="Fk_order" ColumnName="Fk_order" />
               </MappingFragment>
             </EntityTypeMapping>
