@@ -5,14 +5,13 @@ namespace WpfApp1
     public partial class EditOrderWindow : Window
     {
         private readonly ActionsOrders actionsOrders;
-        private readonly Order selectedOrder;
+        private readonly Order order;
 
-        public EditOrderWindow(Order order, int idUser)
+        public EditOrderWindow(Order selectedOrder, int idUser)
         {
             InitializeComponent();
 
-            selectedOrder = order;
-
+            order = selectedOrder;
             actionsOrders = new ActionsOrders(idUser);
         }
 
@@ -21,9 +20,9 @@ namespace WpfApp1
             ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables();
             ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
 
-            ComboBoxTables.SelectedValue = selectedOrder.Fk_table;
-            ComboBoxStatusOrders.SelectedValue = selectedOrder.Status_orders.ID;
-            TextBoxCountPeople.Text = selectedOrder.Count_person.ToString();
+            ComboBoxTables.SelectedValue = order.Fk_table;
+            ComboBoxStatusOrders.SelectedValue = order.Status_orders.ID;
+            TextBoxCountPeople.Text = order.Count_person.ToString();
 
             ComboBoxTables.IsEnabled = false;
             TextBoxCountPeople.IsEnabled = false;
@@ -31,7 +30,7 @@ namespace WpfApp1
 
         private void ButtonConfirm_Click(object sender, RoutedEventArgs e)
         {
-            actionsOrders.UpdateStatusOrder(selectedOrder.ID, (int)ComboBoxStatusOrders.SelectedValue);
+            actionsOrders.UpdateStatusOrder(order.ID, (int)ComboBoxStatusOrders.SelectedValue);
 
             Close();
         }

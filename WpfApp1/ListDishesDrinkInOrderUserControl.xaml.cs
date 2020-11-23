@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using WpfApp1.Сook;
 
 namespace WpfApp1
 {
@@ -8,21 +9,24 @@ namespace WpfApp1
     {
         private readonly ActionsOrders actionsOrders;
 
-        public static decimal SumOrder { get; set; }
-
         private int IdOrder { get; }
+        private string PostName { get; }
 
-        public ListDishesDrinkInOrderUserControl(int idOrder)
+        public ListDishesDrinkInOrderUserControl(int idOrder, string postName)
         {
             InitializeComponent();
 
             actionsOrders = new ActionsOrders();
             IdOrder = idOrder;
+            PostName = postName;
 
-            FillDataDrid();
+            if (postName == "Повар" || postName == "Администратор")
+                DataGridTextColumnStatusDish.Visibility = Visibility.Visible;
+
+            UploadOrderingDishes();
         }
 
-        public void FillDataDrid()
+        public void UploadOrderingDishes()
         {
             DataGridOrderingDishes.ItemsSource = actionsOrders.OutputOrdering_dishes(IdOrder);
         }
@@ -32,12 +36,13 @@ namespace WpfApp1
             DataGridOrderingDishes.SelectedItem = null;
         }
 
-        public void ConfOrder()
+        // Подтвердить заказ
+        public void ConfirmOrder()
         {
             if (DataGridOrderingDishes.Items.Count != 0)
             {
-                actionsOrders.AddSumOrder(IdOrder, SumOrder);
-                SumOrder = 0;
+                if (PostName != "Повар")
+                    actionsOrders.CalculationAndAddSumOrder(IdOrder);
 
                 Window.GetWindow(this).Close();
             }
@@ -45,12 +50,29 @@ namespace WpfApp1
                 System.Windows.Forms.MessageBox.Show("Ошибка! В заказе отсутствуют блюда!", "Нет блюд в заказе", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        // Добавить блюдо в заказ
         public void AddDish()
         {
             AddDishWindow addDishAndDrinkWindow = new AddDishWindow(IdOrder);
             addDishAndDrinkWindow.ShowDialog();
 
-            FillDataDrid();
+            UploadOrderingDishes();
+        }
+
+        private void DataGridOrderingDishes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (DataGridOrderingDishes.SelectedItem != null)
+            {
+                Ordering_dishes ordering_Dishes = DataGridOrderingDishes.SelectedItem as Ordering_dishes;
+
+                if (PostName == "Повар")
+                {
+                    EditStatusDishWindow editStatusDishWindow = new EditStatusDishWindow(ordering_Dishes);
+                    editStatusDishWindow.ShowDialog();
+
+                    UploadOrderingDishes();
+                }
+            }
         }
     }
 }

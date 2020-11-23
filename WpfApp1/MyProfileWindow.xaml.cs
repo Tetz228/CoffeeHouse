@@ -5,8 +5,6 @@ namespace WpfApp1
 {
     public partial class MyProfileWindow : Window
     {
-        private int IdProfile { get; }
-
         private string SelectedPost { get;}
 
         private readonly ActionsUsers user;
@@ -15,9 +13,8 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            IdProfile = id;
             SelectedPost = post;
-            user = new ActionsUsers(IdProfile);
+            user = new ActionsUsers(id);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

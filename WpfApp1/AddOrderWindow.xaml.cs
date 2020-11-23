@@ -11,11 +11,14 @@ namespace WpfApp1
     {
         private readonly ActionsOrders actionsOrders;
 
-        public AddOrderWindow(int idUser)
+        private string PostName { get; }
+
+        public AddOrderWindow(int idUser, string postName)
         {
             InitializeComponent();
 
             actionsOrders = new ActionsOrders(idUser);
+            PostName = postName;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -46,10 +49,9 @@ namespace WpfApp1
 
                 actionsOrders.AddOrder(infoOrder, out int idOrder);
 
-                ListDishesDrinksInOrderWindow orderDetailsWindow = new ListDishesDrinksInOrderWindow(idOrder);
-
                 Close();
 
+                ListDishesDrinksInOrderWindow orderDetailsWindow = new ListDishesDrinksInOrderWindow(idOrder, PostName);
                 orderDetailsWindow.ShowDialog();
             }
             catch

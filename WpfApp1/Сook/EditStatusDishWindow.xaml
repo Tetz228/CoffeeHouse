@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfApp1.Сook.EditStatusDishWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Сook"
+        mc:Ignorable="d"
+        Title="EditStatusDishWindow" Height="170.534" Width="343.836" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" x:Name="ComboBoxStatusDishes" Margin="70,50,0,0" Width="187"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="81"/>
+        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="86"/>
+        <Label Style="{StaticResource labels}" Content="Выберете статус блюда." Margin="70,10,0,0" Height="27"/>
+    </Grid>
+</Window>

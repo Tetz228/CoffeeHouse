@@ -173,6 +173,12 @@
     <Compile Include="WaiterWindow.xaml.cs">
       <DependentUpon>WaiterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Сook\EditStatusDishWindow.xaml.cs">
+      <DependentUpon>EditStatusDishWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Сook\СookWindow.xaml.cs">
+      <DependentUpon>СookWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddDishWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,6 +239,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WaiterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Сook\EditStatusDishWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Сook\СookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

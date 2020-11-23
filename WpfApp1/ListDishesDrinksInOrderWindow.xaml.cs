@@ -6,25 +6,32 @@ namespace WpfApp1
     {
         private readonly ListDishesDrinkInOrderUserControl list;
 
-        public ListDishesDrinksInOrderWindow(int idOrder)
+        private string PostName { get; }
+
+        public ListDishesDrinksInOrderWindow(int idOrder,string postName)
         {
             InitializeComponent();
-            list = new ListDishesDrinkInOrderUserControl(idOrder);
+
+            list = new ListDishesDrinkInOrderUserControl(idOrder, postName);
+            PostName = postName;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if (PostName == "Повар")
+                MenuItemAddDish.Visibility = Visibility.Hidden;
+
             MainControl.Content = list;
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void MenuItemAddDish_Click(object sender, RoutedEventArgs e)
         {
             list.AddDish();
         }
 
-        private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
-        {
-            list.ConfOrder();
+        private void MenuItemConfirmOrder_Click(object sender, RoutedEventArgs e)
+        {            
+            list.ConfirmOrder();
         }
     }
 }

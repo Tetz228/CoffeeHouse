@@ -12,7 +12,7 @@
         <Label Style="{StaticResource labels}" Content="Логин" Margin="22,0,0,130" Height="26" VerticalAlignment="Bottom" />
         <Label Style="{StaticResource labels}" Content="Пароль" Margin="16,0,0,76" Height="30" VerticalAlignment="Bottom" />
 
-        <TextBox Style="{StaticResource textBox}" Text="" Name="TextBoxLogin" Height="24" Margin="79,0,0,130" Width="210" VerticalAlignment="Bottom"/>
+        <TextBox Style="{StaticResource textBox}"  Text="" Name="TextBoxLogin" Height="24" Margin="79,0,0,130" Width="210" VerticalAlignment="Bottom" TextAlignment="Left"/>
         <PasswordBox Name="PasswordBoxPassword" FontFamily="Verdana" HorizontalAlignment="Left" Margin="79,0,0,79" VerticalAlignment="Bottom" Width="210" Height="24" FontSize="14"/>
 
         <Button Style="{StaticResource button}" Name="ButtonLogin" Content="Войти" Click="ButtonLogin_Click" Margin="10,0,0,10"/>

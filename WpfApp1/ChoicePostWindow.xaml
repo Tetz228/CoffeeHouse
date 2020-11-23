@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Выбор должности" Height="186.192" Width="345.238" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
-    
+
     <Grid>
         <Button Style="{StaticResource button}" x:Name="Сonfirm" Content="Подтвердить" Margin="10,0,0,17" Click="Сonfirm_Click"/>
-        <Button Style="{StaticResource button}" x:Name="Сancel" Content="Отмена" Margin="190,0,0,17" Click="Сancel_Click"/>
+        <Button Style="{StaticResource button}" x:Name="Сancel" Content="Отмена" Margin="0,0,10,17" Click="Сancel_Click" HorizontalAlignment="Right"/>
         <ComboBox Style="{StaticResource comboBox}" x:Name="ComboBoxChoiceRole" Margin="47,51,0,0" Width="240" Height="26" SelectedValuePath="Post.ID" DisplayMemberPath="Post.Name"/>
         <Label Style="{StaticResource labels}" Content="Под какой должностью хотите войти?" Margin="31,10,0,0"/>
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfApp1.Сook;
 
 namespace WpfApp1
 {
@@ -13,7 +14,7 @@ namespace WpfApp1
         {
             ActionsUsers actionsUser = new ActionsUsers();
 
-            (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "l", PasswordBoxPassword.Password = "p");
+            (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "lo", PasswordBoxPassword.Password = "pa");
 
             if (existUser)
                 switch (actionsUser.CountPostAndTheirNames())
@@ -29,9 +30,9 @@ namespace WpfApp1
                         Close();
                         break;
                     case "Повар":
-                        //CockWindow cock = new CockWindow(idUser)
-                        //cock.Show();
-                        //Close();
+                        СookWindow cock = new СookWindow(idUser);
+                        cock.Show();
+                        Close();
                         break;
                 }
             else

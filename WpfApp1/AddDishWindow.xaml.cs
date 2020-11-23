@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -30,6 +31,7 @@ namespace WpfApp1
         private void ComboBoxTypesDishes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxDishes.ItemsSource = actionsOrders.OutputByTypesDishes((int)ComboBoxTypesDishes.SelectedValue);
+
             ComboBoxDishes.SelectedIndex += 1;
         }
 
@@ -37,16 +39,17 @@ namespace WpfApp1
         {
             try
             {
-                Dictionary<string, int> infoDisheDrinkInOrder = new Dictionary<string, int>
+                using var db = new CafeEntities();
+                var selectPriceDish = db.Dishes.Where(dish => dish.ID == (int)ComboBoxDishes.SelectedValue).Select(price => price.Price).FirstOrDefault();
+
+                Dictionary<string, int> infoDishInOrder = new Dictionary<string, int>
                 {
                      { "dish", (int)ComboBoxDishes.SelectedValue },
                      { "countDish", Convert.ToInt32(TextBoxCountDishes.Text) },
                      { "idOrder", IdOrder }
                 };
 
-                actionsOrders.AddOrder_dish(infoDisheDrinkInOrder, out decimal sum);
-
-                ListDishesDrinkInOrderUserControl.SumOrder = sum;
+                actionsOrders.AddDishOrder(infoDishInOrder, selectPriceDish);
 
                 Close();
             }

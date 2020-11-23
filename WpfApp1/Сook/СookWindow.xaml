@@ -1,0 +1,15 @@
+﻿<Window x:Class="WpfApp1.Сook.СookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Сook"
+        mc:Ignorable="d"
+        Title="Окно повара -> Список всех заказов" Width="999" Height="475" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Menu Style="{StaticResource ResourceKey = menuItem}" Width="986">
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemEditOrder" Header="Изменить заказ" Click="MenuItemEditOrder_Click"/>
+        </Menu>
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Height="423" Width="993"/>
+    </Grid>
+</Window>

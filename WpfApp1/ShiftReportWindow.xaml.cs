@@ -10,7 +10,7 @@ namespace WpfApp1
         public ShiftReportWindow(int idUser)
         {
             InitializeComponent();
-            ordersUserControl = new OrdersUserControl(idUser);
+            ordersUserControl = new OrdersUserControl(idUser, "Официант");
             DatePickerDate.SelectedDate = DateTime.Now;
         }
 

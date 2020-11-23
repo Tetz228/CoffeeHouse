@@ -64,7 +64,7 @@ public class ActionsUsers
         {
             if (UserAuthorized.Employee.Posts_employees.Count > 1)
             {
-                ChoicePostWindow choicePost = new ChoicePostWindow(UserAuthorized.ID);
+                ChoicePostWindow choicePost = new ChoicePostWindow(GettingIdEmployee());
                 choicePost.ShowDialog();
 
                 SelectedPost = choicePost.GetPost;
@@ -78,7 +78,10 @@ public class ActionsUsers
     #endregion
 
     #region Вывод информации о пользователе
-    // Вывод id сотрудника
+    // Вывод ID пользователя
+    public int GettingIdUser() => UserAuthorized.ID;
+
+    // Вывод ID сотрудника
     public int GettingIdEmployee() => UserAuthorized.Employee.ID;
 
     //Вывод сокращенного ФИО сотрудника
