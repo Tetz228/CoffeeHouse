@@ -9,6 +9,11 @@
     <Grid>
         <Menu Style="{StaticResource ResourceKey = menuItem}" Width="986">
             <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemEditOrder" Header="Изменить заказ" Click="MenuItemEditOrder_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
+            </MenuItem>
         </Menu>
         <ContentControl x:Name="MainControl" HorizontalAlignment="Left" Margin="0,23,0,0" VerticalAlignment="Top" Height="423" Width="993"/>
     </Grid>

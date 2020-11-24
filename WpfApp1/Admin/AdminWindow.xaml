@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfApp1.Admin.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Admin"
+        mc:Ignorable="d"
+        Title="Окно администратора -> Список заказов" Height="475" Width="1030" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    
+    <Grid>
+        <Menu Style="{StaticResource ResourceKey=menuItem}" Width="1024">
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemOrders" Header="Заказы" Click="MenuItemOrders_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListUsers" Header="Пользователи" Click="MenuItemListUsers_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListEmployees" Header="Сотрудники" Click="MenuItemListEmployees_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemShifts" Header="Смены" Click="MenuItemShifts_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemTables" Header="Столы" Click="MenuItemTables_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemReports" Header="Отчёты">
+                <!--<MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemReportShift" Header="Отчёт официанта" Click="MenuItemReportShift_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemCashOrder" Header="Приходно-кассовый ордер" Click="MenuItemCashOrder_Click"/>-->
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemUser" Header="ФИО пользователя">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemProfile" Header="Мой профиль" Click="MenuItemProfile_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemLogOutAccount" Header="Выйти из аккаунта" Click="MenuItemLogOutAccount_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="423" Width="1020" Margin="0,20,0,0"/>
+
+    </Grid>
+</Window>

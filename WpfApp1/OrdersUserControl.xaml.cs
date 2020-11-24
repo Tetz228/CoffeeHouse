@@ -29,7 +29,7 @@ namespace WpfApp1
                 if (PostName == "Официант")
                     if (selectedOrder.Status_orders.Name == "Принят")
                     {
-                        EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIdUser());
+                        EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser());
                         editOrder.ShowDialog();
 
                         DataGridOrders.ItemsSource = actionsOrders.OutputOrders();

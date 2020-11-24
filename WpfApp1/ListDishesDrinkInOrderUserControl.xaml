@@ -7,7 +7,7 @@
              mc:Ignorable="d" Height="372.781" Width="1006.068">
 
     <Grid>
-        <DataGrid Style="{StaticResource dataGrid}" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrderingDishes" Margin="0,0,10,0" Width="996" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" MouseDoubleClick="DataGridOrderingDishes_MouseDoubleClick" HorizontalAlignment="Right" VerticalAlignment="Top" Height="373">
+        <DataGrid Style="{StaticResource dataGrid}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridOrderingDishes" Margin="0,0,10,0" Width="996" MouseLeftButtonDown="DataGridOrderingDishes_MouseLeftButtonDown" MouseDoubleClick="DataGridOrderingDishes_MouseDoubleClick" HorizontalAlignment="Right" VerticalAlignment="Top" Height="373">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding ID}" Header="ID"  Width="*" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey = cellStyle}" Binding="{Binding Dish.Types_dishes.Name}" Width="*" Header="Тип блюда"/>

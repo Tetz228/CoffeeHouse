@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WpfApp1.Admin;
 using WpfApp1.Сook;
 
 namespace WpfApp1
@@ -13,16 +14,19 @@ namespace WpfApp1
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             ActionsUsers actionsUser = new ActionsUsers();
-
+            
             (bool existUser, int idUser) = actionsUser.SearchUser(TextBoxLogin.Text = "lo", PasswordBoxPassword.Password = "pa");
 
             if (existUser)
-                switch (actionsUser.CountPostAndTheirNames())
+            {
+                ActionsEmployees emp = new ActionsEmployees(idUser);
+
+                switch (emp.CountPostAndTheirNames())
                 {
                     case "Администратор":
-                        //AdminWindow admin = new AdminWindow(idUser);
-                        //admin.Show();
-                        //Close();
+                        AdminWindow admin = new AdminWindow(idUser);
+                        admin.Show();
+                        Close();
                         break;
                     case "Официант":
                         WaiterWindow waiter = new WaiterWindow(idUser);
@@ -35,6 +39,7 @@ namespace WpfApp1
                         Close();
                         break;
                 }
+            }
             else
                 MessageBox.Show("Неверный логин или пароль", "Ошибка при авторизации!", MessageBoxButton.OK, MessageBoxImage.Error);
         }

@@ -72,12 +72,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActionsEmployees.cs" />
     <Compile Include="ActionsUsers.cs" />
     <Compile Include="AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminWindow.xaml.cs">
+      <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cafe.Context.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +123,9 @@
       <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ActionsOrders.cs" />
+    <Compile Include="ListEmployeesUserControl.xaml.cs">
+      <DependentUpon>ListEmployeesUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyProfileWindow.xaml.cs">
       <DependentUpon>MyProfileWindow.xaml</DependentUpon>
     </Compile>
@@ -187,6 +194,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CashOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListDishesDrinkInOrderUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListEmployeesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

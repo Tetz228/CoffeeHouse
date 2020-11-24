@@ -4,26 +4,28 @@ namespace WpfApp1
 {
     public partial class WaiterWindow : Window
     {
-        private readonly ActionsOrders actionsOrders;
+        private readonly ActionsUsers actionsUsers;
         private readonly OrdersUserControl ordersUserControl;
+
+        private string PostName { get; } = "Официант";
 
         public WaiterWindow(int idUser)
         {
             InitializeComponent();
 
-            actionsOrders = new ActionsOrders(idUser);
-            ordersUserControl = new OrdersUserControl(idUser, "Официант");
+            actionsUsers = new ActionsUsers(idUser);
+            ordersUserControl = new OrdersUserControl(idUser, PostName);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainControl.Content = ordersUserControl;
-            MenuItemUser.Header = actionsOrders.GettingLFMEmployee();
+            MenuItemUser.Header = actionsUsers.GettingLFMEmployee();
         }
 
         private void MenuItemAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            AddOrderWindow addOrderWindow = new AddOrderWindow(actionsOrders.GettingIdUser(), "Официант");
+            AddOrderWindow addOrderWindow = new AddOrderWindow(actionsUsers.GettingIDUser(), PostName);
             addOrderWindow.ShowDialog();
 
             ordersUserControl.UploadOrders();
@@ -39,7 +41,7 @@ namespace WpfApp1
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
-            MyProfileWindow myProfile = new MyProfileWindow(actionsOrders.GettingIdUser(), "Официант");
+            MyProfileWindow myProfile = new MyProfileWindow(actionsUsers.GettingIDUser(), PostName);
             myProfile.ShowDialog();
         }
 
@@ -55,7 +57,7 @@ namespace WpfApp1
 
         private void MenuItemReportShift_Click(object sender, RoutedEventArgs e)
         {
-            ShiftReportWindow shiftOrderWindow = new ShiftReportWindow(actionsOrders.GettingIdUser());
+            ShiftReportWindow shiftOrderWindow = new ShiftReportWindow(actionsUsers.GettingIDUser());
             shiftOrderWindow.ShowDialog();
         }
 

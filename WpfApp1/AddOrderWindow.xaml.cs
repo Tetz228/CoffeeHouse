@@ -32,7 +32,7 @@ namespace WpfApp1
                 ComboBoxStatusOrders.IsEnabled = false;
             }
 
-            ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIdEmployee());
+            ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIDEmployee());
             ComboBoxTables.SelectedIndex += 1;
         }
 

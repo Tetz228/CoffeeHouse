@@ -21,6 +21,11 @@
         <Setter Property="FontFamily" Value="Verdana"/>
     </Style>
 
+    <Style x:Key="DataGridTemplateColumnHeader">
+        <Setter Property="ItemsControl.FontSize" Value="14"/>
+        <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
+    </Style>
+
     <Style x:Key="cellStyle">
         <Setter Property="ItemsControl.FontFamily" Value="Verdana"/>
         <Setter Property="ItemsControl.FontSize" Value="14"/>
