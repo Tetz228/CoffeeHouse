@@ -4,13 +4,13 @@ using System.Windows.Input;
 
 namespace WpfApp1
 {
-    public partial class OrdersUserControl : System.Windows.Controls.UserControl
+    public partial class ListOrdersUserControl : System.Windows.Controls.UserControl
     {
         private readonly ActionsOrders actionsOrders;
 
         private string PostName { get; }
 
-        public OrdersUserControl(int idUser, string postName)
+        public ListOrdersUserControl(int idUser, string postName)
         {
             InitializeComponent();
 
@@ -19,8 +19,13 @@ namespace WpfApp1
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
 
-        // Официант\повар
+        // Официант\повар\Администратор
         private void DataGridOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChangeOrder();
+        }
+
+        public void ChangeOrder()
         {
             if (DataGridOrders.SelectedItem != null)
             {
@@ -29,16 +34,21 @@ namespace WpfApp1
                 if (PostName == "Официант")
                     if (selectedOrder.Status_orders.Name == "Принят")
                     {
-                        EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser());
+                        EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser(), PostName);
                         editOrder.ShowDialog();
-
-                        DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
                     }
                 if (PostName == "Повар")
                 {
                     ListDishesDrinksInOrderWindow listDishesDrinksInOrderWindow = new ListDishesDrinksInOrderWindow(selectedOrder.ID, PostName);
                     listDishesDrinksInOrderWindow.ShowDialog();
                 }
+                if (PostName == "Администратор")
+                {
+                    EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser(), PostName);
+                    editOrder.ShowDialog();
+                }
+
+                DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
             }
         }
 

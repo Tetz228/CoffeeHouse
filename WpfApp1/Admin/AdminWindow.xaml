@@ -9,10 +9,28 @@
     
     <Grid>
         <Menu Style="{StaticResource ResourceKey=menuItem}" Width="1024">
-            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemOrders" Header="Заказы" Click="MenuItemOrders_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListUsers" Header="Пользователи" Click="MenuItemListUsers_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListEmployees" Header="Сотрудники" Click="MenuItemListEmployees_Click"/>
-            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemShifts" Header="Смены" Click="MenuItemShifts_Click"/>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemOrders" Header="Заказы">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListOrders" Header="Список заказов" Click="MenuItemListOrder_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEditOrder" Header="Изменить заказ" Click="MenuItemEditOrder_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemUsers" Header="Пользователи">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListUsers" Header="Список пользователей" Click="MenuItemListUsers_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddUser" Header="Добавить пользователя" Click="MenuItemAddUser_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEditUser" Header="Изменить пользователя" Click="MenuItemEditUser_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEmployees" Header="Сотрудники">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListEmployees" Header="Список сотрудников" Click="MenuItemListEmployees_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddEmployee" Header="Добавить сотрудника" Click="MenuItemAddEmployee_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEditEmployee" Header="Изменить сотрудника" Click="MenuItemEditEmployee_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemContracts" Header="Договоры">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListContracts" Header="Список договоров" Click="MenuItemListContracts_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddContract" Header="Добавить договор" Click="MenuItemAddContract_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEditContract" Header="Изменить договор" Click="MenuItemEditContract_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemShifts" Header="Смены" Click="MenuItemShifts_Click">
+                
+            </MenuItem>
             <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemTables" Header="Столы" Click="MenuItemTables_Click"/>
             <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemReports" Header="Отчёты">
                 <!--<MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemReportShift" Header="Отчёт официанта" Click="MenuItemReportShift_Click"/>
@@ -24,7 +42,6 @@
                 <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemExit" Header="Выход" Click="MenuItemExit_Click"/>
             </MenuItem>
         </Menu>
-        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="423" Width="1020" Margin="0,20,0,0"/>
-
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="423" Width="1020" Margin="-1,20,0,0"/>
     </Grid>
 </Window>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfApp1.Add.AddEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Add"
+        mc:Ignorable="d"
+        Title="Добавить сотрудника" Height="388.355" Width="495.479" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    
+    <Grid>
+        <Label Style="{StaticResource labels}" Content="Фамилия" Margin="10,6,0,0" Height="27" Width="107"/>
+        <Label Style="{StaticResource labels}" Content="Имя" Margin="10,58,0,0" Height="27" Width="107"/>
+        <Label Style="{StaticResource labels}" Content="Отчество" Margin="10,115,0,0" Height="27" Width="107"/>
+        <Label Style="{StaticResource labels}" Content="Статус" Margin="261,2,0,0" Width="60"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxLName" Margin="10,33,0,0" Width="208" Height="25"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxFName" Margin="10,85,0,0" Width="208" Height="25"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxMName" Margin="10,142,0,0" Width="208" Height="25"/>
+        <CheckBox Content="Нет отчества" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" FontFamily="Verdana" FontSize="14" Height="17" Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked"/>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" x:Name="ComboBoxStatus" Margin="261,33,0,0" Width="208" Height="26"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonAddPhoto" Content="Добавить фото" Click="ButtonAddPhoto_Click" Margin="0,234,52,0" Height="31" VerticalAlignment="Top" HorizontalAlignment="Right" />
+        <Image x:Name="ImageAvatar" Height="114" Margin="261,115,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="208"/>
+        <Label Style="{StaticResource labels}" Content="Номер телефона" Margin="261,58,0,0" Height="27" Width="139"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxPhoneNumber" Margin="261,85,0,0" Width="208" Height="25"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="Добавить" Margin="14,0,0,18" VerticalAlignment="Bottom" Width="81"/>
+        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,18,18" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="86"/>
+    </Grid>
+</Window>

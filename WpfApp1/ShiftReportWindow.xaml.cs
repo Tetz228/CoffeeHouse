@@ -5,12 +5,12 @@ namespace WpfApp1
 {
     public partial class ShiftReportWindow : Window
     {
-        private readonly OrdersUserControl ordersUserControl;
+        private readonly ListOrdersUserControl ordersUserControl;
 
         public ShiftReportWindow(int idUser)
         {
             InitializeComponent();
-            ordersUserControl = new OrdersUserControl(idUser, "Официант");
+            ordersUserControl = new ListOrdersUserControl(idUser, "Официант");
             DatePickerDate.SelectedDate = DateTime.Now;
         }
 

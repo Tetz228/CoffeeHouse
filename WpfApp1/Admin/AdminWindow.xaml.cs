@@ -1,45 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using WpfApp1.Add;
 
 namespace WpfApp1.Admin
 {
     public partial class AdminWindow : Window
     {
         private readonly ListEmployeesUserControl listEmployeesUserControl;
-        private readonly ActionsEmployees actionsEmployees;
+        private readonly ListOrdersUserControl ordersUserControl;
+        private readonly ActionsUsers actionsUsers;
 
-        public AdminWindow(int id)
+        private string PostName { get; } = "Администратор";
+
+        public AdminWindow(int idUser)
         {
             InitializeComponent();
-            listEmployeesUserControl = new ListEmployeesUserControl(id);
-            actionsEmployees = new ActionsEmployees(id); 
+            listEmployeesUserControl = new ListEmployeesUserControl(idUser);
+            ordersUserControl = new ListOrdersUserControl(idUser, PostName);
+            actionsUsers = new ActionsUsers(idUser);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainControl.Content = listEmployeesUserControl;
-            MenuItemUser.Header = actionsEmployees.GettingLFMEmployee();
+            MenuItemUser.Header = actionsUsers.GettingLFMEmployee();
         }
 
         private void MenuItemListEmployees_Click(object sender, RoutedEventArgs e)
         {
-            MainControl.Content = listEmployeesUserControl;
+            listEmployeesUserControl.UploadOrderingDishes();
         }
 
         private void MenuItemProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            MyProfileWindow myProfileWindow = new MyProfileWindow(actionsUsers.GettingIDUser(), PostName);
+            myProfileWindow.ShowDialog();
         }
 
         private void MenuItemLogOutAccount_Click(object sender, RoutedEventArgs e)
@@ -55,11 +49,6 @@ namespace WpfApp1.Admin
             Close();
         }
 
-        private void MenuItemOrders_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MenuItemListUsers_Click(object sender, RoutedEventArgs e)
         {
 
@@ -73,6 +62,54 @@ namespace WpfApp1.Admin
         private void MenuItemTables_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MenuItemAddEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
+            addEmployeeWindow.ShowDialog();
+
+            listEmployeesUserControl.UploadOrderingDishes();
+        }
+
+        private void MenuItemEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            listEmployeesUserControl.ChangeEmployee();
+        }
+
+        private void MenuItemAddUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemEditUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemListContracts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemAddContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemEditContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemListOrder_Click(object sender, RoutedEventArgs e)
+        {
+            MainControl.Content = ordersUserControl;
+        }
+
+        private void MenuItemEditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            ordersUserControl.ChangeOrder();
         }
     }
 }

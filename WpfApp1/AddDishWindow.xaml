@@ -13,7 +13,7 @@
 
         <TextBox Style="{StaticResource textBox}" x:Name="TextBoxCountDishes" Margin="60,202,0,0"/>
 
-        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="14,0,0,18" VerticalAlignment="Bottom" Width="81"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="Добавить" Margin="14,0,0,18" VerticalAlignment="Bottom" Width="81"/>
         <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="226,0,0,18" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="86"/>
 
         <Label Style="{StaticResource labels}" Content="Какое блюдо хотите добавить в заказ?" Margin="18,21,0,0" Height="27"/>

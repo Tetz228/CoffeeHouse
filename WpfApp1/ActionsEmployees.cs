@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,7 +19,12 @@ namespace WpfApp1
             SearchEmployee(idUser);
         }
 
-        //Поиск сотрудника по его id
+        public ActionsEmployees(Employee employee)
+        {
+            Employee = employee;
+        }
+
+        //Поиск сотрудника по id пользователя
         private void SearchEmployee(int idUser)
         {
             using var db = new CafeEntities();
@@ -37,22 +43,20 @@ namespace WpfApp1
         //Проверка на количество должностей у сотрудника и получение название должности
         public string CountPostAndTheirNames()
         {
-            string SelectedPost;           
+            string SelectedPost;
 
-            using (var db = new CafeEntities())
+            using var db = new CafeEntities();
+            if (Employee.Posts_employees.Count > 1)
             {
-                if (Employee.Posts_employees.Count > 1)
-                {
-                    ChoicePostWindow choicePost = new ChoicePostWindow(GettingIDEmployee());
-                    choicePost.ShowDialog();
+                ChoicePostWindow choicePost = new ChoicePostWindow(GettingIDEmployee());
+                choicePost.ShowDialog();
 
-                    SelectedPost = choicePost.GetPost;
-                }
-                else
-                    SelectedPost = Employee.Posts_employees.ToArray()[0].Post.Name;
-
-                return SelectedPost;
+                SelectedPost = choicePost.GetPost;
             }
+            else
+                SelectedPost = Employee.Posts_employees.ToArray()[0].Post.Name;
+
+            return SelectedPost;
         }
         #endregion
 
@@ -100,7 +104,19 @@ namespace WpfApp1
             {
                 MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+
             }
+        }
+        #endregion
+
+        #region Заполнение ComboBox`ов
+        // Заполнение ComboBox`а "Статус сотрудников"
+        public List<Status_employees> FillingComboBoxStatus_employees()
+        {
+            using var db = new CafeEntities();
+            var status = db.Status_employees.ToList();
+
+            return status;
         }
         #endregion
 

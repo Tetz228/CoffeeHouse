@@ -5,7 +5,7 @@ namespace WpfApp1
     public partial class WaiterWindow : Window
     {
         private readonly ActionsUsers actionsUsers;
-        private readonly OrdersUserControl ordersUserControl;
+        private readonly ListOrdersUserControl ordersUserControl;
 
         private string PostName { get; } = "Официант";
 
@@ -14,7 +14,7 @@ namespace WpfApp1
             InitializeComponent();
 
             actionsUsers = new ActionsUsers(idUser);
-            ordersUserControl = new OrdersUserControl(idUser, PostName);
+            ordersUserControl = new ListOrdersUserControl(idUser, PostName);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

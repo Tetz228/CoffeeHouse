@@ -7,7 +7,7 @@
              mc:Ignorable="d" Height="416.386" Width="1020">
     
     <Grid>
-        <DataGrid Style="{StaticResource dataGrid}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridEmployees" Height="414" Width="1014" MouseDoubleClick="DataGridEmployees_MouseDoubleClick" MouseLeftButtonDown="DataGridEmployees_MouseLeftButtonDown" Margin="0,0,6,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <DataGrid Style="{StaticResource dataGrid}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridEmployees" Height="414" Width="1014" MouseDoubleClick="DataGridEmployees_MouseDoubleClick" MouseLeftButtonDown="DataGridEmployees_MouseLeftButtonDown" Margin="1,-1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
                 <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding LName}" Header="Фамилия"/>

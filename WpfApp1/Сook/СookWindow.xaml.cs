@@ -4,7 +4,7 @@ namespace WpfApp1.Сook
 {
     public partial class СookWindow : Window
     {
-        private readonly OrdersUserControl orders;
+        private readonly ListOrdersUserControl orders;
         private readonly ActionsUsers actionsUsers;
 
         private string PostName { get; } = "Повар";
@@ -14,7 +14,7 @@ namespace WpfApp1.Сook
             InitializeComponent();
 
             actionsUsers = new ActionsUsers(idUser);
-            orders = new OrdersUserControl(idUser, PostName);
+            orders = new ListOrdersUserControl(idUser, PostName);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
