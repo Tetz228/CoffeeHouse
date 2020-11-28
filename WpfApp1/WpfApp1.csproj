@@ -72,7 +72,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActionsContracts.cs" />
     <Compile Include="ActionsEmployees.cs" />
+    <Compile Include="ActionsTables.cs" />
     <Compile Include="ActionsUsers.cs" />
     <Compile Include="AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
@@ -80,11 +82,23 @@
     <Compile Include="AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Add\AddEmployeeWindow.xaml.cs">
+    <Compile Include="Admin\Add\AddContractsWindow.xaml.cs">
+      <DependentUpon>AddContractsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Add\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Add\AddTableWindow.xaml.cs">
+      <DependentUpon>AddTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Add\AddUserWindow.xaml.cs">
+      <DependentUpon>AddUserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Edit\EditTableWindow.xaml.cs">
+      <DependentUpon>EditTableWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Cafe.Context.cs">
       <AutoGen>True</AutoGen>
@@ -113,8 +127,8 @@
     <Compile Include="EditOrderWindow.xaml.cs">
       <DependentUpon>EditOrderWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Edit\EditEmployeeWindow.xaml.cs">
-      <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
+    <Compile Include="Admin\Edit\EditStatusEmployeeWindow.xaml.cs">
+      <DependentUpon>EditStatusEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
@@ -131,6 +145,15 @@
     <Compile Include="ActionsOrders.cs" />
     <Compile Include="ListEmployeesUserControl.xaml.cs">
       <DependentUpon>ListEmployeesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListTablesUserControl.xaml.cs">
+      <DependentUpon>ListTablesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListUsersUserControl.xaml.cs">
+      <DependentUpon>ListUsersUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListContractsUserControl.xaml.cs">
+      <DependentUpon>ListContractsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyProfileWindow.xaml.cs">
       <DependentUpon>MyProfileWindow.xaml</DependentUpon>
@@ -200,11 +223,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Add\AddEmployeeWindow.xaml">
+    <Page Include="Admin\Add\AddContractsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Add\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Add\AddTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Add\AddUserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Edit\EditTableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,7 +255,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Edit\EditEmployeeWindow.xaml">
+    <Page Include="Admin\Edit\EditStatusEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +268,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListOrdersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListTablesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListUsersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListContractsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

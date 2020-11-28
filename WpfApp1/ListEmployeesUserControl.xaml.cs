@@ -13,12 +13,12 @@ namespace WpfApp1
             InitializeComponent();
 
             actionsEmployees = new ActionsEmployees(id);
-            UploadOrderingDishes();
+            UploadEmployees();
         }
 
-        public void UploadOrderingDishes()
+        public void UploadEmployees()
         {
-            DataGridEmployees.ItemsSource = actionsEmployees.GettingEmployees();
+            DataGridEmployees.ItemsSource = actionsEmployees.GettingAllEmployees();
         }
 
         public void ChangeEmployee()
@@ -27,10 +27,10 @@ namespace WpfApp1
             {
                 Employee selectedEmployee = DataGridEmployees.SelectedItem as Employee;
 
-                EditEmployeeWindow editEmployeeWindow = new EditEmployeeWindow(selectedEmployee);
+                EditStatusEmployeeWindow editEmployeeWindow = new EditStatusEmployeeWindow(selectedEmployee);
                 editEmployeeWindow.ShowDialog();
 
-                UploadOrderingDishes();
+                UploadEmployees();
             }
         }
 

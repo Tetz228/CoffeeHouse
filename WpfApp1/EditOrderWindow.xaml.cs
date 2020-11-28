@@ -1,8 +1,6 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using System.Windows;
-using System.Data;
-using System.Data.Entity;
-using System;
 using System.Windows.Forms;
 
 namespace WpfApp1
@@ -41,7 +39,7 @@ namespace WpfApp1
             {
                 ComboBoxTables.IsEnabled = true;
                 TextBoxCountPeople.IsEnabled = true;
-            }           
+            }
         }
 
         private void ButtonConfirm_Click(object sender, RoutedEventArgs e)

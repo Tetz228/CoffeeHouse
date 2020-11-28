@@ -16,13 +16,18 @@ namespace WpfApp1
 
             PostName = postName;
             actionsOrders = new ActionsOrders(idUser);
-            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+            
+            UpdateOrders();
         }
 
-        // Официант\повар\Администратор
         private void DataGridOrders_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ChangeOrder();
+        }
+
+        public void UpdateOrders()
+        {
+            DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
         }
 
         public void ChangeOrder()
@@ -43,12 +48,16 @@ namespace WpfApp1
                     listDishesDrinksInOrderWindow.ShowDialog();
                 }
                 if (PostName == "Администратор")
-                {
-                    EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser(), PostName);
-                    editOrder.ShowDialog();
-                }
+                    if (selectedOrder.Status_orders.Name == "Принят")
+                    {
+                        EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser(), PostName);
+                        editOrder.ShowDialog();
 
-                DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
+                        ListDishesDrinksInOrderWindow listDishesDrinksInOrderWindow = new ListDishesDrinksInOrderWindow(selectedOrder.ID, PostName);
+                        listDishesDrinksInOrderWindow.ShowDialog();
+                    }
+
+                UpdateOrders();
             }
         }
 

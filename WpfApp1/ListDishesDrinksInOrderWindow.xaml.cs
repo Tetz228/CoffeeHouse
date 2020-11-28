@@ -18,7 +18,7 @@ namespace WpfApp1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (PostName == "Повар")
+            if (PostName == "Повар" || PostName == "Администратор")
                 MenuItemAddDish.Visibility = Visibility.Hidden;
 
             MainControl.Content = list;

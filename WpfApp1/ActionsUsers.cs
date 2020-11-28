@@ -1,5 +1,9 @@
 ﻿using System.Linq;
+using System.Data;
+using System.Data.Entity;
 using WpfApp1;
+using System.Security.Cryptography;
+using System;
 
 public class ActionsUsers : ActionsEmployees
 {
@@ -29,6 +33,14 @@ public class ActionsUsers : ActionsEmployees
         UserAuthorized = db.Users.FirstOrDefault(fUser => fUser.ID == idUser);
     }
     #endregion
+
+    public User[] GettingAllUsers()
+    {
+        using var db = new CafeEntities();
+        var users = db.Users.Include(emp => emp.Employee).ToArray();
+
+        return users;
+    }
 
     #region Вывод информации о пользователе
     // Вывод ID пользователя

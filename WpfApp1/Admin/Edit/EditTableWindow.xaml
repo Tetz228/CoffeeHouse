@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApp1.Admin.Edit.EditTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Admin.Edit"
+        mc:Ignorable="d"
+        Title="Изменить стол" Height="225.617" Width="268.629" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Label Style="{StaticResource labels}" Content="Номер столика" Margin="24,14,0,0" Height="27" Width="121"/>
+        <Label Style="{StaticResource labels}" Content="Официант" Margin="24,71,0,0" Width="87"/>
+        <TextBox Style="{StaticResource textBox}" Text="" x:Name="TextBoxNumberTable" Margin="24,41,0,0" Width="218" Height="25"/>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="LName" x:Name="ComboBoxEmployees" Margin="24,98,0,0" Width="218" Height="26"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonEdit" Click="ButtonEdit_Click" Content="Изменить" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="81"/>
+        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="86"/>
+
+    </Grid>
+</Window>

@@ -60,12 +60,27 @@ namespace WpfApp1
         }
         #endregion
 
-        public Employee[] GettingEmployees()
+        public Employee[] GettingAllEmployees()
         {
             using var db = new CafeEntities();
-            var empoloyees = db.Employees.Include(status => status.Status_employees).ToArray();
+            var employees = db.Employees.Include(status => status.Status_employees).ToArray();
 
-            return empoloyees;
+            return employees;
+        }
+
+        public List<Employee> GettingAllEmployeesWaiter()
+        {
+            using var db = new CafeEntities();
+            var employees = db.Employees.Include(postEmp => postEmp.Posts_employees).ToArray();
+
+            List<Employee> emp = new List<Employee>();
+
+            foreach (var waiter in employees)
+                for (int i = 0; i < waiter.Posts_employees.Count; i++)
+                    if (waiter.Posts_employees.ToArray()[i].Post.Name == "Официант")
+                        emp.Add(waiter);
+
+            return emp;
         }
 
         #region Вывод информации о сотруднике

@@ -36,12 +36,11 @@ namespace WpfApp1
             DataGridOrderingDishes.SelectedItem = null;
         }
 
-        // Подтвердить заказ
         public void ConfirmOrder()
         {
             if (DataGridOrderingDishes.Items.Count != 0)
             {
-                if (PostName != "Повар")
+                if (PostName == "Официант")
                     actionsOrders.CalculationAndAddSumOrder(IdOrder);
 
                 Window.GetWindow(this).Close();
@@ -50,7 +49,6 @@ namespace WpfApp1
                 System.Windows.Forms.MessageBox.Show("Ошибка! В заказе отсутствуют блюда!", "Нет блюд в заказе", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        // Добавить блюдо в заказ
         public void AddDish()
         {
             AddDishWindow addDishAndDrinkWindow = new AddDishWindow(IdOrder);
@@ -61,12 +59,12 @@ namespace WpfApp1
 
         private void DataGridOrderingDishes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (DataGridOrderingDishes.SelectedItem != null)
+            if (PostName == "Повар") 
             {
-                Ordering_dishes ordering_Dishes = DataGridOrderingDishes.SelectedItem as Ordering_dishes;
-
-                if (PostName == "Повар")
+                if (DataGridOrderingDishes.SelectedItem != null)
                 {
+                    Ordering_dishes ordering_Dishes = DataGridOrderingDishes.SelectedItem as Ordering_dishes;
+
                     EditStatusDishWindow editStatusDishWindow = new EditStatusDishWindow(ordering_Dishes);
                     editStatusDishWindow.ShowDialog();
 
