@@ -74,14 +74,15 @@
     </ApplicationDefinition>
     <Compile Include="Classes\ActionsContracts.cs" />
     <Compile Include="Classes\ActionsEmployees.cs" />
+    <Compile Include="Classes\ActionsPhoto.cs" />
     <Compile Include="Classes\ActionsShifts.cs" />
     <Compile Include="Classes\ActionsTables.cs" />
     <Compile Include="Classes\ActionsUsers.cs" />
     <Compile Include="Classes\ActionsShiftsDates.cs" />
-    <Compile Include="Waiter\AddDishWindow.xaml.cs">
+    <Compile Include="Waiter\Add\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Waiter\AddOrderWindow.xaml.cs">
+    <Compile Include="Waiter\Add\AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Add\AddContractsWindow.xaml.cs">
@@ -193,7 +194,7 @@
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="Waiter\ShiftReportWindow.xaml.cs">
+    <Compile Include="ShiftReportWindow.xaml.cs">
       <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shift_dates.cs">
@@ -232,11 +233,11 @@
     <Compile Include="Сook\СookWindow.xaml.cs">
       <DependentUpon>СookWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Waiter\AddDishWindow.xaml">
+    <Page Include="Waiter\Add\AddDishWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Waiter\AddOrderWindow.xaml">
+    <Page Include="Waiter\Add\AddOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,7 +352,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Waiter\ShiftReportWindow.xaml">
+    <Page Include="ShiftReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

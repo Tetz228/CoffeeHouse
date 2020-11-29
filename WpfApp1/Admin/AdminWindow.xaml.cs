@@ -18,6 +18,7 @@ namespace WpfApp1.Admin
         private readonly ActionsUsers actionsUsers;
 
         private string PostName { get; } = "Администратор";
+        private int IdUser { get; }
 
         public AdminWindow(int idUser)
         {
@@ -32,11 +33,13 @@ namespace WpfApp1.Admin
             listShiftsUserControl = new ListShiftsUserControl();
 
             actionsUsers = new ActionsUsers(idUser);
+
+            IdUser = idUser;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MainControl.Content = listEmployeesUserControl;
+            MainControl.Content = ordersUserControl;
             MenuItemUser.Header = actionsUsers.GettingLFMEmployee();
         }
 
@@ -160,6 +163,12 @@ namespace WpfApp1.Admin
         private void MenuItemEditShift_Click(object sender, RoutedEventArgs e)
         {
             listShiftsUserControl.ChangeShifts();
+        }
+
+        private void MenuItemReportShift_Click(object sender, RoutedEventArgs e)
+        {
+            ShiftReportWindow shiftReportWindow = new ShiftReportWindow(IdUser, PostName);
+            shiftReportWindow.ShowDialog();
         }
     }
 }

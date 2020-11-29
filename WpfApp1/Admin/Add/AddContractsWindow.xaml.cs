@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WpfApp1.Classes;
 
 namespace WpfApp1.Admin.Add
 {
@@ -20,6 +10,8 @@ namespace WpfApp1.Admin.Add
         private string WayToPhoto { get; set; }
 
         private readonly ActionsEmployees actionsEmployees = new ActionsEmployees();
+        private readonly ActionsContracts actionsContracts = new ActionsContracts();
+        private readonly ActionsPhoto actionsPhoto = new ActionsPhoto();
 
         public AddContractsWindow()
         {
@@ -34,19 +26,12 @@ namespace WpfApp1.Admin.Add
 
         private void ButtonAddPhoto_Click(object sender, RoutedEventArgs e)
         {
-            ImageSource image;
+            actionsPhoto.AddPhoto(out ImageSource image, out string wayToPhoto);
 
-            Microsoft.Win32.OpenFileDialog file = new Microsoft.Win32.OpenFileDialog
+            if (image != null)
             {
-                Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
-                CheckFileExists = true,
-                Title = "Выберете изображение"
-            };
-
-            if (file.ShowDialog() == true)
-            {
-                image = new BitmapImage(new Uri(WayToPhoto = file.FileName));
                 ImageAvatar.Source = image;
+                WayToPhoto = wayToPhoto;
             }
         }
 
@@ -54,17 +39,7 @@ namespace WpfApp1.Admin.Add
         {
             try
             {
-                using var db = new CafeEntities();
-
-                Contract contract = new Contract()
-                {
-                    Number_contract = int.Parse(TextBoxNumberContract.Text),
-                    Fk_employee = (int)ComboBoxEmployees.SelectedValue,
-                    Scan_contract = WayToPhoto,
-                };
-
-                db.Contracts.Add(contract);
-                db.SaveChanges();
+                actionsContracts.AddContract(int.Parse(TextBoxNumberContract.Text), (int)ComboBoxEmployees.SelectedValue, WayToPhoto);
 
                 Close();
             }

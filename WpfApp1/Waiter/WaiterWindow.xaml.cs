@@ -57,7 +57,7 @@ namespace WpfApp1
 
         private void MenuItemReportShift_Click(object sender, RoutedEventArgs e)
         {
-            ShiftReportWindow shiftOrderWindow = new ShiftReportWindow(actionsUsers.GettingIDUser());
+            ShiftReportWindow shiftOrderWindow = new ShiftReportWindow(actionsUsers.GettingIDUser(), PostName);
             shiftOrderWindow.ShowDialog();
         }
 

@@ -3,12 +3,15 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WpfApp1.Classes;
 
 namespace WpfApp1.Add
 {
     public partial class AddEmployeeWindow : Window
     {
         private readonly ActionsEmployees actionsEmployees = new ActionsEmployees();
+        private readonly ActionsPhoto actionsPhoto = new ActionsPhoto();
+
         private string WayToPhoto { get; set; }
 
         public AddEmployeeWindow()
@@ -24,20 +27,12 @@ namespace WpfApp1.Add
 
         private void ButtonAddPhoto_Click(object sender, RoutedEventArgs e)
         {
-            ImageSource image;
+            actionsPhoto.AddPhoto(out ImageSource image, out string wayToPhoto);
 
-            Microsoft.Win32.OpenFileDialog file = new Microsoft.Win32.OpenFileDialog
+            if (image != null)
             {
-                Filter = "Картинки(*.JPG; *.PNG)| *.JPG; *.PNG",
-                CheckFileExists = true,
-                Title = "Выберете изображение"
-            };
-
-            if (file.ShowDialog() == true)
-            {
-                WayToPhoto = file.FileName;
-                image = new BitmapImage(new Uri(file.FileName));
                 ImageAvatar.Source = image;
+                WayToPhoto = wayToPhoto;
             }
         }
 

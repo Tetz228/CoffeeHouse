@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace WpfApp1
 {
@@ -15,6 +14,21 @@ namespace WpfApp1
             var contracts = db.Contracts.Include(emp => emp.Employee).ToArray();
 
             return contracts;
+        }
+
+        public void AddContract(int numberContract, int idEmp, string wayToPhoto)
+        {
+            using var db = new CafeEntities();
+
+            Contract contract = new Contract()
+            {
+                Number_contract = numberContract,
+                Fk_employee = idEmp,
+                Scan_contract = wayToPhoto,
+            };
+
+            db.Contracts.Add(contract);
+            db.SaveChanges();
         }
     }
 }

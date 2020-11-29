@@ -7,11 +7,17 @@ namespace WpfApp1
     {
         private readonly ListOrdersUserControl ordersUserControl;
 
-        public ShiftReportWindow(int idUser)
+        public ShiftReportWindow(int idUser, string postName)
         {
             InitializeComponent();
-            ordersUserControl = new ListOrdersUserControl(idUser, "Официант");
+
+            ordersUserControl = new ListOrdersUserControl(idUser, postName);
             DatePickerDate.SelectedDate = DateTime.Now;
+
+            if (postName == "Администратор")
+                Title = "Отчет о заказах";
+            else
+                Title = "Отчёт официанта";
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
