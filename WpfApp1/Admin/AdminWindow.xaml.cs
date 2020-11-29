@@ -12,6 +12,9 @@ namespace WpfApp1.Admin
         private readonly ListUsersUserControl listUserUserControl;
         private readonly ListTablesUserControl listTablesUserControl;
         private readonly ListContractsUserControl lsitContractsUserControl;
+        private readonly ListShiftsDatesUserControl listShiftsDatesUserControl;
+        private readonly ListShiftsUserControl listShiftsUserControl;
+
         private readonly ActionsUsers actionsUsers;
 
         private string PostName { get; } = "Администратор";
@@ -19,12 +22,16 @@ namespace WpfApp1.Admin
         public AdminWindow(int idUser)
         {
             InitializeComponent();
+
             listEmployeesUserControl = new ListEmployeesUserControl(idUser);
-            ordersUserControl = new ListOrdersUserControl(idUser, PostName);
-            actionsUsers = new ActionsUsers(idUser);
+            ordersUserControl = new ListOrdersUserControl(idUser, PostName);            
             listUserUserControl = new ListUsersUserControl();
             listTablesUserControl = new ListTablesUserControl();
             lsitContractsUserControl = new ListContractsUserControl();
+            listShiftsDatesUserControl = new ListShiftsDatesUserControl();
+            listShiftsUserControl = new ListShiftsUserControl();
+
+            actionsUsers = new ActionsUsers(idUser);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -62,11 +69,6 @@ namespace WpfApp1.Admin
             MainControl.Content = listUserUserControl;
         }
 
-        private void MenuItemShifts_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MenuItemAddEmployee_Click(object sender, RoutedEventArgs e)
         {
             AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
@@ -97,6 +99,8 @@ namespace WpfApp1.Admin
         {
             AddContractsWindow addContracts = new AddContractsWindow();
             addContracts.ShowDialog();
+
+            lsitContractsUserControl.UploadContract();
         }
 
         private void MenuItemListOrder_Click(object sender, RoutedEventArgs e)
@@ -125,6 +129,37 @@ namespace WpfApp1.Admin
         private void MenuItemEditTable_Click(object sender, RoutedEventArgs e)
         {
             listTablesUserControl.ChangeTable();
+        }
+
+        private void MenuItemListShifts_Click(object sender, RoutedEventArgs e)
+        {
+            MainControl.Content = listShiftsUserControl;
+        }
+
+        private void MenuItemListShiftsDates_Click(object sender, RoutedEventArgs e)
+        {
+            MainControl.Content = listShiftsDatesUserControl;
+        }
+
+        private void MenuItemAddShiftDate_Click(object sender, RoutedEventArgs e)
+        {
+            AddShiftsDatesWindow addShiftsDates = new AddShiftsDatesWindow();
+            addShiftsDates.ShowDialog();
+
+            listShiftsDatesUserControl.UploadShiftsDates();
+        }
+
+        private void MenuItemAddShift_Click(object sender, RoutedEventArgs e)
+        {
+            AddShiftsWindow addShiftsWindow = new AddShiftsWindow();
+            addShiftsWindow.ShowDialog();
+
+            listShiftsUserControl.UploadShifts();
+        }
+
+        private void MenuItemEditShift_Click(object sender, RoutedEventArgs e)
+        {
+            listShiftsUserControl.ChangeShifts();
         }
     }
 }

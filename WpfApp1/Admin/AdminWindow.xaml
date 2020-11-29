@@ -26,8 +26,12 @@
                 <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListContracts" Header="Список договоров" Click="MenuItemListContracts_Click"/>
                 <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddContract" Header="Добавить договор" Click="MenuItemAddContract_Click"/>
             </MenuItem>
-            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemShifts" Header="Смены" Click="MenuItemShifts_Click">
-                
+            <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemShifts" Header="Смены">
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListShifts" Header="Список смен" Click="MenuItemListShifts_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListShiftsDates" Header="Список дат смен" Click="MenuItemListShiftsDates_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddShiftDate" Header="Добавить дату для смены" Click="MenuItemAddShiftDate_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemAddShift" Header="Добавить смену" Click="MenuItemAddShift_Click"/>
+                <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemEditShift" Header="Изменить смену" Click="MenuItemEditShift_Click"/>
             </MenuItem>
             <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemTables" Header="Столы">
                 <MenuItem Style="{StaticResource ResourceKey=menuItem}" x:Name="MenuItemListTables" Header="Список столов" Click="MenuItemListTables_Click"/>

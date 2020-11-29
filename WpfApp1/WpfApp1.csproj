@@ -72,14 +72,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActionsContracts.cs" />
-    <Compile Include="ActionsEmployees.cs" />
-    <Compile Include="ActionsTables.cs" />
-    <Compile Include="ActionsUsers.cs" />
-    <Compile Include="AddDishWindow.xaml.cs">
+    <Compile Include="Classes\ActionsContracts.cs" />
+    <Compile Include="Classes\ActionsEmployees.cs" />
+    <Compile Include="Classes\ActionsShifts.cs" />
+    <Compile Include="Classes\ActionsTables.cs" />
+    <Compile Include="Classes\ActionsUsers.cs" />
+    <Compile Include="Classes\ActionsShiftsDates.cs" />
+    <Compile Include="Waiter\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddOrderWindow.xaml.cs">
+    <Compile Include="Waiter\AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Add\AddContractsWindow.xaml.cs">
@@ -87,6 +89,12 @@
     </Compile>
     <Compile Include="Admin\Add\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Add\AddShiftsDatesWindow.xaml.cs">
+      <DependentUpon>AddShiftsDatesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Add\AddShiftsWindow.xaml.cs">
+      <DependentUpon>AddShiftsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Add\AddTableWindow.xaml.cs">
       <DependentUpon>AddTableWindow.xaml</DependentUpon>
@@ -96,6 +104,9 @@
     </Compile>
     <Compile Include="Admin\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Edit\EditShiftsWindow.xaml.cs">
+      <DependentUpon>EditShiftsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Admin\Edit\EditTableWindow.xaml.cs">
       <DependentUpon>EditTableWindow.xaml</DependentUpon>
@@ -115,7 +126,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cafe.edmx</DependentUpon>
     </Compile>
-    <Compile Include="CashOrderWindow.xaml.cs">
+    <Compile Include="Waiter\CashOrderWindow.xaml.cs">
       <DependentUpon>CashOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Contract.cs">
@@ -133,7 +144,7 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ListDishesDrinkInOrderUserControl.xaml.cs">
+    <Compile Include="UserControls\ListDishesDrinkInOrderUserControl.xaml.cs">
       <DependentUpon>ListDishesDrinkInOrderUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
@@ -142,17 +153,23 @@
     <Compile Include="ChoicePostWindow.xaml.cs">
       <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ActionsOrders.cs" />
-    <Compile Include="ListEmployeesUserControl.xaml.cs">
+    <Compile Include="Classes\ActionsOrders.cs" />
+    <Compile Include="UserControls\ListEmployeesUserControl.xaml.cs">
       <DependentUpon>ListEmployeesUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListTablesUserControl.xaml.cs">
+    <Compile Include="UserControls\ListShiftsDatesUserControl.xaml.cs">
+      <DependentUpon>ListShiftsDatesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListShiftsUserControl.xaml.cs">
+      <DependentUpon>ListShiftsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ListTablesUserControl.xaml.cs">
       <DependentUpon>ListTablesUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListUsersUserControl.xaml.cs">
+    <Compile Include="UserControls\ListUsersUserControl.xaml.cs">
       <DependentUpon>ListUsersUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListContractsUserControl.xaml.cs">
+    <Compile Include="UserControls\ListContractsUserControl.xaml.cs">
       <DependentUpon>ListContractsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyProfileWindow.xaml.cs">
@@ -164,10 +181,10 @@
     <Compile Include="Ordering_dishes.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ListOrdersUserControl.xaml.cs">
+    <Compile Include="UserControls\ListOrdersUserControl.xaml.cs">
       <DependentUpon>ListOrdersUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PaymentTypeWindow.xaml.cs">
+    <Compile Include="Waiter\PaymentTypeWindow.xaml.cs">
       <DependentUpon>PaymentTypeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
@@ -176,7 +193,7 @@
     <Compile Include="Posts_employees.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="ShiftReportWindow.xaml.cs">
+    <Compile Include="Waiter\ShiftReportWindow.xaml.cs">
       <DependentUpon>ShiftReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shift_dates.cs">
@@ -206,7 +223,7 @@
     <Compile Include="User.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="WaiterWindow.xaml.cs">
+    <Compile Include="Waiter\WaiterWindow.xaml.cs">
       <DependentUpon>WaiterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Сook\EditStatusDishWindow.xaml.cs">
@@ -215,11 +232,11 @@
     <Compile Include="Сook\СookWindow.xaml.cs">
       <DependentUpon>СookWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddDishWindow.xaml">
+    <Page Include="Waiter\AddDishWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddOrderWindow.xaml">
+    <Page Include="Waiter\AddOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +245,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin\Add\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Add\AddShiftsDatesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\Add\AddShiftsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,11 +268,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Admin\Edit\EditShiftsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Admin\Edit\EditTableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CashOrderWindow.xaml">
+    <Page Include="Waiter\CashOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,31 +288,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListDishesDrinkInOrderUserControl.xaml">
+    <Page Include="UserControls\ListDishesDrinkInOrderUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListEmployeesUserControl.xaml">
+    <Page Include="UserControls\ListEmployeesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListOrdersUserControl.xaml">
+    <Page Include="UserControls\ListOrdersUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListTablesUserControl.xaml">
+    <Page Include="UserControls\ListShiftsDatesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListUsersUserControl.xaml">
+    <Page Include="UserControls\ListShiftsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListContractsUserControl.xaml">
+    <Page Include="UserControls\ListTablesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PaymentTypeWindow.xaml">
+    <Page Include="UserControls\ListUsersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ListContractsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Waiter\PaymentTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -314,11 +351,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShiftReportWindow.xaml">
+    <Page Include="Waiter\ShiftReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WaiterWindow.xaml">
+    <Page Include="Waiter\WaiterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

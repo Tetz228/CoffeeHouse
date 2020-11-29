@@ -119,7 +119,6 @@ namespace WpfApp1
             {
                 MessageBox.Show("Ошибка! Фотография отсутствует!", "Фотография не обнаружена", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
-
             }
         }
         #endregion

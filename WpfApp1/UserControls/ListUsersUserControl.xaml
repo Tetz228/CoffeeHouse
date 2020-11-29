@@ -19,7 +19,7 @@
                             <Binding Path="Employee.MName"/>
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
-                   </DataGridTextColumn>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

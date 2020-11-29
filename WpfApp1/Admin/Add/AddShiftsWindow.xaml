@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfApp1.Admin.Add.AddShiftsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Admin.Add"
+        mc:Ignorable="d"
+        Title="Добавить смену" Height="228.785" Width="254.109" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+        <Label Style="{StaticResource labels}" Content="Дата" Margin="17,7,0,0" Width="60"/>
+        <ComboBox Style="{StaticResource comboBox}" ItemStringFormat="dd.MM.yyy" SelectedValuePath="ID" DisplayMemberPath="Date" x:Name="ComboBoxDate" Margin="17,34,0,0" Width="208" Height="26"/>
+        <Label Style="{StaticResource labels}" Content="Сотрудник" Margin="10,71,0,0" Width="92"/>
+        <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="LName" x:Name="ComboBoxEmployee" Margin="17,98,0,0" Width="208" Height="26"/>
+        <Button Style="{StaticResource button}" x:Name="ButtonAdd" Click="ButtonAdd_Click" Content="Добавить" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="81"/>
+        <Button Style="{StaticResource button}" x:Name="Cancel" Click="Cancel_Click" Content="Отмена" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="86"/>
+    </Grid>
+</Window>

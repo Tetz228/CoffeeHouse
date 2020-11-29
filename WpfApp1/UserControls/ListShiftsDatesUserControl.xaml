@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WpfApp1.ListShiftsDatesUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1"
+             mc:Ignorable="d" 
+             d:DesignHeight="416.386" d:DesignWidth="1020">
+    <Grid>
+        <DataGrid Style="{StaticResource dataGrid}" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="DataGridShiftsDates" Height="414" Width="1014"  MouseLeftButtonDown="DataGridContracts_MouseLeftButtonDown" Margin="1,-1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding ID}" Header="ID" Visibility="Hidden"/>
+                <DataGridTextColumn HeaderStyle="{StaticResource dataGridColumnHeader}" CellStyle="{StaticResource ResourceKey=cellStyle}" Width="*" Binding="{Binding Date, StringFormat=dd.MM.yyy}" Header="Дата"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
