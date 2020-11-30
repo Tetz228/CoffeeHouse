@@ -134,6 +134,24 @@ namespace WpfApp1
         }
         #endregion
 
+        public void AddEmployee(Dictionary<string,string> emp)
+        {
+            using var db = new CafeEntities();
+
+            Employee employee = new Employee()
+            {
+                LName = emp["lName"],
+                FName = emp["fName"],
+                MName = emp["mName"],
+                Fk_status_employee = int.Parse(emp["fkStatus"]),
+                Photo = emp["photo"],
+                Phone_number = emp["phoneNumber"]
+            };
+
+            db.Employees.Add(employee);
+            db.SaveChanges();
+        }
+
         #region Изменение информации о сотруднике
         //Изменение фотографии сотрудника
         public void ChangePhoto(out ImageSource image)
@@ -157,6 +175,17 @@ namespace WpfApp1
 
                 db.SaveChanges();
             }
+        }
+
+        public void EditStatus(int status)
+        {
+            using var db = new CafeEntities();
+            int id = GettingIDEmployee();
+            var employee = db.Employees.Where(emp => emp.ID == id).FirstOrDefault();
+
+            employee.Fk_status_employee = status;
+
+            db.SaveChanges();
         }
         #endregion
     }

@@ -25,13 +25,7 @@ namespace WpfApp1.Edit
         {
             try
             {
-                using var db = new CafeEntities();
-                int id = actionsEmployees.GettingIDEmployee();
-                var employee = db.Employees.Where(emp => emp.ID == id).FirstOrDefault();
-
-                employee.Fk_status_employee = (int)ComboBoxStatus.SelectedValue;
-
-                db.SaveChanges();
+                actionsEmployees.EditStatus((int)ComboBoxStatus.SelectedValue);
 
                 Close();
             }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace WpfApp1
 {
@@ -11,6 +12,18 @@ namespace WpfApp1
             var shift_dates = db.Shift_dates.ToArray();
 
             return shift_dates;
+        }
+
+        public void AddShiftDate(DateTime date)
+        {
+            using var db = new CafeEntities();
+            Shift_dates shiftDate = new Shift_dates()
+            {
+                Date = date
+            };
+
+            db.Shift_dates.Add(shiftDate);
+            db.SaveChanges();
         }
     }
 }

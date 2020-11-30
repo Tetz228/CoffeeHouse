@@ -5,12 +5,11 @@ namespace WpfApp1.Add
 {
     public partial class AddUserWindow : Window
     {
-        private readonly ActionsUsers actionsUsers;
+        private readonly ActionsUsers actionsUsers = new ActionsUsers();
 
         public AddUserWindow()
         {
-            InitializeComponent();
-            actionsUsers = new ActionsUsers();
+            InitializeComponent();         
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -23,17 +22,7 @@ namespace WpfApp1.Add
         {
             try
             {
-                using var db = new CafeEntities();
-
-                User user = new User()
-                {
-                    Login = TextBoxLogin.Text,
-                    Password = PasswordBoxPassword.Password,
-                    Fk_employee = (int)ComboBoxEmployee.SelectedValue
-                };
-
-                db.Users.Add(user);
-                db.SaveChanges();
+                actionsUsers.AddUser(TextBoxLogin.Text, PasswordBoxPassword.Password, (int)ComboBoxEmployee.SelectedValue);
 
                 Close();
             }

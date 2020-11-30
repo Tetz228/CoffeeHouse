@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using WpfApp1.Classes;
 
 namespace WpfApp1.Add
@@ -10,7 +9,6 @@ namespace WpfApp1.Add
     public partial class AddEmployeeWindow : Window
     {
         private readonly ActionsEmployees actionsEmployees = new ActionsEmployees();
-        private readonly ActionsPhoto actionsPhoto = new ActionsPhoto();
 
         private string WayToPhoto { get; set; }
 
@@ -27,6 +25,7 @@ namespace WpfApp1.Add
 
         private void ButtonAddPhoto_Click(object sender, RoutedEventArgs e)
         {
+            ActionsPhoto actionsPhoto = new ActionsPhoto();
             actionsPhoto.AddPhoto(out ImageSource image, out string wayToPhoto);
 
             if (image != null)
@@ -40,20 +39,17 @@ namespace WpfApp1.Add
         {
             try
             {
-                using var db = new CafeEntities();
-
-                Employee employee = new Employee()
+                Dictionary<string, string> dictionaryEmp = new Dictionary<string, string>()
                 {
-                    LName = TextBoxLName.Text,
-                    FName = TextBoxFName.Text,
-                    MName = TextBoxMName.Text == "" ? TextBoxMName.Text = "Не указано" : TextBoxMName.Text,
-                    Fk_status_employee = (int)ComboBoxStatus.SelectedValue,
-                    Photo = WayToPhoto,
-                    Phone_number = TextBoxPhoneNumber.Text
+                    { "lName", TextBoxLName.Text },
+                    { "fName", TextBoxFName.Text },
+                    { "mName", TextBoxMName.Text == "" ? "Не указано" : TextBoxMName.Text },
+                    { "fkStatus", ComboBoxStatus.SelectedValue.ToString() },
+                    { "photo", WayToPhoto },
+                    { "phoneNumber", TextBoxPhoneNumber.Text }
                 };
 
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                actionsEmployees.AddEmployee(dictionaryEmp);
 
                 Close();
             }

@@ -17,8 +17,6 @@ namespace WpfApp1.Admin.Add
 {
     public partial class AddTableWindow : Window
     {
-        private readonly ActionsEmployees actionsEmployees = new ActionsEmployees();
-
         public AddTableWindow()
         {
             InitializeComponent();
@@ -26,6 +24,8 @@ namespace WpfApp1.Admin.Add
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ActionsEmployees actionsEmployees = new ActionsEmployees();
+
             ComboBoxEmployees.ItemsSource = actionsEmployees.GettingAllEmployeesWaiter();
             ComboBoxEmployees.SelectedIndex += 1;
         }
@@ -39,16 +39,8 @@ namespace WpfApp1.Admin.Add
         {
             try
             {
-                using var db = new CafeEntities();
-
-                Table table = new Table()
-                {
-                    Table_number = int.Parse(TextBoxNumberTable.Text),
-                    Fk_employee = (int)ComboBoxEmployees.SelectedValue
-                };
-
-                db.Tables.Add(table);
-                db.SaveChanges();
+                ActionsTables actionsTables = new ActionsTables();
+                actionsTables.AddTable(int.Parse(TextBoxNumberTable.Text), (int)ComboBoxEmployees.SelectedValue);
 
                 Close();
             }

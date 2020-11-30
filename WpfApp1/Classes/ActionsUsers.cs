@@ -42,6 +42,21 @@ public class ActionsUsers : ActionsEmployees
         return users;
     }
 
+    public void AddUser(string log, string pass, int emp)
+    {
+        using var db = new CafeEntities();
+
+        User user = new User()
+        {
+            Login = log,
+            Password = pass,
+            Fk_employee = emp
+        };
+
+        db.Users.Add(user);
+        db.SaveChanges();
+    }
+
     #region Вывод информации о пользователе
     // Вывод ID пользователя
     public int GettingIDUser() => UserAuthorized.ID;

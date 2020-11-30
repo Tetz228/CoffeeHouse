@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Forms;
 
 namespace WpfApp1.Admin.Edit
@@ -27,14 +26,8 @@ namespace WpfApp1.Admin.Edit
         {
             try
             {
-                using var db = new CafeEntities();
-
-                var tables = db.Tables.Where(tl => tl.ID == table.ID).FirstOrDefault();
-
-                tables.Table_number = int.Parse(TextBoxNumberTable.Text);
-                tables.Fk_employee = (int)ComboBoxEmployees.SelectedValue;
-
-                db.SaveChanges();
+                ActionsTables actionsTables = new ActionsTables();
+                actionsTables.EditTable(table.ID, int.Parse(TextBoxNumberTable.Text), (int)ComboBoxEmployees.SelectedValue);
 
                 Close();
             }

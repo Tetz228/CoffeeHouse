@@ -17,14 +17,8 @@ namespace WpfApp1.Admin.Add
         {
             try
             {
-                using var db = new CafeEntities();
-                Shift_dates shiftDate = new Shift_dates()
-                {
-                    Date = (DateTime)DatePickerDate.SelectedDate
-                };
-
-                db.Shift_dates.Add(shiftDate);
-                db.SaveChanges();
+                ActionsShiftsDates actionsShiftsDates = new ActionsShiftsDates();
+                actionsShiftsDates.AddShiftDate((DateTime)DatePickerDate.SelectedDate);
 
                 Close();
             }

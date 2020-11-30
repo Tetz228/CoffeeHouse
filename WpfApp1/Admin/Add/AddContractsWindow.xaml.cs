@@ -9,10 +9,6 @@ namespace WpfApp1.Admin.Add
     {
         private string WayToPhoto { get; set; }
 
-        private readonly ActionsEmployees actionsEmployees = new ActionsEmployees();
-        private readonly ActionsContracts actionsContracts = new ActionsContracts();
-        private readonly ActionsPhoto actionsPhoto = new ActionsPhoto();
-
         public AddContractsWindow()
         {
             InitializeComponent();
@@ -20,12 +16,15 @@ namespace WpfApp1.Admin.Add
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            ActionsEmployees actionsEmployees = new ActionsEmployees();
+
             ComboBoxEmployees.ItemsSource = actionsEmployees.GettingAllEmployees();
             ComboBoxEmployees.SelectedIndex += 1;
         }
 
         private void ButtonAddPhoto_Click(object sender, RoutedEventArgs e)
         {
+            ActionsPhoto actionsPhoto = new ActionsPhoto();
             actionsPhoto.AddPhoto(out ImageSource image, out string wayToPhoto);
 
             if (image != null)
@@ -39,6 +38,7 @@ namespace WpfApp1.Admin.Add
         {
             try
             {
+                ActionsContracts actionsContracts = new ActionsContracts();
                 actionsContracts.AddContract(int.Parse(TextBoxNumberContract.Text), (int)ComboBoxEmployees.SelectedValue, WayToPhoto);
 
                 Close();
