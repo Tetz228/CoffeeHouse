@@ -24,13 +24,11 @@ namespace WpfApp1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             using var db = new CafeEntities();
-
             var statusOrder = db.Status_orders.Where(status => status.Name == "Принят").FirstOrDefault();
 
             ComboBoxStatusOrders.ItemsSource = actionsOrders.FillingComboBoxStatusOrders();
             ComboBoxStatusOrders.SelectedValue = statusOrder.ID;
             ComboBoxStatusOrders.IsEnabled = false;
-
 
             ComboBoxTables.ItemsSource = actionsOrders.FillingComboBoxTables(actionsOrders.GettingIDEmployee());
             ComboBoxTables.SelectedIndex += 1;

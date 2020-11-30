@@ -6,18 +6,15 @@ namespace WpfApp1
 {
     public partial class ListEmployeesUserControl : UserControl
     {
-        private readonly ActionsEmployees actionsEmployees;
-
-        public ListEmployeesUserControl(int id)
+        public ListEmployeesUserControl()
         {
             InitializeComponent();
-
-            actionsEmployees = new ActionsEmployees(id);
             UploadEmployees();
         }
 
         public void UploadEmployees()
         {
+            ActionsEmployees actionsEmployees = new ActionsEmployees();
             DataGridEmployees.ItemsSource = actionsEmployees.GettingAllEmployees();
         }
 

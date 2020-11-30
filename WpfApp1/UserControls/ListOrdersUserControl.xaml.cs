@@ -77,7 +77,6 @@ namespace WpfApp1
             DataGridOrders.SelectedItem = null;
         }
 
-        #region Официант
         public void UploadOrders()
         {
             DataGridOrders.ItemsSource = actionsOrders.OutputOrders();
@@ -116,6 +115,5 @@ namespace WpfApp1
         {
             DataGridOrders.ItemsSource = actionsOrders.ShiftReport(date);
         }
-        #endregion
     }
 }

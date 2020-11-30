@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -52,14 +52,15 @@ namespace WpfApp1
             {
                 try
                 {
-                    using var db = new CafeEntities();
-                    var selectOrder = db.Orders.Where(idOrder => idOrder.ID == order.ID).FirstOrDefault();
+                    Dictionary<string, int> infoOrder = new Dictionary<string, int>
+                    {
+                         { "table", (int)ComboBoxTables.SelectedValue },
+                         { "countPeople", Convert.ToInt32(TextBoxCountPeople.Text) },
+                         { "status", (int)ComboBoxStatusOrders.SelectedValue },
+                         { "idOrder", order.ID }
+                    };
 
-                    selectOrder.Fk_table = (int)ComboBoxTables.SelectedValue;
-                    selectOrder.Count_person = int.Parse(TextBoxCountPeople.Text);
-                    selectOrder.Fk_status_order = (int)ComboBoxStatusOrders.SelectedValue;
-
-                    db.SaveChanges();
+                    actionsOrders.UpdateOrder(infoOrder);
                 }
                 catch
                 {

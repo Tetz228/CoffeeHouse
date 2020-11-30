@@ -5,7 +5,6 @@ namespace WpfApp1.Сook
     public partial class EditStatusDishWindow : Window
     {
         private readonly Ordering_dishes order_Dish;
-
         private readonly ActionsOrders actionsOrders = new ActionsOrders();
 
         public EditStatusDishWindow(Ordering_dishes ordering_Dishes)

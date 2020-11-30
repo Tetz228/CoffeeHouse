@@ -5,19 +5,15 @@ namespace WpfApp1
 {
     public partial class ListUsersUserControl : UserControl
     {
-        private readonly ActionsUsers actionsUsers;
-
         public ListUsersUserControl()
         {
             InitializeComponent();
-
-            actionsUsers = new ActionsUsers();
-
             UploadUsers();
         }
 
         public void UploadUsers()
         {
+            ActionsUsers actionsUsers = new ActionsUsers();
             DataGridUsers.ItemsSource = actionsUsers.GettingAllUsers();
         }
 

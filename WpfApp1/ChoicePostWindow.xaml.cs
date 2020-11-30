@@ -24,11 +24,10 @@ namespace WpfApp1
 
         private void FillingComboBox()
         {
-            using (var db = new CafeEntities())
-            {
-                ComboBoxChoiceRole.ItemsSource = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdEmp).ToList();
-                ComboBoxChoiceRole.SelectedIndex += 1;
-            }
+            using var db = new CafeEntities();
+
+            ComboBoxChoiceRole.ItemsSource = db.Posts_employees.Include(post => post.Post).Where(emp => emp.Fk_employee == IdEmp).ToList();
+            ComboBoxChoiceRole.SelectedIndex += 1;
         }
 
         private void Сonfirm_Click(object sender, RoutedEventArgs e)

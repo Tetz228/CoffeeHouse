@@ -41,22 +41,20 @@ namespace WpfApp1
         //Вывод информации о заказах за смену 
         public List<Order> OutputOrdersShift()
         {
-            using (var db = new CafeEntities())
-            {
-                List<Order> orders = new List<Order>();
+            using var db = new CafeEntities();
+            List<Order> orders = new List<Order>();
 
-                var selectOrdersShift = db.Orders.Include(status => status.Status_orders)
-                                                 .Include(table => table.Table)
-                                                 .Include(emp => emp.Table.Employee)
-                                                 .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
+            var selectOrdersShift = db.Orders.Include(status => status.Status_orders)
+                                             .Include(table => table.Table)
+                                             .Include(emp => emp.Table.Employee)
+                                             .Include(orderDishes => orderDishes.Ordering_dishes).ToArray();
 
-                //Выборка заказов за сегодняшнюю смену
-                foreach (var data in selectOrdersShift)
-                    if (data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
-                        orders.Add(data);
+            //Выборка заказов за сегодняшнюю смену
+            foreach (var data in selectOrdersShift)
+                if (data.Data_time.ToShortDateString() == DateTime.Now.ToShortDateString())
+                    orders.Add(data);
 
-                return orders;
-            }
+            return orders;
         }
 
         //Вывод информации о заказах за смену в выбранную дату
@@ -223,6 +221,19 @@ namespace WpfApp1
             using var db = new CafeEntities();
             var statusOrder = db.Orders.Where(order => order.ID == idOrder).FirstOrDefault();
             statusOrder.Fk_status_order = idStatus;
+
+            db.SaveChanges();
+        }
+
+        //Обновление заказа
+        public void UpdateOrder(Dictionary<string, int> infoOrder)
+        {
+            using var db = new CafeEntities();
+            var selectOrder = db.Orders.Where(idOrder => idOrder.ID == infoOrder["idOrder"]).FirstOrDefault();
+
+            selectOrder.Fk_table = infoOrder["table"];
+            selectOrder.Count_person = infoOrder["countPeople"];
+            selectOrder.Fk_status_order = infoOrder["status"];
 
             db.SaveChanges();
         }

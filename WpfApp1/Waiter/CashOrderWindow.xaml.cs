@@ -21,7 +21,6 @@ namespace WpfApp1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainControl.Content = list;
-
             TotalSum.Content += Sum + " руб.";
             PaymentType.Content += TypePayment;
         }

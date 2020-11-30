@@ -23,7 +23,7 @@ namespace WpfApp1.Admin
         {
             InitializeComponent();
 
-            listEmployeesUserControl = new ListEmployeesUserControl(idUser);
+            listEmployeesUserControl = new ListEmployeesUserControl();
             ordersUserControl = new ListOrdersUserControl(idUser, PostName);
             listUserUserControl = new ListUsersUserControl();
             listTablesUserControl = new ListTablesUserControl();
