@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Сook"
         mc:Ignorable="d"
-        Title="EditStatusDishWindow" Height="170.534" Width="343.836" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Изменить статус блюда" Height="170.534" Width="343.836" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <ComboBox Style="{StaticResource comboBox}" SelectedValuePath="ID" DisplayMemberPath="Name" x:Name="ComboBoxStatusDishes" Margin="70,50,0,0" Width="187"/>
         <Button Style="{StaticResource button}" x:Name="ButtonСonfirm" Click="ButtonСonfirm_Click" Content="ОК" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="81"/>

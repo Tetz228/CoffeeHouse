@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Admin.Add"
         mc:Ignorable="d"
-        Title="Добавить контракт" Height="410.547" Width="264.933" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Добавить договора" Height="410.547" Width="264.933" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Label Style="{StaticResource labels}" Content="Номер договора" Margin="0,16,96,0" Height="27" Width="136" HorizontalAlignment="Right"/>
         <Label Style="{StaticResource labels}" Content="Сотрудник" Margin="0,73,145,0" Width="87" HorizontalAlignment="Right"/>

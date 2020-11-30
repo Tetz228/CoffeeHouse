@@ -49,7 +49,7 @@ namespace WpfApp1
 
                 Close();
 
-                ListDishesDrinksInOrderWindow orderDetailsWindow = new ListDishesDrinksInOrderWindow(idOrder, PostName);
+                ListDishesInOrderWindow orderDetailsWindow = new ListDishesInOrderWindow(idOrder, PostName);
                 orderDetailsWindow.ShowDialog();
             }
             catch

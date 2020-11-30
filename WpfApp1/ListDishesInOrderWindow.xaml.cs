@@ -2,17 +2,17 @@
 
 namespace WpfApp1
 {
-    public partial class ListDishesDrinksInOrderWindow : Window
+    public partial class ListDishesInOrderWindow : Window
     {
-        private readonly ListDishesDrinkInOrderUserControl list;
+        private readonly ListDishesInOrderUserControl list;
 
         private string PostName { get; }
 
-        public ListDishesDrinksInOrderWindow(int idOrder,string postName)
+        public ListDishesInOrderWindow(int idOrder,string postName)
         {
             InitializeComponent();
 
-            list = new ListDishesDrinkInOrderUserControl(idOrder, postName);
+            list = new ListDishesInOrderUserControl(idOrder, postName);
             PostName = postName;
         }
 

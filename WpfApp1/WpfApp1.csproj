@@ -145,11 +145,11 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Cafe.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ListDishesDrinkInOrderUserControl.xaml.cs">
-      <DependentUpon>ListDishesDrinkInOrderUserControl.xaml</DependentUpon>
+    <Compile Include="UserControls\ListDishesInOrderUserControl.xaml.cs">
+      <DependentUpon>ListDishesInOrderUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListDishesDrinksInOrderWindow.xaml.cs">
-      <DependentUpon>ListDishesDrinksInOrderWindow.xaml</DependentUpon>
+    <Compile Include="ListDishesInOrderWindow.xaml.cs">
+      <DependentUpon>ListDishesInOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChoicePostWindow.xaml.cs">
       <DependentUpon>ChoicePostWindow.xaml</DependentUpon>
@@ -289,7 +289,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ListDishesDrinkInOrderUserControl.xaml">
+    <Page Include="UserControls\ListDishesInOrderUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,7 +329,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListDishesDrinksInOrderWindow.xaml">
+    <Page Include="ListDishesInOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,14 +5,14 @@ using WpfApp1.Сook;
 
 namespace WpfApp1
 {
-    public partial class ListDishesDrinkInOrderUserControl : System.Windows.Controls.UserControl
+    public partial class ListDishesInOrderUserControl : System.Windows.Controls.UserControl
     {
         private readonly ActionsOrders actionsOrders;
 
         private int IdOrder { get; }
         private string PostName { get; }
 
-        public ListDishesDrinkInOrderUserControl(int idOrder, string postName)
+        public ListDishesInOrderUserControl(int idOrder, string postName)
         {
             InitializeComponent();
 

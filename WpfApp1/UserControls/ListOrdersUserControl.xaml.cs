@@ -44,7 +44,7 @@ namespace WpfApp1
                     }
                 if (PostName == "Повар")
                 {
-                    ListDishesDrinksInOrderWindow listDishesDrinksInOrderWindow = new ListDishesDrinksInOrderWindow(selectedOrder.ID, PostName);
+                    ListDishesInOrderWindow listDishesDrinksInOrderWindow = new ListDishesInOrderWindow(selectedOrder.ID, PostName);
                     listDishesDrinksInOrderWindow.ShowDialog();
                 }
                 if (PostName == "Администратор")
@@ -52,9 +52,8 @@ namespace WpfApp1
                     {
                         EditOrderWindow editOrder = new EditOrderWindow(selectedOrder, actionsOrders.GettingIDUser(), PostName);
                         editOrder.ShowDialog();
-
-                        ListDishesDrinksInOrderWindow listDishesDrinksInOrderWindow = new ListDishesDrinksInOrderWindow(selectedOrder.ID, PostName);
-                        listDishesDrinksInOrderWindow.ShowDialog();
+                        
+                        
                     }
 
                 UpdateOrders();
@@ -67,7 +66,7 @@ namespace WpfApp1
             {
                 Order selectedOrder = DataGridOrders.SelectedItem as Order;
 
-                ListDishesDrinksInOrderWindow listDishesDrinksInOrderWindow = new ListDishesDrinksInOrderWindow(selectedOrder.ID, PostName);
+                ListDishesInOrderWindow listDishesDrinksInOrderWindow = new ListDishesInOrderWindow(selectedOrder.ID, PostName);
                 listDishesDrinksInOrderWindow.ShowDialog();
             }
         }

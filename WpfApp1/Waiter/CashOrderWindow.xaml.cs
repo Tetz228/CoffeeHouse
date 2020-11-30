@@ -7,7 +7,7 @@ namespace WpfApp1
         private decimal Sum { get; }
         private string TypePayment { get; }
 
-        private readonly ListDishesDrinkInOrderUserControl list;
+        private readonly ListDishesInOrderUserControl list;
 
         public CashOrderWindow(int idOrder, decimal sum, string typePayment, string postName)
         {
@@ -15,7 +15,7 @@ namespace WpfApp1
 
             Sum = sum;
             TypePayment = typePayment;
-            list = new ListDishesDrinkInOrderUserControl(idOrder, postName);
+            list = new ListDishesInOrderUserControl(idOrder, postName);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

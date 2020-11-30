@@ -226,10 +226,10 @@ namespace WpfApp1
         }
 
         //Обновление заказа
-        public void UpdateOrder(Dictionary<string, int> infoOrder)
-        {
+        public void UpdateOrder(Dictionary<string, int> infoOrder,Order order)
+        {           
             using var db = new CafeEntities();
-            var selectOrder = db.Orders.Where(idOrder => idOrder.ID == infoOrder["idOrder"]).FirstOrDefault();
+            var selectOrder = db.Orders.Where(idOrder => idOrder.ID == order.ID).FirstOrDefault();
 
             selectOrder.Fk_table = infoOrder["table"];
             selectOrder.Count_person = infoOrder["countPeople"];

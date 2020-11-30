@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfApp1.ListDishesInOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Список блюд в заказе" Height="411" Width="1011" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+
+    <Grid>
+        <Menu Style="{StaticResource ResourceKey = menuItem}" Height="23" Width="1005">
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemAddDish" Click="MenuItemAddDish_Click" Header="Добавить блюдо" Height="23"/>
+            <MenuItem Style="{StaticResource ResourceKey = menuItem}" x:Name="MenuItemConfirmOrder" Click="MenuItemConfirmOrder_Click" Header="Подтвердить заказ" Height="23" Margin="710,0,0,0"/>
+        </Menu>
+        <ContentControl x:Name="MainControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="359" Width="1005" Margin="0,23,0,0"/>
+    </Grid>
+</Window>

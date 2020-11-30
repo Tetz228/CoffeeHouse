@@ -57,18 +57,20 @@ namespace WpfApp1
                          { "table", (int)ComboBoxTables.SelectedValue },
                          { "countPeople", Convert.ToInt32(TextBoxCountPeople.Text) },
                          { "status", (int)ComboBoxStatusOrders.SelectedValue },
-                         { "idOrder", order.ID }
                     };
 
-                    actionsOrders.UpdateOrder(infoOrder);
+                    actionsOrders.UpdateOrder(infoOrder, order);
+
+                    Close();
+
+                    ListDishesInOrderWindow listDishesDrinksInOrderWindow = new ListDishesInOrderWindow(order.ID, PostName);
+                    listDishesDrinksInOrderWindow.ShowDialog();
                 }
                 catch
                 {
                     System.Windows.Forms.MessageBox.Show("Ошибка при редактировании заказа!", "Ошибка! Некорректный ввод!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            Close();
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)

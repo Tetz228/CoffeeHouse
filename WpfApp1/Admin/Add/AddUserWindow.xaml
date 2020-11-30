@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.Add"
         mc:Ignorable="d"
-        Title="AddUserWindow" Height="274.096" Width="250.137" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="Добавить пользователя" Height="274.096" Width="250.137" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Label Style="{StaticResource labels}" Content="Логин" Margin="10,6,0,0" VerticalAlignment="Top" Height="26" />
         <Label Style="{StaticResource labels}" Content="Пароль" Margin="10,61,0,0" VerticalAlignment="Top" Height="30" />
