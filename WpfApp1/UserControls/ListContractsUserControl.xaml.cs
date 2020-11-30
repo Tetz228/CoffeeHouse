@@ -5,8 +5,6 @@ namespace WpfApp1
 {
     public partial class ListContractsUserControl : UserControl
     {
-        private readonly ActionsContracts actionsContracts = new ActionsContracts();
-
         public ListContractsUserControl()
         {
             InitializeComponent();
@@ -16,6 +14,8 @@ namespace WpfApp1
 
         public void UploadContract()
         {
+            ActionsContracts actionsContracts = new ActionsContracts();
+
             DataGridContracts.ItemsSource = actionsContracts.GettingAllContracts();
         }
 

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using WpfApp1.Add;
 using WpfApp1.Admin.Add;
-using WpfApp1.Admin.Edit;
 
 namespace WpfApp1.Admin
 {
@@ -25,7 +24,7 @@ namespace WpfApp1.Admin
             InitializeComponent();
 
             listEmployeesUserControl = new ListEmployeesUserControl(idUser);
-            ordersUserControl = new ListOrdersUserControl(idUser, PostName);            
+            ordersUserControl = new ListOrdersUserControl(idUser, PostName);
             listUserUserControl = new ListUsersUserControl();
             listTablesUserControl = new ListTablesUserControl();
             lsitContractsUserControl = new ListContractsUserControl();

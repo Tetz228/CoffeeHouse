@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using System.Linq;
 using WpfApp1;
-using System.Security.Cryptography;
-using System;
 
 public class ActionsUsers : ActionsEmployees
 {
@@ -56,9 +53,7 @@ public class ActionsUsers : ActionsEmployees
         db.Users.Add(user);
         db.SaveChanges();
     }
-
-    #region Вывод информации о пользователе
+   
     // Вывод ID пользователя
-    public int GettingIDUser() => UserAuthorized.ID;
-    #endregion
+    public int GettingIDUser() => UserAuthorized.ID;    
 }

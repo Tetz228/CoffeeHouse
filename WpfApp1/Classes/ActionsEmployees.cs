@@ -39,13 +39,12 @@ namespace WpfApp1
                                    .FirstOrDefault(emp => emp.ID == employee.Fk_employee);
         }
 
-        #region Кол-во должностей у сотрудника и получение названия выбранной должности
         //Проверка на количество должностей у сотрудника и получение название должности
         public string CountPostAndTheirNames()
         {
             string SelectedPost;
-
             using var db = new CafeEntities();
+
             if (Employee.Posts_employees.Count > 1)
             {
                 ChoicePostWindow choicePost = new ChoicePostWindow(GettingIDEmployee());
@@ -58,8 +57,9 @@ namespace WpfApp1
 
             return SelectedPost;
         }
-        #endregion
 
+        #region Вывод информации о сотруднике
+        //Вывод всех сотрудников
         public Employee[] GettingAllEmployees()
         {
             using var db = new CafeEntities();
@@ -68,6 +68,7 @@ namespace WpfApp1
             return employees;
         }
 
+        //Вывод только официантов
         public List<Employee> GettingAllEmployeesWaiter()
         {
             using var db = new CafeEntities();
@@ -83,7 +84,6 @@ namespace WpfApp1
             return emp;
         }
 
-        #region Вывод информации о сотруднике
         // Вывод ID сотрудника
         public int GettingIDEmployee() => Employee.ID;
 
@@ -123,8 +123,7 @@ namespace WpfApp1
         }
         #endregion
 
-        #region Заполнение ComboBox`ов
-        // Заполнение ComboBox`а "Статус сотрудников"
+        //Заполнение ComboBox`а "Статус сотрудников"
         public List<Status_employees> FillingComboBoxStatus_employees()
         {
             using var db = new CafeEntities();
@@ -132,9 +131,9 @@ namespace WpfApp1
 
             return status;
         }
-        #endregion
 
-        public void AddEmployee(Dictionary<string,string> emp)
+        //Добавление сотрудника
+        public void AddEmployee(Dictionary<string, string> emp)
         {
             using var db = new CafeEntities();
 
@@ -151,6 +150,7 @@ namespace WpfApp1
             db.Employees.Add(employee);
             db.SaveChanges();
         }
+
 
         #region Изменение информации о сотруднике
         //Изменение фотографии сотрудника
@@ -177,6 +177,7 @@ namespace WpfApp1
             }
         }
 
+        //Изменение статуса сотрудника
         public void EditStatus(int status)
         {
             using var db = new CafeEntities();

@@ -59,7 +59,7 @@ namespace WpfApp1
 
         private void DataGridOrderingDishes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (PostName == "Повар") 
+            if (PostName == "Повар")
             {
                 if (DataGridOrderingDishes.SelectedItem != null)
                 {

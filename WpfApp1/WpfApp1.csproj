@@ -79,7 +79,6 @@
     <Compile Include="Classes\ActionsTables.cs" />
     <Compile Include="Classes\ActionsUsers.cs" />
     <Compile Include="Classes\ActionsShiftsDates.cs" />
-    <Compile Include="IClasses.cs" />
     <Compile Include="Waiter\Add\AddDishWindow.xaml.cs">
       <DependentUpon>AddDishWindow.xaml</DependentUpon>
     </Compile>
